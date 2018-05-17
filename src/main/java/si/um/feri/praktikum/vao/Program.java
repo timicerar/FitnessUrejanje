@@ -3,53 +3,58 @@ package si.um.feri.praktikum.vao;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import javax.persistence.*;
+import java.io.Serializable;
 
-public class Program {
+@Entity
+public class Program implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdProgram")
     @Getter
     @Setter
     private int idProgram;
+    @Column(name = "Naziv", nullable = false)
     @Getter
     @Setter
     private String naziv;
-    @Getter
-    @Setter
-    private LocalDate datumZacetka;
+    @Column(name = "CasTrajanja", nullable = false)
     @Getter
     @Setter
     private int casTrajanja;
+    @Column(name = "Tezavnost", nullable = false)
     @Getter
     @Setter
     private int tezavnost;
+    @Column(name = "Opis", nullable = false)
     @Getter
     @Setter
-    private String nacinOgrevanja;
-    @Getter
-    @Setter
-    private String nacinOhlajanja;
+    private String opis;
+    @Column(name = "Spol", nullable = false)
     @Getter
     @Setter
     private int spol;
+    @Column(name = "TkIdOseba")
     @Getter
     @Setter
     private int tkIdOseba;
+    @Column(name = "TkIdTipPrograma")
     @Getter
     @Setter
-    private int tkIdTippPrograma;
+    private int tkIdTipPrograma;
 
     public Program() {
+
     }
 
-    public Program(int idProgram, String naziv, LocalDate datumZacetka, int casTrajanja, int tezavnost, String nacinOgrevanja, String nacinOhlajanja, int spol, int tkIdOseba, int tkIdTippPrograma) {
+    public Program(int idProgram, String naziv, int casTrajanja, int tezavnost, int spol, int tkIdOseba, int tkIdTipPrograma) {
         this.idProgram = idProgram;
         this.naziv = naziv;
-        this.datumZacetka = datumZacetka;
         this.casTrajanja = casTrajanja;
         this.tezavnost = tezavnost;
-        this.nacinOgrevanja = nacinOgrevanja;
-        this.nacinOhlajanja = nacinOhlajanja;
         this.spol = spol;
         this.tkIdOseba = tkIdOseba;
-        this.tkIdTippPrograma = tkIdTippPrograma;
+        this.tkIdTipPrograma = tkIdTipPrograma;
     }
 }

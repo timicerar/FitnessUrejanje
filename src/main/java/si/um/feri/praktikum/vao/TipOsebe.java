@@ -3,10 +3,18 @@ package si.um.feri.praktikum.vao;
 import lombok.Getter;
 import lombok.Setter;
 
-public class TipOsebe {
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Entity
+public class TipOsebe implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdTipOsebe")
     @Getter
     @Setter
     private int idTipOsebe;
+    @Column(name = "Naziv", nullable = false)
     @Getter
     @Setter
     private String naziv;

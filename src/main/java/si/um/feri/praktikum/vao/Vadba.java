@@ -3,36 +3,51 @@ package si.um.feri.praktikum.vao;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.*;
+
+@Entity
 public class Vadba {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdVadba")
     @Getter
     @Setter
     private int idVadba;
+    @Column(name = "Naziv", nullable = false)
     @Getter
     @Setter
     private String naziv;
+    @Column(name = "Opis", nullable = false, length = 10000)
     @Getter
     @Setter
     private String opis;
+    @Column(name = "SteviloIzvedb", nullable = false)
     @Getter
     @Setter
     private int steviloIzvedb;
+    @Column(name = "SteviloPonovitev", nullable = false)
     @Getter
     @Setter
     private int steviloPonovitev;
+    @Column(name = "Tezavnost", nullable = false)
     @Getter
     @Setter
     private int tezavnost;
+    @Column(name = "Video", nullable = false)
     @Getter
     @Setter
     private String video;
+    @Column(name = "Slika", nullable = false)
     @Getter
     @Setter
     private String slika;
+    @Column(name = "TkIdProgram")
     @Getter
     @Setter
     private int tkIdProgram;
 
     public Vadba() {
+
     }
 
     public Vadba(int idVadba, String naziv, String opis, int steviloIzvedb, int steviloPonovitev, int tezavnost, String video, String slika, int tkIdProgram) {
