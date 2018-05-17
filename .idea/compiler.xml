@@ -9,5 +9,8 @@
         <module name="FitnessUrejanje" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="FitnessUrejanje" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
