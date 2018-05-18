@@ -36,26 +36,16 @@ public class Program implements Serializable {
     @Getter
     @Setter
     private int spol;
-    @Column(name = "TkIdOseba")
-    @Getter
-    @Setter
-    private int tkIdOseba;
-    @Column(name = "TkIdTipPrograma")
-    @Getter
-    @Setter
-    private int tkIdTipPrograma;
 
     public Program() {
 
     }
 
-    public Program(int idProgram, String naziv, int casTrajanja, int tezavnost, int spol, int tkIdOseba, int tkIdTipPrograma) {
+    public Program(int idProgram, String naziv, int casTrajanja, int tezavnost, int spol) {
         this.idProgram = idProgram;
         this.naziv = naziv;
         this.casTrajanja = casTrajanja;
         this.tezavnost = tezavnost;
         this.spol = spol;
-        this.tkIdOseba = tkIdOseba;
-        this.tkIdTipPrograma = tkIdTipPrograma;
     }
 }
