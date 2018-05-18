@@ -6,9 +6,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
-@Entity
+@Entity(name = "Oseba")
+@Table(name = "Oseba")
 public class Oseba implements Serializable {
 
     @Id
@@ -16,7 +16,7 @@ public class Oseba implements Serializable {
     @Column(name = "IdOseba")
     @Getter
     @Setter
-    private String idOseba;
+    private int idOseba;
     @Column(name = "Ime", nullable = false)
     @Getter
     @Setter
@@ -44,11 +44,15 @@ public class Oseba implements Serializable {
     @Column(name = "DatumVpisa", nullable = false)
     @Getter
     @Setter
-    private LocalDateTime datumVpisa;
-    @Column(name = "TkIdKraj")
+    private LocalDate datumVpisa;
+    @Column(name = "Kraj", nullable = false)
     @Getter
     @Setter
-    private int tkIdKraj;
+    private String kraj;
+    @Column(name = "Drzava", nullable = false)
+    @Getter
+    @Setter
+    private String drzava;
     @Column(name = "TkIdTipOsebe")
     @Getter
     @Setter
@@ -62,7 +66,7 @@ public class Oseba implements Serializable {
 
     }
 
-    public Oseba(String idOseba, String ime, String priimek, String email, int spol, LocalDate datumRojstva, int telefon, LocalDateTime datumVpisa, int tkIdKraj, int tkIdTipOsebe, int tkIdTipClanarine) {
+    public Oseba(int idOseba, String ime, String priimek, String email, int spol, LocalDate datumRojstva, int telefon, LocalDate datumVpisa, String kraj, String drzava, int tkIdTipOsebe, int tkIdTipClanarine) {
         this.idOseba = idOseba;
         this.ime = ime;
         this.priimek = priimek;
@@ -71,9 +75,9 @@ public class Oseba implements Serializable {
         this.datumRojstva = datumRojstva;
         this.telefon = telefon;
         this.datumVpisa = datumVpisa;
-        this.tkIdKraj = tkIdKraj;
+        this.kraj = kraj;
+        this.drzava = drzava;
         this.tkIdTipOsebe = tkIdTipOsebe;
         this.tkIdTipClanarine = tkIdTipClanarine;
     }
-
 }

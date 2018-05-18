@@ -6,7 +6,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity
+@Entity(name = "Program")
+@Table(name = "Program")
 public class Program implements Serializable {
 
     @Id

@@ -7,7 +7,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-@Entity
+@Entity(name = "Meritev")
+@Table(name = "Meritev")
 public class Meritev implements Serializable {
 
     @Id
@@ -28,10 +29,11 @@ public class Meritev implements Serializable {
     @Getter
     @Setter
     private double obsegPasu;
-    @Column(name = "DatumVpisa")
+    @Column(name = "DatumVpisa", nullable = false)
     @Getter
     @Setter
     private LocalDate datumVpisa;
+    @Column(name = "TkIdOseba")
     @Getter
     @Setter
     private int tkIdOseba;
@@ -47,4 +49,6 @@ public class Meritev implements Serializable {
         this.datumVpisa = datumVpisa;
         this.tkIdOseba = tkIdOseba;
     }
+
+
 }

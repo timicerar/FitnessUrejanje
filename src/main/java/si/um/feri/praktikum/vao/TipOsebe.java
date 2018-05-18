@@ -6,7 +6,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity
+@Entity(name = "TipOsebe")
+@Table(name = "TipOsebe")
 public class TipOsebe implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
