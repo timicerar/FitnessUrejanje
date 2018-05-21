@@ -28,7 +28,7 @@ public class Program implements Serializable {
     @Getter
     @Setter
     private int tezavnost;
-    @Column(name = "Opis", nullable = false)
+    @Column(name = "Opis", nullable = false, length = 10000)
     @Getter
     @Setter
     private String opis;

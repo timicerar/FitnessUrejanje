@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "Vadba")
 @Table(name = "Vadba")
@@ -42,24 +43,32 @@ public class Vadba {
     @Getter
     @Setter
     private String slika;
-    @Column(name = "TkIdTipVadbe")
+    @ManyToOne(targetEntity = TipVadbe.class, fetch = FetchType.EAGER)
     @Getter
     @Setter
     private int tkIdTipVadbe;
-    @Column(name = "TkIdProgram")
+    @ManyToOne(targetEntity = Program.class, fetch = FetchType.EAGER)
     @Getter
     @Setter
-    private int tkIdProgram;
-    @Column(name = "TkIdOseba")
+    private Program tkIdProgram;
+    @ManyToMany(targetEntity = Oseba.class, fetch = FetchType.LAZY)
     @Getter
     @Setter
-    private int tkIdOseba;
+    private List<Oseba> tkIdOseba;
+    @ManyToOne(targetEntity = Trener.class, fetch = FetchType.EAGER)
+    @Getter
+    @Setter
+    private Trener tkIdTrener;
+    @ManyToMany(targetEntity = Znacka.class, fetch = FetchType.EAGER, mappedBy = "tkIdVadba")
+    @Getter
+    @Setter
+    private List<Znacka> tkIdZnacka;
 
     public Vadba() {
 
     }
 
-    public Vadba(int idVadba, String naziv, String opis, int steviloIzvedb, int steviloPonovitev, int tezavnost, String video, String slika, int tkIdTipVadbe, int tkIdProgram, int tkIdOseba) {
+    public Vadba(int idVadba, String naziv, String opis, int steviloIzvedb, int steviloPonovitev, int tezavnost, String video, String slika, int tkIdTipVadbe, Program tkIdProgram, List<Oseba> tkIdOseba, Trener tkIdTrener, List<Znacka> tkIdZnacka) {
         this.idVadba = idVadba;
         this.naziv = naziv;
         this.opis = opis;
@@ -71,5 +80,7 @@ public class Vadba {
         this.tkIdTipVadbe = tkIdTipVadbe;
         this.tkIdProgram = tkIdProgram;
         this.tkIdOseba = tkIdOseba;
+        this.tkIdTrener = tkIdTrener;
+        this.tkIdZnacka = tkIdZnacka;
     }
 }

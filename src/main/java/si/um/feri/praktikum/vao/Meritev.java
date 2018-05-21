@@ -33,15 +33,15 @@ public class Meritev implements Serializable {
     @Getter
     @Setter
     private LocalDate datumVpisa;
-    @Column(name = "TkIdOseba")
+    @ManyToOne(targetEntity = Oseba.class, fetch = FetchType.EAGER)
     @Getter
     @Setter
-    private int tkIdOseba;
+    private Oseba tkIdOseba;
 
     public Meritev() {
     }
 
-    public Meritev(int idMeritev, double visina, double teza, double obsegPasu, LocalDate datumVpisa, int tkIdOseba) {
+    public Meritev(int idMeritev, double visina, double teza, double obsegPasu, LocalDate datumVpisa, Oseba tkIdOseba) {
         this.idMeritev = idMeritev;
         this.visina = visina;
         this.teza = teza;

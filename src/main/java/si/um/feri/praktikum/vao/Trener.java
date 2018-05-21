@@ -1,23 +1,32 @@
 package si.um.feri.praktikum.vao;
 
+
+
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
 
-@Entity(name = "Oseba")
-@Table(name = "Oseba")
-public class Oseba implements Serializable {
+@Entity(name = "Trener")
+@Table(name = "Trener")
+public class Trener implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdOseba")
+    @Column(name = "IdTrener")
     @Getter
     @Setter
-    private int idOseba;
+    private int idTrener;
+    @Column(name = "UpoIme", nullable = false)
+    @Getter
+    @Setter
+    private String upoIme;
+    @Column(name = "Geslo", nullable = false)
+    @Getter
+    @Setter
+    private String geslo;
     @Column(name = "Ime", nullable = false)
     @Getter
     @Setter
@@ -54,21 +63,15 @@ public class Oseba implements Serializable {
     @Getter
     @Setter
     private String drzava;
-    @ManyToOne(targetEntity = TipClanarine.class, fetch = FetchType.EAGER)
-    @Getter
-    @Setter
-    private TipClanarine tkIdTipClanarine;
-    @ManyToMany(targetEntity = Vadba.class, mappedBy = "tkIdOseba", fetch = FetchType.EAGER)
-    @Getter
-    @Setter
-    private List<Vadba> tkIdVadba;
 
-    public Oseba() {
+    public Trener() {
 
     }
 
-    public Oseba(int idOseba, String ime, String priimek, String email, int spol, LocalDate datumRojstva, int telefon, LocalDate datumVpisa, String kraj, String drzava, TipClanarine tkIdTipClanarine, List<Vadba> tkIdVadba) {
-        this.idOseba = idOseba;
+    public Trener(int idTrener, String upoIme, String geslo, String ime, String priimek, String email, int spol, LocalDate datumRojstva, int telefon, LocalDate datumVpisa, String kraj, String drzava) {
+        this.idTrener = idTrener;
+        this.upoIme = upoIme;
+        this.geslo = geslo;
         this.ime = ime;
         this.priimek = priimek;
         this.email = email;
@@ -78,7 +81,5 @@ public class Oseba implements Serializable {
         this.datumVpisa = datumVpisa;
         this.kraj = kraj;
         this.drzava = drzava;
-        this.tkIdTipClanarine = tkIdTipClanarine;
-        this.tkIdVadba = tkIdVadba;
     }
 }
