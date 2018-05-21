@@ -2,13 +2,13 @@
   <artifact type="exploded-war" name="FitnessUrejanje:war exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/FitnessUrejanje_war_exploded</output-path>
     <root id="root">
+      <element id="javaee-facet-resources" facet="FitnessUrejanje/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="FitnessUrejanje" />
           <element id="jpa-descriptors" facet="FitnessUrejanje/jpa/JPA" />
         </element>
       </element>
-      <element id="javaee-facet-resources" facet="FitnessUrejanje/web/Web" />
     </root>
   </artifact>
 </component>
