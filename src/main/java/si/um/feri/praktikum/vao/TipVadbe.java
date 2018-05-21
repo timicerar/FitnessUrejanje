@@ -6,26 +6,26 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity(name = "TipClanarine")
-@Table(name = "TipClanarine")
-public class TipClanarine implements Serializable {
+@Entity(name = "TipVadbe")
+@Table(name = "TipVadbe")
+public class TipVadbe implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdTipClanarine")
+    @Column(name = "IdTipVadbe")
     @Getter
     @Setter
-    private int idTipClanarine;
+    private int idTipVadbe;
     @Column(name = "Naziv", nullable = false)
     @Getter
     @Setter
     private String naziv;
 
-    public TipClanarine() {
+    public TipVadbe() {
     }
 
-    public TipClanarine(int idTipClanarine, String naziv) {
-        this.idTipClanarine = idTipClanarine;
+    public TipVadbe(int idTipVadbe, String naziv) {
+        this.idTipVadbe = idTipVadbe;
         this.naziv = naziv;
     }
 }
