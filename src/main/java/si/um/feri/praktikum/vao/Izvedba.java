@@ -21,6 +21,10 @@ public class Izvedba {
     @Getter
     @Setter
     private LocalDate casIzvedbe;
+    @OneToOne(fetch = FetchType.EAGER)
+    @Getter
+    @Setter
+    private Dan dan;
 
     public Izvedba() {
     }
