@@ -5,8 +5,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
-@Entity
+@Entity(name = "Oseba")
 @Table(name = "Oseba")
 public class Oseba {
     @Id
@@ -30,7 +31,7 @@ public class Oseba {
     @Getter
     @Setter
     private int spol;
-    @Column(nullable = false, name = "Datum_rojstva")
+    @Column(nullable = false, name = "DatumRojstva")
     @Getter
     @Setter
     private LocalDate datumRojstva;
@@ -38,15 +39,21 @@ public class Oseba {
     @Getter
     @Setter
     private String telefon;
-    @Column(nullable = false, name = "Datum_vpisa")
+    @Column(nullable = false, name = "DatumVpisa")
     @Getter
     @Setter
     private LocalDate datumVpisa;
+    @ManyToMany(targetEntity = Program.class, fetch = FetchType.EAGER, mappedBy = "tkIdOseba")
+    @Getter
+    @Setter
+    private List<Program> tkIdProgram;
 
     public Oseba() {
+
     }
 
-    public Oseba(String ime, String priimek, String email, int spol, LocalDate datumRojstva, String telefon, LocalDate datumVpisa) {
+    public Oseba(int idOseba, String ime, String priimek, String email, int spol, LocalDate datumRojstva, String telefon, LocalDate datumVpisa) {
+        this.idOseba = idOseba;
         this.ime = ime;
         this.priimek = priimek;
         this.email = email;

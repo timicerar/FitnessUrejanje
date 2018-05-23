@@ -5,7 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "Vadba")
 @Table(name = "Vadba")
 public class Vadba {
     @Id
@@ -29,7 +29,7 @@ public class Vadba {
     @Getter
     @Setter
     private String slika;
-    @Column(nullable = false, name = "Tip_vadbe")
+    @Column(nullable = false, name = "TipVadbe")
     @Getter
     @Setter
     private String tipVadbe;
@@ -37,7 +37,8 @@ public class Vadba {
     public Vadba() {
     }
 
-    public Vadba(String naziv, String opis, String video, String slika, String tipVadbe) {
+    public Vadba(int idVadba, String naziv, String opis, String video, String slika, String tipVadbe) {
+        this.idVadba = idVadba;
         this.naziv = naziv;
         this.opis = opis;
         this.video = video;

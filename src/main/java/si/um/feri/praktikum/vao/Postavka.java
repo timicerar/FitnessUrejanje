@@ -5,7 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "Postavka")
 @Table(name = "Postavka")
 public class Postavka {
     @Id
@@ -13,19 +13,19 @@ public class Postavka {
     @Getter
     @Setter
     private int idPostavka;
-    @Column(nullable = false, name = "Tip_postavke")
+    @Column(nullable = false, name = "TipPostavke")
     @Getter
     @Setter
     private int tipPostavke;
-    @Column(nullable = false, name = "Zaporedna_stevilka")
+    @Column(nullable = false, name = "ZaporednaStevilka")
     @Getter
     @Setter
     private int zaporednaSt;
-    @Column(nullable = false, name = "Stevilo_serij")
+    @Column(nullable = false, name = "SteviloSerij")
     @Getter
     @Setter
     private int steviloSerij;
-    @Column(nullable = false, name = "Stevilo_ponovitev")
+    @Column(nullable = false, name = "SteviloPonovitev")
     @Getter
     @Setter
     private int steviloPonovitev;
@@ -41,19 +41,20 @@ public class Postavka {
     @Getter
     @Setter
     private int tezavnost;
+    @ManyToOne(targetEntity = Dan.class, fetch = FetchType.EAGER)
+    @Getter
+    @Setter
+    private Dan tkIdDan;
     @ManyToOne(fetch = FetchType.EAGER)
     @Getter
     @Setter
-    private Dan dan;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @Getter
-    @Setter
-    private Vadba vadba;
+    private Vadba tkIdVadba;
 
     public Postavka() {
     }
 
-    public Postavka(int tipPostavke, int zaporednaSt, int steviloSerij, int steviloPonovitev, String trajanje, double teza, int tezavnost, Dan dan, Vadba vadba) {
+    public Postavka(int idPostavka, int tipPostavke, int zaporednaSt, int steviloSerij, int steviloPonovitev, String trajanje, double teza, int tezavnost, Dan tkIdDan, Vadba tkIdVadba) {
+        this.idPostavka = idPostavka;
         this.tipPostavke = tipPostavke;
         this.zaporednaSt = zaporednaSt;
         this.steviloSerij = steviloSerij;
@@ -61,7 +62,7 @@ public class Postavka {
         this.trajanje = trajanje;
         this.teza = teza;
         this.tezavnost = tezavnost;
-        this.dan = dan;
-        this.vadba = vadba;
+        this.tkIdDan = tkIdDan;
+        this.tkIdVadba = tkIdVadba;
     }
 }

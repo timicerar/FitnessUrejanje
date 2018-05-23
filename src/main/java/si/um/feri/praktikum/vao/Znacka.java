@@ -5,7 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "Znacka")
 @Table(name = "Znacka")
 public class Znacka {
     @Id
@@ -17,16 +17,16 @@ public class Znacka {
     @Getter
     @Setter
     private String naziv;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = Vadba.class, fetch = FetchType.EAGER)
     @Getter
     @Setter
-    private Vadba vadba;
+    private Vadba tkIdVadba;
 
     public Znacka() {
     }
 
-    public Znacka(String naziv, Vadba vadba) {
+    public Znacka(int idZnacka, String naziv, Vadba tkIdVadba) {
         this.naziv = naziv;
-        this.vadba = vadba;
+        this.tkIdVadba = tkIdVadba;
     }
 }

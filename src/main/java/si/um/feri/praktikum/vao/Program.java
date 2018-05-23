@@ -4,8 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Entity
+@Entity(name = "Program")
 @Table(name = "Program")
 public class Program {
     @Id
@@ -25,23 +26,25 @@ public class Program {
     @Getter
     @Setter
     private int intenzivnost;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @Column(name = "TkIdOseba")
+    @ManyToMany(targetEntity = Oseba.class, fetch = FetchType.EAGER)
     @Getter
     @Setter
-    private Oseba oseba;
-    @ManyToOne(fetch = FetchType.EAGER)
+    private List<Oseba> tkIdOseba;
+    @ManyToOne(targetEntity = Trener.class, fetch = FetchType.EAGER)
     @Getter
     @Setter
-    private Trener trener;
+    private Trener tkIdTrener;
 
     public Program() {
     }
 
-    public Program(String naziv, String opis, int intenzivnost, Oseba oseba, Trener trener) {
+    public Program(int idProgram, String naziv, String opis, int intenzivnost, List<Oseba> tkIdOseba, Trener tkIdTrener) {
+        this.idProgram = idProgram;
         this.naziv = naziv;
         this.opis = opis;
         this.intenzivnost = intenzivnost;
-        this.oseba = oseba;
-        this.trener = trener;
+        this.tkIdOseba = tkIdOseba;
+        this.tkIdTrener = tkIdTrener;
     }
 }

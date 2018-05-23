@@ -5,7 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-@Entity
+@Entity(name = "Meritev")
 @Table(name = "Meritev")
 public class Meritev {
     @Id
@@ -21,28 +21,28 @@ public class Meritev {
     @Getter
     @Setter
     private double visina;
-    @Column(nullable = false, name = "Obseg_pasu")
+    @Column(nullable = false, name = "ObsegPasu")
     @Getter
     @Setter
     private double obsegPasu;
-    @Column(nullable = false, name = "Datum_vpisa")
+    @Column(nullable = false, name = "DatumVpisa")
     @Getter
     @Setter
     private LocalDate datumVpisa;
-
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = Oseba.class, fetch = FetchType.EAGER)
     @Getter
     @Setter
-    private Oseba oseba;
+    private Oseba tkIdOseba;
 
     public Meritev() {
     }
 
-    public Meritev(double teza, double visina, double obsegPasu, LocalDate datumVpisa, Oseba oseba) {
+    public Meritev(int idMeritev, double teza, double visina, double obsegPasu, LocalDate datumVpisa, Oseba tkIdOseba) {
+        this.idMeritev = idMeritev;
         this.teza = teza;
         this.visina = visina;
         this.obsegPasu = obsegPasu;
         this.datumVpisa = datumVpisa;
-        this.oseba = oseba;
+        this.tkIdOseba = tkIdOseba;
     }
 }

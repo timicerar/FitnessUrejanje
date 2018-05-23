@@ -5,7 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-@Entity
+@Entity(name = "Izvedba")
 @Table(name = "Izvedba")
 public class Izvedba {
     @Id
@@ -17,16 +17,27 @@ public class Izvedba {
     @Getter
     @Setter
     private int pocutje;
-    @Column(nullable = false, name = "Cas_izvedbe")
+    @Column(nullable = false, name = "CasIzvedbe")
     @Getter
     @Setter
     private LocalDate casIzvedbe;
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = Dan.class, fetch = FetchType.EAGER)
     @Getter
     @Setter
-    private Dan dan;
+    private Dan tkIdDan;
+    @ManyToOne(targetEntity = Oseba.class, fetch = FetchType.EAGER)
+    @Getter
+    @Setter
+    private Oseba tkIdOseba;
 
     public Izvedba() {
     }
 
+    public Izvedba(int idIzvedba, int pocutje, LocalDate casIzvedbe, Dan tkIdDan, Oseba tkIdOseba) {
+        this.idIzvedba = idIzvedba;
+        this.pocutje = pocutje;
+        this.casIzvedbe = casIzvedbe;
+        this.tkIdDan = tkIdDan;
+        this.tkIdOseba = tkIdOseba;
+    }
 }
