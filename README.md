@@ -11,11 +11,11 @@ Team members are [Cerar Timi](https://github.com/timicerar), [Ribič Jože](http
 
 ## Usage
 
-Purpose of this program is to enable communication beetwen coaches, receptors and fitness users.
+Purpose of this program is to enable communication between coaches, receptors and fitness users.
 Application enables:
 * Coaches to create plans and specify exercises and its specifics;
-* receptors to have CRUD methods;
-* fitness users to acces the plans that coaches created, see the specifics of each exercise and watch the tutorials.
+* receptors to access CRUD methods;
+* fitness users to access workout plaaans that coaches created, see the exercise specifics and access the tutorials for all the workouts.
 
 
 ## Authors
@@ -24,3 +24,17 @@ Application enables:
 [Ribič Jože](https://authenteq.com), [Škrinjar Gregor](https://github.com/gregaskrinjar) and [Vovk Timi](https://github.com/timiv1).
 
 ## License
+```
+   This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+    ```
