@@ -1,6 +1,6 @@
 # FitnessUrejanje
 FitnessUrejanje is a fitness program for receptors and coaches. The program was created by a team of students from [University of Maribor](https://www.um.si/en/Pages/default.aspx), [Faculty of Electrical Engineering and Computer Science (UM FERI)](https://feri.um.si/en/).
-Team members are [Cerar Timi](https://github.com/timicerar), [Ribič Jože](https://authenteq.com), [Škrinjar Gregor](https://github.com/gregaskrinjar) and [Vovk Timi](https://github.com/timiv1). 
+Team members are [Cerar Timotej](https://github.com/timicerar), [Ribič Jože](https://authenteq.com), [Škrinjar Gregor](https://github.com/gregaskrinjar) and [Vovk Timi](https://github.com/timiv1). 
 >This program is connected with  [fitness program for users](https://github.com/timicerar/FitnessClani).
 
 ## Contents
@@ -20,7 +20,7 @@ Application enables:
 
 ## Authors
 
-- [Cerar Timi](https://github.com/timicerar), 
+- [Cerar Timotej](https://github.com/timicerar), 
 [Ribič Jože](https://authenteq.com), [Škrinjar Gregor](https://github.com/gregaskrinjar) and [Vovk Timi](https://github.com/timiv1).
 
 ## License
