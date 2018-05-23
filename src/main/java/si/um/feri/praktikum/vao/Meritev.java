@@ -4,51 +4,45 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDate;
-
-@Entity(name = "Meritev")
+@Entity
 @Table(name = "Meritev")
-public class Meritev implements Serializable {
-
+public class Meritev {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdMeritev")
     @Getter
     @Setter
     private int idMeritev;
-    @Column(name = "Visina", nullable = false)
-    @Getter
-    @Setter
-    private double visina;
-    @Column(name = "Teza", nullable = false)
+    @Column(nullable = false, name = "Teza")
     @Getter
     @Setter
     private double teza;
-    @Column(name = "ObsegPasu", nullable = false)
+    @Column(nullable = false, name = "Visina")
+    @Getter
+    @Setter
+    private double visina;
+    @Column(nullable = false, name = "Obseg_pasu")
     @Getter
     @Setter
     private double obsegPasu;
-    @Column(name = "DatumVpisa", nullable = false)
+    @Column(nullable = false, name = "Datum_vpisa")
     @Getter
     @Setter
     private LocalDate datumVpisa;
-    @ManyToOne(targetEntity = Oseba.class, fetch = FetchType.EAGER)
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @Getter
     @Setter
-    private Oseba tkIdOseba;
+    private Oseba oseba;
 
     public Meritev() {
     }
 
-    public Meritev(int idMeritev, double visina, double teza, double obsegPasu, LocalDate datumVpisa, Oseba tkIdOseba) {
-        this.idMeritev = idMeritev;
-        this.visina = visina;
+    public Meritev(double teza, double visina, double obsegPasu, LocalDate datumVpisa, Oseba oseba) {
         this.teza = teza;
+        this.visina = visina;
         this.obsegPasu = obsegPasu;
         this.datumVpisa = datumVpisa;
-        this.tkIdOseba = tkIdOseba;
+        this.oseba = oseba;
     }
-
-
 }

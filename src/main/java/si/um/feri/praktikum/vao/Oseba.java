@@ -4,71 +4,49 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
 
-@Entity(name = "Oseba")
+@Entity
 @Table(name = "Oseba")
-public class Oseba implements Serializable {
-
+public class Oseba {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdOseba")
     @Getter
     @Setter
     private int idOseba;
-    @Column(name = "Ime", nullable = false)
+    @Column(nullable = false, name = "Ime")
     @Getter
     @Setter
     private String ime;
-    @Column(name = "Priimek", nullable = false)
+    @Column(nullable = false, name = "Priimek")
     @Getter
     @Setter
     private String priimek;
-    @Column(name = "Email", nullable = false)
+    @Column(nullable = false, name = "Email")
     @Getter
     @Setter
     private String email;
-    @Column(name = "Spol", nullable = false)
+    @Column(nullable = false, name = "Spol")
     @Getter
     @Setter
     private int spol;
-    @Column(name = "DatumRojstva", nullable = false)
+    @Column(nullable = false, name = "Datum_rojstva")
     @Getter
     @Setter
     private LocalDate datumRojstva;
-    @Column(name = "Telefon", nullable = false)
+    @Column(nullable = false, name = "Telefon")
     @Getter
     @Setter
-    private int telefon;
-    @Column(name = "DatumVpisa", nullable = false)
+    private String telefon;
+    @Column(nullable = false, name = "Datum_vpisa")
     @Getter
     @Setter
     private LocalDate datumVpisa;
-    @Column(name = "Kraj", nullable = false)
-    @Getter
-    @Setter
-    private String kraj;
-    @Column(name = "Drzava", nullable = false)
-    @Getter
-    @Setter
-    private String drzava;
-    @ManyToOne(targetEntity = TipClanarine.class, fetch = FetchType.EAGER)
-    @Getter
-    @Setter
-    private TipClanarine tkIdTipClanarine;
-    @ManyToMany(targetEntity = Vadba.class, mappedBy = "tkIdOseba", fetch = FetchType.EAGER)
-    @Getter
-    @Setter
-    private List<Vadba> tkIdVadba;
 
     public Oseba() {
-
     }
 
-    public Oseba(int idOseba, String ime, String priimek, String email, int spol, LocalDate datumRojstva, int telefon, LocalDate datumVpisa, String kraj, String drzava, TipClanarine tkIdTipClanarine, List<Vadba> tkIdVadba) {
-        this.idOseba = idOseba;
+    public Oseba(String ime, String priimek, String email, int spol, LocalDate datumRojstva, String telefon, LocalDate datumVpisa) {
         this.ime = ime;
         this.priimek = priimek;
         this.email = email;
@@ -76,9 +54,5 @@ public class Oseba implements Serializable {
         this.datumRojstva = datumRojstva;
         this.telefon = telefon;
         this.datumVpisa = datumVpisa;
-        this.kraj = kraj;
-        this.drzava = drzava;
-        this.tkIdTipClanarine = tkIdTipClanarine;
-        this.tkIdVadba = tkIdVadba;
     }
 }
