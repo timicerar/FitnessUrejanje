@@ -12,12 +12,13 @@
     <title>Fitness</title>
 </h:head>
 <h:body>
-    <div align="center">
-        <div class="border-izbira">
-            <h2 class="pisava">Dobrodošli!</h2>
-            <p:button value="Trener" icon="ui-icon-heart" style="margin-right: 3%;" />
-            <p:button value="Receptor" icon="ui-icon-info" />
-        </div>
+    <div class="ui-fluid">
+        <p:panel header="Dobrodošli!" footer="Izberite trenerja ali receptorja." styleClass="border-izbira">
+            <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank">
+                <p:button href="trener/index-trener.xhtml" value="Trener" icon="ui-icon-heart" style="width: 100%;" />
+                <p:button href="receptor/index-receptor.xhtml" value="Receptor" icon="ui-icon-info" style="width: 100%;" />
+            </p:panelGrid>
+        </p:panel>
     </div>
 </h:body>
 </html>
