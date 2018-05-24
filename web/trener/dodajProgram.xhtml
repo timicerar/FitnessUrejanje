@@ -42,7 +42,7 @@
 
                                 <p:outputLabel for="opis" value="Opis:" />
                                 <p:inputText id="opis" maxlength="255" value="#{programBean.novProgram.opis}" required="true" requiredMessage="Opis!" validatorMessage="Opis!">
-                                    <f:validateRegex pattern="javascript:this.value=this.value.replace(/[<>]/g,'');" />
+                                    <f:validateRegex pattern="[a-zA-Z ž]" />
                                 </p:inputText>
                                 <p:message for="opis" />
                             </h:panelGrid>
