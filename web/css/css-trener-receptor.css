@@ -5,13 +5,20 @@
     left: 50%;
     transform: translate(-50%, -50%);
 
-    border: 1px solid #111111;
-    box-shadow: 1px 2px #DDDDDD;
     vertical-align: center;
-    padding: 20px;
-    width: 350px;
+    width: 40%;
 }
 
 .pisava {
     font-family: "latoregular", "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+.btn-primary {
+    border: 1px solid #1f89ce;
+    color: #FFFFFF;
+    background: #2399e5;
+}
+
+.dodaj-clana {
+    margin-top: 25%;
 }
