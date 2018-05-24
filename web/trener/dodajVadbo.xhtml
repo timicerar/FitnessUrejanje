@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xml:lang="en" lang="en">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="../css/css-trener-receptor.css" />
+    <title>Fitness</title>
+</h:head>
+<h:body>
+    <ui:composition template="../WEB-INF/template/template-trener.xhtml">
+        <ui:define name="content">
+            <f:view>
+                <div align="center" class="ui-fluid" style="margin-top: 5%;">
+                    <p:panel header="Dodajanje nove vadbe" style="width: fit-content;">
+                        <h:form>
+                            <h:panelGrid id="grid" columns="3" cellpadding="5">
+                                <p:outputLabel for="naziv" value="naziv:" />
+                                <p:inputText id="naziv" maxlength="255" value="#{vadbaBean.novaVadba.naziv}" required="true" requiredMessage="Vpišite naziv vadbe!" validatorMessage="Vpišite ustrezen naziv!">
+                                    <f:validateRegex pattern="[a-zA-Z ž]+" />
+                                </p:inputText>
+                                <p:message for="naziv" />
+
+                                <p:outputLabel for="opis" value="opis:" />
+                                <p:inputTextarea id="opis" rows="10" cols="50" queryDelay="750" minQueryLength="4" value="#{vadbaBean.novaVadba.opis}" required="true" requiredMessage="Vpišite opis vadbe!" validatorMessage="Vpišite ustrezen opis!">
+                                    <f:validateRegex pattern="[a-zA-Z ]+" />
+                                </p:inputTextarea>
+                                <p:message for="opis" />
+
+                                <p:outputLabel for="tip" value="tip:" />
+                                <p:selectOneButton id="tip" value="#{vadbaBean.novaVadba.tipVadbe}" required="true" requiredMessage="Izberite tip vadbe!">
+                                    <f:selectItem itemValue="0" itemLabel="skupinska"/>
+                                    <f:selectItem itemValue="1" itemLabel="posamična"/>
+                                </p:selectOneButton>
+                                <p:message for="tip" />
+
+                                <p:outputLabel for="slika" value="slika:" />
+                                <p:fileUpload id="slika" value="#{vadbaBean.file}" mode="simple" skinSimple="true" requiredMessage="Izberite sliko" style="width: 100%;"/>
+                                <p:message for="slika" />
+                            </h:panelGrid>
+
+                            <p:commandButton id="submit" value="Dodaj" update="grid" actionListener="#{vadbaBean.dodajVadba}" action="index.xhtml" />
+                        </h:form>
+                    </p:panel>
+                </div>
+            </f:view>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

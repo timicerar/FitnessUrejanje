@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xml:lang="en" lang="en">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="../css/css-trener-receptor.css"/>
+    <title>Fitness</title>
+</h:head>
+<h:body>
+    <ui:composition template="../WEB-INF/template/template-receptor.xhtml">
+        <ui:define name="content">
+            <f:view>
+                <div align="center" class="ui-fluid" style="margin-top: 5%;">
+                    <p:panel header="Dodajanje novega programa" style="width: fit-content;">
+                        <h:form>
+                            <h:panelGrid id="grid" columns="3" cellpadding="5">
+                                <p:outputLabel for="naziv" value="Naziv:" />
+                                <p:inputText id="naziv" maxlength="255" value="#{programBean.novProgram.naziv}" required="true" requiredMessage="Vpišite naziv!" validatorMessage="Vpišite ustrezen naziv!">
+                                    <f:validateRegex pattern="[a-zA-Z ž]+" />
+                                </p:inputText>
+                                <p:message for="naziv" />
+
+                                <p:outputLabel for="intenzivnost" value="Intenzivnost:" />
+                                <h:panelGrid columns="1" style="margin-bottom: 10px; width: 100%;">
+                                    <p:inputText id="intenzivnost" value="#{sliderView.number5}" />
+                                    <p:slider for="intenzivnost" step="1" maxValue="10" />
+                                </h:panelGrid>
+
+                                <br/>
+
+                                <p:outputLabel for="opis" value="Opis:" />
+                                <p:inputTextarea id="opis" maxlength="255" rows="10" cols="50" completeMethod="#{inputTextareaView.completeArea}" value="#{programBean.novProgram.opis}" queryDelay="750" minQueryLength="4" required="true" requiredMessage="Opis!" validatorMessage="Opis!"/>
+
+                            </h:panelGrid>
+
+                            <p:commandButton id="submit" value="Dodaj" update="grid" actionListener="#{osebaBean.dodajClana}" action="index.xhtml" />
+                        </h:form>
+                    </p:panel>
+                </div>
+            </f:view>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>
