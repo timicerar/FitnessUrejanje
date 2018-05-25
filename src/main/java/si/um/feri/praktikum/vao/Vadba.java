@@ -21,7 +21,7 @@ public class Vadba {
     @Getter
     @Setter
     private String opis;
-    @Column(nullable = false, name = "Video")
+    @Column(nullable = false, name = "Video", length = 10000)
     @Getter
     @Setter
     private String video;

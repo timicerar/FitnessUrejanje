@@ -22,7 +22,7 @@ public class Program {
     @Getter
     @Setter
     private String opis;
-    @Column(nullable = false, name = "Intenzivnost")
+    @Column(nullable = false, name = "Intenzivnost", length = 10000)
     @Getter
     @Setter
     private int intenzivnost;

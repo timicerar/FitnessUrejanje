@@ -20,31 +20,37 @@
                     <p:panel header="Dodajanje nove vadbe" style="width: fit-content;">
                         <h:form>
                             <h:panelGrid id="grid" columns="3" cellpadding="5">
-                                <p:outputLabel for="naziv" value="naziv:" />
+                                <p:outputLabel for="naziv" value="Naziv:" />
                                 <p:inputText id="naziv" maxlength="255" value="#{vadbaBean.novaVadba.naziv}" required="true" requiredMessage="Vpišite naziv vadbe!" validatorMessage="Vpišite ustrezen naziv!">
-                                    <f:validateRegex pattern="[a-zA-Z ž]+" />
+                                    <f:validateRegex pattern="[a-zA-Z žŽčČćĆšŠđĐ]+" />
                                 </p:inputText>
                                 <p:message for="naziv" />
 
-                                <p:outputLabel for="opis" value="opis:" />
+                                <p:outputLabel for="opis" value="Opis:" />
                                 <p:inputTextarea id="opis" rows="10" cols="50" queryDelay="750" minQueryLength="4" value="#{vadbaBean.novaVadba.opis}" required="true" requiredMessage="Vpišite opis vadbe!" validatorMessage="Vpišite ustrezen opis!">
-                                    <f:validateRegex pattern="[a-zA-Z ]+" />
+                                    <f:validateRegex pattern="[a-zA-Z žŽčČćĆšŠđĐ,.;-]+" />
                                 </p:inputTextarea>
                                 <p:message for="opis" />
 
-                                <p:outputLabel for="tip" value="tip:" />
+                                <p:outputLabel for="tip" value="Tip vadbe:" />
                                 <p:selectOneButton id="tip" value="#{vadbaBean.novaVadba.tipVadbe}" required="true" requiredMessage="Izberite tip vadbe!">
-                                    <f:selectItem itemValue="0" itemLabel="skupinska"/>
-                                    <f:selectItem itemValue="1" itemLabel="posamična"/>
+                                    <f:selectItem itemValue="0" itemLabel="Posamična"/>
+                                    <f:selectItem itemValue="1" itemLabel="Skupinska"/>
                                 </p:selectOneButton>
                                 <p:message for="tip" />
 
-                                <p:outputLabel for="slika" value="slika:" />
-                                <p:fileUpload id="slika" value="#{vadbaBean.file}" mode="simple" skinSimple="true" requiredMessage="Izberite sliko" style="width: 100%;"/>
+                                <p:outputLabel for="video" value="Video (URL):" />
+                                <p:inputText id="video" maxlength="255" value="#{vadbaBean.novaVadba.naziv}" required="true" requiredMessage="Vpišite URL videa!" validatorMessage="Vstavite URL">
+                                    <f:validateRegex pattern="[a-zA-Z žŽčČćĆšŠđĐ]+" />
+                                </p:inputText>
+                                <p:message for="naziv" />
+
+                                <p:outputLabel for="slika" value="Slika:" />
+                                <p:fileUpload id="slika" value="#{vadbaBean.file}" mode="simple" skinSimple="true" required="true" requiredMessage="Izberite sliko" style="width: 100%;"/>
                                 <p:message for="slika" />
                             </h:panelGrid>
 
-                            <p:commandButton id="submit" value="Dodaj" update="grid" actionListener="#{vadbaBean.dodajVadba}" action="index.xhtml" />
+                            <p:commandButton id="submit" value="Dodaj" update="grid" actionListener="#{vadbaBean.dodajVadba}" action="index-trener.xhtml" />
                         </h:form>
                     </p:panel>
                 </div>
