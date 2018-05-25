@@ -14,7 +14,6 @@ import javax.faces.context.FacesContext;
 import javax.jms.JMSException;
 import javax.naming.NamingException;
 import java.util.Date;
-import java.util.List;
 
 @ManagedBean(name = "osebaBean")
 @SessionScoped
