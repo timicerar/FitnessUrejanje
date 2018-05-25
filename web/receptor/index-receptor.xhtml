@@ -16,7 +16,48 @@
     <ui:composition template="../WEB-INF/template/template-receptor.xhtml">
         <ui:define name="content">
             <f:view>
-
+                <div class="ui-fluid">
+                    <p:panel header="Izpis vseh članov Fitness-a" style="margin-bottom: 10px;">
+                        <h:form>
+                            <p:dataTable var="clan" value="#{vrniVseOsebeBean.vsiClani}" reflow="true">
+                                <p:column headerText="Ime">
+                                    <h:outputText value="#{clan.ime}"/>
+                                </p:column>
+                                <p:column headerText="Priimek">
+                                    <h:outputText value="#{clan.priimek}"/>
+                                </p:column>
+                                <p:column headerText="Email">
+                                    <h:outputText value="#{clan.email}"/>
+                                </p:column>
+                                <p:column headerText="Podrobnosti" style="text-align: center;">
+                                    <p:button value="Podrobnosti" icon="fa fa-info">
+                                        <f:param name="idOseba" value="#{clan.idOseba}" />
+                                    </p:button>
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
+                    </p:panel>
+                    <p:panel header="Izpis vseh trenerjev Fitness-a" style="margin-bottom: 10px;">
+                        <h:form>
+                            <p:dataTable var="trener" value="#{vrniVseTrenerjeBean.vsiTrenerji}" reflow="true">
+                                <p:column headerText="Ime">
+                                    <h:outputText value="#{trener.ime}"/>
+                                </p:column>
+                                <p:column headerText="Priimek">
+                                    <h:outputText value="#{trener.priimek}"/>
+                                </p:column>
+                                <p:column headerText="Email">
+                                    <h:outputText value="#{trener.email}"/>
+                                </p:column>
+                                <p:column headerText="Podrobnosti" style="text-align: center;">
+                                    <p:button value="Podrobnosti" icon="fa fa-info">
+                                        <f:param name="idOseba" value="#{trener.idTrener}" />
+                                    </p:button>
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
+                    </p:panel>
+                </div>
             </f:view>
         </ui:define>
     </ui:composition>

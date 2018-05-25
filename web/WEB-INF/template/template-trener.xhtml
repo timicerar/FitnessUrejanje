@@ -10,30 +10,31 @@
 <h:head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>Fitness-Urejanje</title>
-    <link type="text/css" rel="stylesheet" href="/project/faces/javax.faces.resource/theme.css?ln=primefaces-omega" />
 </h:head>
 <h:body>
-    <div id="header">
-        <ui:insert name="header">
-            <h:form>
-                <p:growl id="messages"/>
+    <div class="ui-fluid">
+        <div id="header">
+            <ui:insert name="header">
+                <h:form>
+                    <p:growl id="messages"/>
 
-                <p:menubar style="margin-bottom: 10px;">
-                    <p:menuitem value="&nbsp;Domov" url="index-trener.xhtml" icon="fa fa-home" />
-                    <p:menuitem value="&nbsp;Dodaj program" url="dodajProgram.xhtml" icon="fa fa-plus" />
-                    <p:menuitem value="&nbsp;Dodaj vadbo" url="dodajVadbo.xhtml" icon="fa fa-plus" />
-                    <f:facet name="options">
-                        <p:commandButton value="Odjava" icon="ui-icon-extlink" />
-                    </f:facet>
-                </p:menubar>
-            </h:form>
-        </ui:insert>
-    </div>
+                    <p:menubar style="margin-bottom: 10px;">
+                        <p:menuitem value="&nbsp;Domov" url="index-trener.xhtml" icon="fa fa-home" />
+                        <p:menuitem value="&nbsp;Dodaj program" url="dodajProgram.xhtml" icon="fa fa-plus" />
+                        <p:menuitem value="&nbsp;Dodaj vadbo" url="dodajVadbo.xhtml" icon="fa fa-plus" />
+                        <f:facet name="options">
+                            <p:commandButton value="Odjava" icon="ui-icon-extlink" />
+                        </f:facet>
+                    </p:menubar>
+                </h:form>
+            </ui:insert>
+        </div>
 
-    <div id="content">
-        <ui:insert name="content">
+        <div id="content">
+            <ui:insert name="content">
 
-        </ui:insert>
+            </ui:insert>
+        </div>
     </div>
 </h:body>
 </html>

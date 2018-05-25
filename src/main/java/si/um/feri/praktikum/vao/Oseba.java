@@ -32,6 +32,7 @@ public class Oseba {
     @Setter
     private int spol;
     @Column(nullable = false, name = "DatumRojstva")
+    @Temporal(TemporalType.DATE)
     @Getter
     @Setter
     private Date datumRojstva;

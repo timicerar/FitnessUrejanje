@@ -17,7 +17,7 @@ public class Vadba {
     @Getter
     @Setter
     private String naziv;
-    @Column(nullable = false, name = "Opis")
+    @Column(nullable = false, name = "Opis", length = 10000)
     @Getter
     @Setter
     private String opis;
@@ -25,7 +25,7 @@ public class Vadba {
     @Getter
     @Setter
     private String video;
-    @Column(nullable = false, name = "Slika")
+    @Column(nullable = false, name = "Slika", length = 10000)
     @Getter
     @Setter
     private String slika;

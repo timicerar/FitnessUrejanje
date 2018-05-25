@@ -43,6 +43,7 @@ public class Trener {
     @Setter
     private Date datumVpisa;
     @Column(nullable = false, name = "DatumRojstva")
+    @Temporal(TemporalType.DATE)
     @Getter
     @Setter
     private Date datumRojstva;

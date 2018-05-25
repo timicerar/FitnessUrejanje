@@ -1,5 +1,6 @@
 package si.um.feri.praktikum.ejb;
 
+import si.um.feri.praktikum.jsf.trener.CryptWithMD5;
 import si.um.feri.praktikum.vao.Trener;
 
 import javax.ejb.LocalBean;
@@ -25,6 +26,7 @@ public class EJBTrener {
 
     public void addTrener(Trener t) {
         System.out.println("Shranjujem trenerja...");
+        t.setGeslo(CryptWithMD5.cryptWithMD5(t.getGeslo()));
         entityManager.persist(t);
     }
 
@@ -43,6 +45,10 @@ public class EJBTrener {
         System.out.println("Brisem trenerja...");
         Trener trener = entityManager.find(Trener.class, idTrener);
         entityManager.remove(trener);
+    }
+
+    public boolean validateEmailAndUsername(String upoIme, String email) {
+        return entityManager.createQuery("SELECT t FROM Trener t WHERE t.email = '" + email + "' OR t.uporabniskoIme = '" + upoIme + "'").getResultList().size() == 0;
     }
 
 }

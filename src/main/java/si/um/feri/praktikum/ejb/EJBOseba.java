@@ -52,4 +52,8 @@ public class EJBOseba {
         entityManager.createQuery("UPDATE Oseba o SET o.ime = '" + o.getIme() + "', o.priimek = '" + o.getPriimek() + "', o.datumRojstva = '" + datumRojstva + "', o.email = '" + o.getEmail() + "' WHERE o.idOseba = " + o.getIdOseba()).executeUpdate();
     }
 
+    public boolean validateEmail(String email) {
+        return entityManager.createQuery("SELECT o FROM Oseba o WHERE o.email = '" + email + "'").getResultList().size() == 0;
+    }
+
 }

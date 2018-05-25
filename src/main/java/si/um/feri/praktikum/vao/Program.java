@@ -18,7 +18,7 @@ public class Program {
     @Getter
     @Setter
     private String naziv;
-    @Column(nullable = false, name = "Opis")
+    @Column(nullable = false, name = "Opis", length = 10000)
     @Getter
     @Setter
     private String opis;
@@ -26,7 +26,6 @@ public class Program {
     @Getter
     @Setter
     private int intenzivnost;
-    @Column(name = "TkIdOseba")
     @ManyToMany(targetEntity = Oseba.class, fetch = FetchType.EAGER)
     @Getter
     @Setter
