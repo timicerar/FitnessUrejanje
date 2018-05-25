@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity(name = "Trener")
 @Table(name = "Trener")
@@ -41,11 +41,11 @@ public class Trener {
     @Column(nullable = false, name = "DatumVpisa")
     @Getter
     @Setter
-    private LocalDate datumVpisa;
+    private Date datumVpisa;
     @Column(nullable = false, name = "DatumRojstva")
     @Getter
     @Setter
-    private LocalDate datumRojstva;
+    private Date datumRojstva;
     @Column(nullable = false, name = "Telefon")
     @Getter
     @Setter
@@ -54,7 +54,7 @@ public class Trener {
     public Trener() {
     }
 
-    public Trener(int idTrener, String uporabniskoIme, String geslo, String ime, String priimek, String email, int spol, LocalDate datumVpisa, LocalDate datumRojstva, String telefon) {
+    public Trener(int idTrener, String uporabniskoIme, String geslo, String ime, String priimek, String email, int spol, Date datumVpisa, Date datumRojstva, String telefon) {
         this.idTrener = idTrener;
         this.uporabniskoIme = uporabniskoIme;
         this.geslo = geslo;

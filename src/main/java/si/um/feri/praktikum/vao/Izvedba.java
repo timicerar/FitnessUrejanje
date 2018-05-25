@@ -5,6 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
+
 @Entity(name = "Izvedba")
 @Table(name = "Izvedba")
 public class Izvedba {
@@ -20,7 +22,7 @@ public class Izvedba {
     @Column(nullable = false, name = "CasIzvedbe")
     @Getter
     @Setter
-    private LocalDate casIzvedbe;
+    private Date casIzvedbe;
     @ManyToOne(targetEntity = Dan.class, fetch = FetchType.EAGER)
     @Getter
     @Setter
@@ -33,7 +35,7 @@ public class Izvedba {
     public Izvedba() {
     }
 
-    public Izvedba(int idIzvedba, int pocutje, LocalDate casIzvedbe, Dan tkIdDan, Oseba tkIdOseba) {
+    public Izvedba(int idIzvedba, int pocutje, Date casIzvedbe, Dan tkIdDan, Oseba tkIdOseba) {
         this.idIzvedba = idIzvedba;
         this.pocutje = pocutje;
         this.casIzvedbe = casIzvedbe;
