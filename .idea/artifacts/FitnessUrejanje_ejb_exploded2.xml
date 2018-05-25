@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="exploded-ejb" name="FitnessUrejanje:ejb exploded2">
-    <output-path>$PROJECT_DIR$/out/artifacts/FitnessUrejanje_ejb_exploded2</output-path>
-    <root id="root">
-      <element id="javaee-facet-resources" facet="FitnessUrejanje/ejb/EJB" />
-      <element id="javaee-facet-classes" facet="FitnessUrejanje/ejb/EJB" />
-    </root>
-  </artifact>
-</component>

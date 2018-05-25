@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xml:lang="en" lang="en">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="../css/css-trener-receptor.css"/>
+    <title>Fitness</title>
+</h:head>
+<h:body>
+    <ui:composition template="../WEB-INF/template/template-receptor.xhtml">
+        <ui:define name="content">
+            <f:view>
+                <div align="center" class="ui-fluid" style="margin-top: 5%;">
+                    <p:panel header="Dodajanje novega člana" style="width: fit-content;">
+                        <h:form>
+                            <h:panelGrid id="grid" columns="3" cellpadding="5">
+                                <p:outputLabel for="upoIme" value="Uporabnisko ime:" />
+                                <p:inputText id="upoIme" maxlength="255" value="#{osebaBean.novTrener.uporabniskoIme}" required="true" requiredMessage="Vpišite uporabniško ime!" validatorMessage="Vpišite ustrezno uporabniško ime!">
+                                    <f:validateRegex pattern="[a-zA-Z žŽčČćĆšŠđĐ]+" />
+                                </p:inputText>
+                                <p:message for="upoIme" />
+
+                                <p:outputLabel for="ime" value="Ime:" />
+                                <p:inputText id="ime" maxlength="255" value="#{osebaBean.novTrener.ime}" required="true" requiredMessage="Vpišite ime!" validatorMessage="Vpišite ustrezno ime!">
+                                    <f:validateRegex pattern="[a-zA-Z žŽčČćĆšŠđĐ]+" />
+                                </p:inputText>
+                                <p:message for="ime" />
+
+                                <p:outputLabel for="priimek" value="Priimek:" />
+                                <p:inputText id="priimek" maxlength="255" value="#{osebaBean.novTrener.priimek}" required="true" requiredMessage="Vpišite priimek!" validatorMessage="Vpišite ustrezen priimek!">
+                                    <f:validateRegex pattern="[a-zA-Z žŽčČćĆšŠđĐ]+" />
+                                </p:inputText>
+                                <p:message for="priimek" />
+
+                                <p:outputLabel for="email" value="Email:" />
+                                <p:inputText id="email" maxlength="255"  value="#{osebaBean.novTrener.email}" required="true" requiredMessage="Vpišite email!" validatorMessage="Vpišite ustrezen email!">
+                                    <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                                </p:inputText>
+                                <p:message for="email" />
+
+                                <p:outputLabel for="spol" value="Spol:" />
+                                <p:selectOneRadio id="spol" value="#{osebaBean.novTrener.spol}" required="true" requiredMessage="Izberite spol!">
+                                    <f:selectItem itemValue="0" itemLabel="Moški"/>
+                                    <f:selectItem itemValue="1" itemLabel="Ženski"/>
+                                </p:selectOneRadio>
+                                <p:message for="spol" />
+
+                                <p:outputLabel for="popup" value="Datum rojstva:" />
+                                <p:calendar id="popup" value="#{osebaBean.novTrener.datumRojstva}" pattern="yyyy-MM-dd"
+                                            required="true" requiredMessage="Vpisite datum rojstva!" maxdate="calwidget.today()" />
+                                <p:message for="popup" />
+
+                                <p:outputLabel for="telefon" value="Telefon:" />
+                                <p:inputText id="telefon" value="#{osebaBean.novTrener.telefon}" maxlength="255" required="true" requiredMessage="Vpišite telefonsko številko!" validatorMessage="Vpišite lahko samo števila!">
+                                    <f:validateRegex pattern="[0-9 ]+" />
+                                </p:inputText>
+                                <p:message for="telefon" />
+                            </h:panelGrid>
+
+                            <p:commandButton id="submit" value="Dodaj" update="grid" actionListener="#{osebaBean.dodajTrenerja}" action="index.xhtml" />
+                        </h:form>
+                    </p:panel>
+                </div>
+            </f:view>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>
