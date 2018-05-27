@@ -6,6 +6,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -24,13 +25,11 @@ public class EJBOseba {
         return entityManager.find(Oseba.class, idOseba);
     }
 
-    public void addOseba(Oseba o) {
+    public void addOseba(Oseba o) throws UnsupportedEncodingException {
         entityManager.persist(o);
     }
 
     public Oseba mergeOseba(Oseba o) {
-        System.out.println("Merganje osebe...");
-
         if(o.getIdOseba() > 0) {
             entityManager.merge(o);
             return entityManager.find(Oseba.class, o.getIdOseba());
@@ -45,15 +44,8 @@ public class EJBOseba {
         entityManager.remove(entityManager.find(Oseba.class, idOseba));
     }
 
-    public void updateOseba(Oseba o) {
-        System.out.println("Spreminjam osebo...");
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String datumRojstva = simpleDateFormat.format(o.getDatumRojstva());
-        entityManager.createQuery("UPDATE Oseba o SET o.ime = '" + o.getIme() + "', o.priimek = '" + o.getPriimek() + "', o.datumRojstva = '" + datumRojstva + "', o.email = '" + o.getEmail() + "' WHERE o.idOseba = " + o.getIdOseba()).executeUpdate();
-    }
-
     public boolean validateEmail(String email) {
+        System.out.println(email);
         return entityManager.createQuery("SELECT o FROM Oseba o WHERE o.email = '" + email + "'").getResultList().size() == 0;
     }
-
 }

@@ -7,6 +7,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @LocalBean
@@ -24,8 +25,7 @@ public class EJBTrener {
         return entityManager.find(Trener.class, idTrener);
     }
 
-    public void addTrener(Trener t) {
-        System.out.println("Shranjujem trenerja...");
+    public void addTrener(Trener t) throws UnsupportedEncodingException {
         t.setGeslo(CryptWithMD5.cryptWithMD5(t.getGeslo()));
         entityManager.persist(t);
     }

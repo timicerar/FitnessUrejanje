@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" xml:lang="en" lang="en">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="../css/css-trener-receptor.css"/>
+    <title>Fitness</title>
+</h:head>
+<h:body>
+    <ui:composition template="../WEB-INF/template/template-receptor.xhtml">
+        <ui:define name="content">
+            <f:view>
+                <f:metadata>
+                    <f:viewParam name="idOseba" value="#{osebaBean.izbranIdOsebe}"/>
+                    <f:viewParam name="idOseba" value="#{grafBean.idIzbraneOsebe}"/>
+                    <f:viewParam name="idOseba" value="#{vrniVseMeritveOsebe.izbranIdOsebe}"/>
+                    <f:event type="preRenderView" listener="#{grafBean.init}" />
+                </f:metadata>
+
+                <p:panel header="Pregled meritev člana #{osebaBean.izbranaOseba.ime} #{osebaBean.izbranaOseba.priimek}" style="margin-bottom: 10px;">
+                    <h:form>
+                        <p:dataTable var="meritev" value="#{vrniVseMeritveOsebe.meritveOsebe}" reflow="true" style="margin-bottom: 10px;">
+                            <p:column headerText="Datum vpisa meritve">
+                                <h:outputText value="#{meritev.datumVpisa}"/>
+                            </p:column>
+                            <p:column headerText="Teža">
+                                <h:outputText value="#{meritev.teza} kg"/>
+                            </p:column>
+                            <p:column headerText="Višina">
+                                <h:outputText value="#{meritev.visina} cm"/>
+                            </p:column>
+                            <p:column headerText="Obseg pasu">
+                                <h:outputText value="#{meritev.obsegPasu} cm"/>
+                            </p:column>
+                            <p:column headerText="Uredi meritev">
+                                <p:button outcome="urejanjeMeritve" value="Uredi meritev" icon="fa fa-edit">
+                                    <f:param name="idMeritev" value="#{meritev.idMeritev}" />
+                                    <f:param name="idOseba" value="#{osebaBean.izbranIdOsebe}" />
+                                </p:button>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+
+                    <p:button icon="fa fa-backward" outcome="podrobnostiClana" value="Nazaj">
+                        <f:param value="#{osebaBean.izbranIdOsebe}" name="idOseba" />
+                    </p:button>
+                </p:panel>
+                <p:panel header="Graf meritev skozi čas" style="margin-bottom: 10px;" rendered="#{grafBean.aliImaOsebaMeritve()}">
+                    <div align="center">
+                        <p:chart id="chart" type="line" model="#{grafBean.dateModel}" style="height:400px; width: 90%;" responsive="true" widgetVar="chart" />
+                    </div>
+                    <p:commandButton style="margin-top: 10px;" type="button" value="Ponastavi graf" icon="ui-icon-cancel" onclick="PF('chart').resetZoom()"/>
+                </p:panel>
+            </f:view>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

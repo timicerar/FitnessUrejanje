@@ -42,10 +42,10 @@
                                 </p:inputText>
 
                                 <p:outputLabel for="spol" value="Spol:" />
-                                <p:selectOneRadio id="spol" value="#{trenerBean.novTrener.spol}" required="true" requiredMessage="Izberite spol!">
+                                <p:selectOneButton id="spol" value="#{trenerBean.novTrener.spol}" required="true" requiredMessage="Izberite spol!">
                                     <f:selectItem itemValue="0" itemLabel="Moški"/>
                                     <f:selectItem itemValue="1" itemLabel="Ženski"/>
-                                </p:selectOneRadio>
+                                </p:selectOneButton>
 
                                 <p:outputLabel for="popup" value="Datum rojstva:" />
                                 <p:calendar id="popup" value="#{trenerBean.novTrener.datumRojstva}" pattern="yyyy-MM-dd"

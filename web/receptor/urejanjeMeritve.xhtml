@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" xml:lang="en" lang="en">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="../css/css-trener-receptor.css"/>
+    <title>Fitness</title>
+</h:head>
+<h:body>
+    <ui:composition template="../WEB-INF/template/template-receptor.xhtml">
+        <ui:define name="content">
+            <f:view>
+                <f:metadata>
+                    <f:viewParam name="idMeritev" value="#{meritevBean.idIzbraneMeritve}"/>
+                    <f:viewParam name="idOseba" value="#{meritevBean.idIzbraneOsebe}"/>
+                </f:metadata>
+
+                <div align="center" class="ui-fluid">
+                    <p:panel header="Urejanje meritve" style="margin-bottom: 10px;">
+                        <h:form style="margin-bottom: 10px;">
+                            <p:messages id="messages" showDetail="true" closable="true" />
+                            <h:panelGrid id="grid" columns="2" cellpadding="5">
+                                <p:outputLabel for="teza" value="Teža:" />
+                                <p:inputNumber id="teza" value="#{meritevBean.izbranaMeritev.teza}" symbol=" kg" symbolPosition="s" required="true" requiredMessage="Vpisite težo!" minValue="1.00" maxValue="1000" />
+
+                                <p:outputLabel for="visina" value="Višina:" />
+                                <p:inputNumber id="visina" value="#{meritevBean.izbranaMeritev.visina}" symbol=" cm" symbolPosition="s" required="true" requiredMessage="Vpisite višino!" minValue="1.00" maxValue="1000" />
+
+                                <p:outputLabel for="obsegPasu" value="Obseg pasu:" />
+                                <p:inputNumber id="obsegPasu" value="#{meritevBean.izbranaMeritev.obsegPasu}" symbol=" cm" symbolPosition="s" required="true" requiredMessage="Vpisite obseg pasu!" minValue="1.00" maxValue="1000" />
+                            </h:panelGrid>
+
+                            <p:commandButton icon="fa fa-edit" id="submit" value="Spremeni meritev" update="grid messages" actionListener="#{meritevBean.urediMeritev(meritevBean.idIzbraneOsebe)}" action="urejanjeMeritve.xhtml" />
+                        </h:form>
+
+                        <p:commandButton value="Izbriši meritev" icon="ui-icon-trash" style="margin-bottom: 10px;">
+                            <p:confirm header="Potrditev izbrisa" message="Ste prepričani, da želite izbrisati to meritev?" icon="ui-icon-alert" />
+                        </p:commandButton>
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                            <p:commandButton value="Da" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" actionListener="#{meritevBean.izbrisiMeritev(meritevBean.izbranaMeritev.idMeritev)}" action="podrobnostiClana.xhtml">
+                                <f:param name="idOseba" value="#{meritevBean.idIzbraneOsebe}" />
+                            </p:commandButton>
+                            <p:commandButton value="Ne" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                        </p:confirmDialog>
+
+                        <p:button icon="fa fa-backward" outcome="pregledMeritev" value="Nazaj">
+                            <f:param value="#{meritevBean.idIzbraneOsebe}" name="idOseba" />
+                        </p:button>
+                    </p:panel>
+                </div>
+            </f:view>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

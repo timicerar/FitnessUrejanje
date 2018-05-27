@@ -32,13 +32,10 @@ public class EJBMeritev {
     }
 
     public void addMeritev(Meritev m) {
-        System.out.println("Dodajam meritev...");
         entityManager.persist(m);
     }
 
     public Meritev mergeMeritev(Meritev m) {
-        System.out.println("Merganje meritve...");
-
         if(m.getIdMeritev() > 0) {
             entityManager.merge(m);
             return entityManager.find(Meritev.class, m.getIdMeritev());
@@ -48,7 +45,6 @@ public class EJBMeritev {
     }
 
     public void deleteMeritev(int idMeritev) {
-        System.out.println("Brisem meritev...");
         entityManager.remove(entityManager.find(Meritev.class, idMeritev));
     }
 

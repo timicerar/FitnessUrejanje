@@ -16,8 +16,16 @@
     <ui:composition template="../WEB-INF/template/template-receptor.xhtml">
         <ui:define name="content">
             <f:view>
+                <f:metadata>
+                    <f:viewParam name="idOseba" value=""/>
+                </f:metadata>
 
+                <p:panel header="Urejanje trenerja " style="margin-bottom: 10px;">
 
+                    <p:button icon="fa fa-backward" outcome="podrobnostiTrenerja" value="Nazaj">
+                        <f:param value="" name="idOseba" />
+                    </p:button>
+                </p:panel>
             </f:view>
         </ui:define>
     </ui:composition>

@@ -13,6 +13,8 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.jms.JMSException;
 import javax.naming.NamingException;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.Random;
 
@@ -26,7 +28,7 @@ public class TrenerBean {
     @EJB
     private EJBTrener ejbTrener;
 
-    public void dodajTrenerja() throws JMSException, NamingException {
+    public void dodajTrenerja() throws JMSException, NamingException, UnsupportedEncodingException {
         if (ejbTrener.validateEmailAndUsername(novTrener.getUporabniskoIme(), novTrener.getEmail())) {
             novTrener.setDatumVpisa(new Date());
             novTrener.setGeslo(getSaltString());
