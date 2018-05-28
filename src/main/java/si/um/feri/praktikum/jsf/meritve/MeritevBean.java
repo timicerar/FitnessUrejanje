@@ -48,11 +48,11 @@ public class MeritevBean {
         ejbMeritev.deleteMeritev(idMeritev);
     }
 
-    public void warnMeritev() {
+    private void warnMeritev() {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!", "Niste spremenili nobenega podatka."));
     }
 
-    public void infoMeritev() {
+    private void infoMeritev() {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Meritev je bila uspešno spremenjena!"));
 
     }
