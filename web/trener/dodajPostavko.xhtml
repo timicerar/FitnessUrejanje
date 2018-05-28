@@ -22,14 +22,14 @@
                             <p:messages id="messages" showDetail="true" closable="true" />
                             <h:panelGrid id="grid" columns="2" cellpadding="5" style="width: 50%;">
                                 <p:outputLabel for="stPonovitev" value="Število ponovitev:" />
-                                <p:inputNumber id="stPonovitev" maxlength="255" value="#{postavkaBean.novaPostavka.steviloPonovitev}" required="true" requiredMessage="Vpišite število ponovitev!" validatorMessage="Vpišite ustrezeno število ponovitev!">
+                                <p:inputText id="stPonovitev" maxlength="255" value="#{postavkaBean.novaPostavka.steviloPonovitev}" required="true" requiredMessage="Vpišite število ponovitev!" validatorMessage="Vpišite ustrezeno število ponovitev!">
                                     <f:validateRegex pattern="[0-9]+" />
-                                </p:inputNumber>
+                                </p:inputText>
 
                                 <p:outputLabel for="stSerij" value="Število serij:" />
-                                <p:inputNumber id="stSerij" maxlength="255" value="#{postavkaBean.novaPostavka.steviloSerij}" required="true" requiredMessage="Vpišite število serij!" validatorMessage="Vpišite ustrezeno število serij!">
+                                <p:inputText id="stSerij" maxlength="255" value="#{postavkaBean.novaPostavka.steviloSerij}" required="true" requiredMessage="Vpišite število serij!" validatorMessage="Vpišite ustrezeno število serij!">
                                     <f:validateRegex pattern="[0-9]+" />
-                                </p:inputNumber>
+                                </p:inputText>
 
                                 <p:outputLabel for="teza" value="Teža:" />
                                 <p:inputNumber id="teza" maxlength="255" value="#{postavkaBean.novaPostavka.teza}" symbol=" kg" symbolPosition="s" required="true" requiredMessage="Vpišite težo!" validatorMessage="Vpišite ustrezeno težo!" minValue="1.00" maxValue="1000"/>
