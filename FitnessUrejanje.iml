@@ -19,7 +19,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="" />
         <datasource-mapping>
-          <factory-entry name="DatabasePersistanceUnit" value="0b105f4b-c876-443d-a7a7-cbfe0db09725" />
+          <factory-entry name="DatabasePersistanceUnit" value="5e0cc3f3-42be-4ed7-9058-8cb8a37b1d66" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/java/META-INF/persistence.xml" />
       </configuration>
@@ -32,20 +32,6 @@
         <ejbRoots>
           <root url="file://$MODULE_DIR$/src/main/java" />
         </ejbRoots>
-      </configuration>
-    </facet>
-    <facet type="web" name="Web2">
-      <configuration>
-        <descriptors>
-          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/web/WEB-INF" />
-        </descriptors>
-        <webroots>
-          <root url="file://$MODULE_DIR$/web" relative="/WEB-INF" />
-        </webroots>
-        <sourceRoots>
-          <root url="file://$MODULE_DIR$/src/main/java" />
-          <root url="file://$MODULE_DIR$/src/main/resources" />
-        </sourceRoots>
       </configuration>
     </facet>
   </component>
