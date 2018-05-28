@@ -20,12 +20,12 @@
                     <p:panel header="Dodajanje novega dneva">
                         <h:form>
                             <p:messages id="messages" showDetail="true" closable="true" />
-                            <h:panelGrid id="grid" columns="3" cellpadding="5">
+                            <h:panelGrid id="grid" columns="2" cellpadding="5">
                                 <p:outputLabel for="naziv" value="Naziv:" />
                                 <p:inputText id="naziv" maxlength="255" value="#{danBean.novDan.naziv}" required="true" requiredMessage="Vpišite naziv dneva!" validatorMessage="Vpišite ustrezen naziv!">
                                     <f:validateRegex pattern="[a-zA-Z žŽčČćĆšŠđĐ]+" />
                                 </p:inputText>
-                                <br/>
+
                                 <p:outputLabel for="opis" value="Opis:" />
                                 <p:inputTextarea id="opis" rows="10" cols="50" queryDelay="750" minQueryLength="4" value="#{danBean.novDan.opis}" required="true" requiredMessage="Vpišite opis dneva!" validatorMessage="Vpišite ustrezen opis!">
                                     <f:validateRegex pattern="[a-zA-Z žŽčČćĆšŠđĐ,.;-]+" />
