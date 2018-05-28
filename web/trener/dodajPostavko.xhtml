@@ -34,7 +34,7 @@
                                 <p:outputLabel for="teza" value="Teža:" />
                                 <p:inputNumber id="teza" maxlength="255" value="#{postavkaBean.novaPostavka.teza}" symbol=" kg" symbolPosition="s" required="true" requiredMessage="Vpišite težo!" validatorMessage="Vpišite ustrezeno težo!" minValue="1.00" maxValue="1000"/>
 
-                                <p:outputLabel for="tezavnost" value="tezavnost:" />
+                                <p:outputLabel for="tezavnost" value="Težavnost:" />
                                 <p:selectOneMenu id="tezavnost" value="#{postavkaBean.novaPostavka.tezavnost}">
                                     <f:selectItem itemLabel="1" itemValue="1" />
                                     <f:selectItem itemLabel="2" itemValue="2" />
@@ -58,7 +58,7 @@
                                 <p:outputLabel for="trajanje" value="Trajanje:" />
                                 <p:inputNumber id="trajanje" maxlength="255" value="#{postavkaBean.novaPostavka.trajanje}" symbol=" h" symbolPosition="s" required="true" requiredMessage="Vpišite trajanje!" validatorMessage="Vpišite ustrezeno trajanje!"/>
 
-                                <p:outputLabel for="zaporednoSt" value="Zaporedno stevilo:" />
+                                <p:outputLabel for="zaporednoSt" value="Zaporedno število:" />
                                 <p:inputNumber id="zaporednoSt" maxlength="255" value="#{postavkaBean.novaPostavka.zaporednaSt}" required="true" requiredMessage="Vpišite zaporedno stevilo!" validatorMessage="Vpišite ustrezeno zaporedno stevilo!"/>
                             </h:panelGrid>
 
