@@ -52,29 +52,31 @@
                         </p:tab>
                         <p:tab title="Urejanje">
                             <p:panelGrid id="grid" columns="1" layout="grid" styleClass="ui-panelgrid-blank">
-                                <p:messages id="messages" showDetail="true" closable="true" />
-                                <p:row>
-                                    <p:button outcome="urejanjeTrenerja" value="Urejanje trenerja" icon="fa fa-align-left">
-                                        <f:param name="idTrener" value="#{trenerBean.idIzbranegaTrenerja}" />
-                                    </p:button>
-                                </p:row>
+                                <h:form>
+                                    <p:messages id="messages" showDetail="true" closable="true" />
+                                    <p:row>
+                                        <p:button outcome="urejanjeTrenerja" value="Urejanje trenerja" icon="fa fa-align-left" style="margin-bottom: 10px;">
+                                            <f:param name="idTrener" value="#{trenerBean.idIzbranegaTrenerja}" />
+                                        </p:button>
+                                    </p:row>
+
+                                    <p:row>
+                                        <p:commandButton update="messages" value="Resetiraj geslo" icon="ui-icon-key" actionListener="#{trenerBean.resetGeslo}" action="podrobnostiTrenerja.xhtml">
+                                            <p:confirm header="Resetiranje gesla trenerju" message="Ste prepričani, da želite resetirati geslo trenerju #{trenerBean.izbranTrener.ime} #{trenerBean.izbranTrener.priimek}?" icon="ui-icon-alert" />
+                                        </p:commandButton>
+                                        <p:confirmDialog id="resetGeslo" global="true" showEffect="fade" hideEffect="fade">
+                                            <p:commandButton value="Da" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                            <p:commandButton value="Ne" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                        </p:confirmDialog>
+                                    </p:row>
+                                </h:form>
 
                                 <p:row>
-                                    <p:commandButton value="Resetiraj geslo" icon="ui-icon-key">
-                                        <p:confirm header="Resetiranje gesla trenerju" message="Ste prepričani, da želite resetirati geslo trenerju #{trenerBean.izbranTrener.ime} #{trenerBean.izbranTrener.priimek}?" icon="ui-icon-alert" />
-                                    </p:commandButton>
-                                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                                        <p:commandButton update="grid messages" value="Da" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                                        <p:commandButton value="Ne" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                                    </p:confirmDialog>
-                                </p:row>
-
-                                <p:row>
-                                    <p:commandButton value="Izbriši trenerja" icon="ui-icon-trash">
+                                    <p:commandButton value="Izbriši trenerja" icon="ui-icon-trash" actionListener="#{trenerBean.izbrisiTrenerja(trenerBean.izbranTrener.idTrener)}" action="index-receptor.xhtml">
                                         <p:confirm header="Potrditev izbrisa" message="Ste prepričani, da želite izbrisati trenerja #{trenerBean.izbranTrener.ime} #{trenerBean.izbranTrener.priimek}?" icon="ui-icon-alert" />
                                     </p:commandButton>
-                                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                                        <p:commandButton value="Da" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" actionListener="#{trenerBean.izbrisiTrenerja(trenerBean.izbranTrener.idTrener)}" action="index-receptor.xhtml" />
+                                    <p:confirmDialog id="izbrisiUpo" global="true" showEffect="fade" hideEffect="fade">
+                                        <p:commandButton value="Da" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                                         <p:commandButton value="Ne" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                                     </p:confirmDialog>
                                 </p:row>
