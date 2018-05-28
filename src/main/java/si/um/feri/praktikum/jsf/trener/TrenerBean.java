@@ -24,6 +24,16 @@ public class TrenerBean {
     @Getter
     @Setter
     private Trener novTrener = new Trener();
+    @Getter
+    @Setter
+    private Trener izbranTrener = new Trener();
+    @Getter
+    private int idIzbranegaTrenerja;
+
+    public void setIdIzbranegaTrenerja(int idIzbranegaTrenerja) {
+        this.idIzbranegaTrenerja = idIzbranegaTrenerja;
+        izbranTrener = ejbTrener.trenerById(idIzbranegaTrenerja);
+    }
 
     @EJB
     private EJBTrener ejbTrener;
@@ -40,6 +50,14 @@ public class TrenerBean {
             novTrener = new Trener();
             warn();
         }
+    }
+
+    public void urediTrenerja(int idTrener) {
+
+    }
+
+    public void izbrisiTrener(int idTrener) {
+
     }
 
     private void warn() {

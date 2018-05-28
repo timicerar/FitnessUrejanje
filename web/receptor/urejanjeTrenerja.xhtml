@@ -17,15 +17,58 @@
         <ui:define name="content">
             <f:view>
                 <f:metadata>
-                    <f:viewParam name="idOseba" value=""/>
+                    <f:viewParam name="idTrener" value="#{trenerBean.idIzbranegaTrenerja}"/>
                 </f:metadata>
 
-                <p:panel header="Urejanje trenerja " style="margin-bottom: 10px;">
+                <div align="center" class="ui-fluid">
+                    <p:panel header="Urejanje trenerja " style="margin-bottom: 10px;">
+                        <h:form style="margin-bottom: 10px;">
+                            <p:messages id="messages" showDetail="true" closable="true" />
+                            <h:panelGrid id="grid" columns="2" cellpadding="5">
+                                <p:outputLabel for="upoIme" value="Uporabnisko ime:" />
+                                <p:inputText id="upoIme" maxlength="255" value="#{trenerBean.izbranTrener.uporabniskoIme}" required="true" requiredMessage="Vpišite uporabniško ime!" validatorMessage="Vpišite ustrezno uporabniško ime!">
+                                    <f:validateRegex pattern="[a-zA-Z0-9]+" />
+                                </p:inputText>
 
-                    <p:button icon="fa fa-backward" outcome="podrobnostiTrenerja" value="Nazaj">
-                        <f:param value="" name="idOseba" />
-                    </p:button>
-                </p:panel>
+                                <p:outputLabel for="ime" value="Ime:" />
+                                <p:inputText id="ime" maxlength="255" value="#{trenerBean.izbranTrener.ime}" required="true" requiredMessage="Vpišite ime!" validatorMessage="Vpišite ustrezno ime!">
+                                    <f:validateRegex pattern="[a-zA-Z žŽčČćĆšŠđĐ]+" />
+                                </p:inputText>
+
+                                <p:outputLabel for="priimek" value="Priimek:" />
+                                <p:inputText id="priimek" maxlength="255" value="#{trenerBean.izbranTrener.priimek}" required="true" requiredMessage="Vpišite priimek!" validatorMessage="Vpišite ustrezen priimek!">
+                                    <f:validateRegex pattern="[a-zA-Z žŽčČćĆšŠđĐ]+" />
+                                </p:inputText>
+
+                                <p:outputLabel for="email" value="Email:" />
+                                <p:inputText id="email" maxlength="255"  value="#{trenerBean.izbranTrener.email}" required="true" requiredMessage="Vpišite email!" validatorMessage="Vpišite ustrezen email!">
+                                    <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                                </p:inputText>
+
+                                <p:outputLabel for="spol" value="Spol:" />
+                                <p:selectOneButton id="spol" value="#{trenerBean.izbranTrener.spol}" required="true" requiredMessage="Izberite spol!">
+                                    <f:selectItem itemValue="0" itemLabel="Moški"/>
+                                    <f:selectItem itemValue="1" itemLabel="Ženski"/>
+                                </p:selectOneButton>
+
+                                <p:outputLabel for="popup" value="Datum rojstva:" />
+                                <p:calendar id="popup" value="#{trenerBean.izbranTrener.datumRojstva}" pattern="yyyy-MM-dd"
+                                            required="true" requiredMessage="Vpisite datum rojstva!" maxdate="calwidget.today()" />
+
+                                <p:outputLabel for="telefon" value="Telefon:" />
+                                <p:inputText id="telefon" value="#{trenerBean.izbranTrener.telefon}" maxlength="255" required="true" requiredMessage="Vpišite telefonsko številko!" validatorMessage="Vpišite lahko samo števila!">
+                                    <f:validateRegex pattern="[0-9 ]+" />
+                                </p:inputText>
+                            </h:panelGrid>
+
+                            <p:commandButton icon="fa fa-edit" id="submit" value="Spremeni trenerja" update="grid messages" actionListener="#{trenerBean.urediTrenerja(trenerBean.idIzbranegaTrenerja)}" action="urejanjeClana.xhtml" />
+                        </h:form>
+
+                        <p:button icon="fa fa-backward" outcome="podrobnostiTrenerja" value="Nazaj">
+                            <f:param value="#{trenerBean.idIzbranegaTrenerja}" name="idTrener" />
+                        </p:button>
+                    </p:panel>
+                </div>
             </f:view>
         </ui:define>
     </ui:composition>

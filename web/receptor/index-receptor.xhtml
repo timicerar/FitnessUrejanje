@@ -50,8 +50,8 @@
                                     <h:outputText value="#{trener.email}"/>
                                 </p:column>
                                 <p:column headerText="Podrobnosti" style="text-align: center;">
-                                    <p:button value="Podrobnosti" icon="fa fa-info">
-                                        <f:param name="idOseba" value="#{trener.idTrener}" />
+                                    <p:button outcome="podrobnostiTrenerja" value="Podrobnosti" icon="fa fa-info">
+                                        <f:param name="idTrener" value="#{trener.idTrener}" />
                                     </p:button>
                                 </p:column>
                             </p:dataTable>
