@@ -43,4 +43,22 @@ public class ServiceActivatorBean implements EJBServiceActivator {
 
         SendEmail.posljiEmail(email, "Potrdilo o članstvu novega Trenerja Fitness kluba", besedilo);
     }
+
+    @Override
+    public void posljiSpremenjenoGeslo(String ime, String priimek, String upoIme, String geslo, String email) {
+        LocalDate datum = LocalDate.now();
+
+        String besedilo = "Pozdravljeni, "
+                + ime
+                + " "
+                + priimek
+                + "!"
+                + "<br/><br/>Fitness Vam je na zahtevo resetiral geslo."
+                + "<br/><br/>Uporabniško ime: " + upoIme
+                + "<br/><br/>Novo geslo, ki ga lahko kasneje spremenite: " + geslo
+                + "<br/><br/>Datum spremembe gesla v Fitness: " + datum
+                + "<br/><br/>Lep pozdrav," + "<br/>Fitness";
+
+        SendEmail.posljiEmail(email, "Resetiranje gesla", besedilo);
+    }
 }

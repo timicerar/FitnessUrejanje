@@ -72,8 +72,15 @@ public class TrenerBean {
         }
     }
 
+    public void resetGeslo() throws JMSException, NamingException {
+        izbranTrener.setGeslo(getSaltString());
+        PosljiSporocilo.posljiPodatkeTrenerja(izbranTrener, 3);
+        ejbTrener.resetPassword(izbranTrener);
+        infoResetPw();
+    }
+
     public void izbrisiTrenerja(int idTrener) {
-        System.out.println("Ni se implementirano");
+        ejbTrener.deleteTrener(idTrener);
     }
 
     private void warnEmailUpo() {
@@ -89,6 +96,10 @@ public class TrenerBean {
 
     private void infoUrejanje() {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Trener je bil uspešno spremenjen."));
+    }
+
+    private void infoResetPw() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Geslo je bilo uspešno spremenjeno. Trener je bil obveščen po emailu."));
     }
 
     private String getSaltString() {

@@ -23,4 +23,16 @@ public class EJBProgram {
         return entityManager.find(Program.class, idProgram);
     }
 
+    public List<Program> programiByTkIdTrener(int tkIdTrener) {
+        return (entityManager.createQuery("SELECT p FROM Program p WHERE p.tkIdTrener = " + tkIdTrener).getResultList());
+    }
+
+    public Program mergeProgram(Program p) {
+        if(p.getIdProgram() > 0) {
+            entityManager.merge(p);
+            return entityManager.find(Program.class, p.getIdProgram());
+        }
+
+        return p;
+    }
 }
