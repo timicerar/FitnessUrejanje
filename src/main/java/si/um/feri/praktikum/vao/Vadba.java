@@ -21,11 +21,11 @@ public class Vadba {
     @Getter
     @Setter
     private String opis;
-    @Column(nullable = false, name = "Video", length = 10000)
+    @Column(nullable = false, name = "Video", length = 3000)
     @Getter
     @Setter
     private String video;
-    @Column(nullable = false, name = "Slika", length = 10000)
+    @Column(nullable = false, name = "Slika", length = 500)
     @Getter
     @Setter
     private String slika;

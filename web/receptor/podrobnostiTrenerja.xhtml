@@ -24,6 +24,9 @@
                     <p:accordionPanel style="margin-top:10px; margin-bottom: 10px;">
                         <p:tab title="Podrobnosti">
                             <p:panelGrid columns="2" style="width: 50%;">
+                                <h:outputText value="Uporabniško ime:"/>
+                                <h:outputText value="#{trenerBean.izbranTrener.uporabniskoIme}"/>
+
                                 <h:outputText value="Ime:"/>
                                 <h:outputText value="#{trenerBean.izbranTrener.ime}"/>
 
@@ -48,36 +51,34 @@
                             </p:panelGrid>
                         </p:tab>
                         <p:tab title="Urejanje">
-                            <h:form>
-                                <p:panelGrid id="grid" columns="1" layout="grid" styleClass="ui-panelgrid-blank">
-                                    <p:messages id="messages" showDetail="true" closable="true" />
-                                    <p:row>
-                                        <p:button outcome="urejanjeTrenerja" value="Urejanje trenerja" icon="fa fa-align-left">
-                                            <f:param name="idTrener" value="#{trenerBean.idIzbranegaTrenerja}" />
-                                        </p:button>
-                                    </p:row>
+                            <p:panelGrid id="grid" columns="1" layout="grid" styleClass="ui-panelgrid-blank">
+                                <p:messages id="messages" showDetail="true" closable="true" />
+                                <p:row>
+                                    <p:button outcome="urejanjeTrenerja" value="Urejanje trenerja" icon="fa fa-align-left">
+                                        <f:param name="idTrener" value="#{trenerBean.idIzbranegaTrenerja}" />
+                                    </p:button>
+                                </p:row>
 
-                                    <p:row>
-                                        <p:commandButton value="Resetiraj geslo" icon="ui-icon-key">
-                                            <p:confirm header="Resetiranje gesla trenerju" message="Ste prepričani, da želite resetirati geslo trenerju #{trenerBean.izbranTrener.ime} #{trenerBean.izbranTrener.priimek}?" icon="ui-icon-alert" />
-                                        </p:commandButton>
-                                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                                            <p:commandButton update="grid messages" value="Da" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                                            <p:commandButton value="Ne" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                                        </p:confirmDialog>
-                                    </p:row>
+                                <p:row>
+                                    <p:commandButton value="Resetiraj geslo" icon="ui-icon-key">
+                                        <p:confirm header="Resetiranje gesla trenerju" message="Ste prepričani, da želite resetirati geslo trenerju #{trenerBean.izbranTrener.ime} #{trenerBean.izbranTrener.priimek}?" icon="ui-icon-alert" />
+                                    </p:commandButton>
+                                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                        <p:commandButton update="grid messages" value="Da" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                        <p:commandButton value="Ne" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                    </p:confirmDialog>
+                                </p:row>
 
-                                    <p:row>
-                                        <p:commandButton value="Izbriši trenerja" icon="ui-icon-trash">
-                                            <p:confirm header="Potrditev izbrisa" message="Ste prepričani, da želite izbrisati trenerju #{trenerBean.izbranTrener.ime} #{trenerBean.izbranTrener.priimek}?" icon="ui-icon-alert" />
-                                        </p:commandButton>
-                                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                                            <p:commandButton value="Da" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" actionListener="#{trenerBean.izbrisiTrener(trenerBean.izbranTrener.idTrener)}" action="index-receptor.xhtml" />
-                                            <p:commandButton value="Ne" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                                        </p:confirmDialog>
-                                    </p:row>
-                                </p:panelGrid>
-                            </h:form>
+                                <p:row>
+                                    <p:commandButton value="Izbriši trenerja" icon="ui-icon-trash">
+                                        <p:confirm header="Potrditev izbrisa" message="Ste prepričani, da želite izbrisati trenerja #{trenerBean.izbranTrener.ime} #{trenerBean.izbranTrener.priimek}?" icon="ui-icon-alert" />
+                                    </p:commandButton>
+                                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                        <p:commandButton value="Da" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" actionListener="#{trenerBean.izbrisiTrenerja(trenerBean.izbranTrener.idTrener)}" action="index-receptor.xhtml" />
+                                        <p:commandButton value="Ne" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                    </p:confirmDialog>
+                                </p:row>
+                            </p:panelGrid>
                         </p:tab>
                     </p:accordionPanel>
                     <p:button icon="fa fa-backward" outcome="index-receptor" value="Nazaj" />

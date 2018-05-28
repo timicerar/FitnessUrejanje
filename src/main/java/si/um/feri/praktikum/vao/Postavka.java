@@ -45,7 +45,7 @@ public class Postavka {
     @Getter
     @Setter
     private Dan tkIdDan;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = Vadba.class, fetch = FetchType.EAGER)
     @Getter
     @Setter
     private Vadba tkIdVadba;

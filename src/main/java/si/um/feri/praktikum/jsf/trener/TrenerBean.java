@@ -14,7 +14,6 @@ import javax.faces.context.FacesContext;
 import javax.jms.JMSException;
 import javax.naming.NamingException;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.Random;
 
@@ -48,24 +47,48 @@ public class TrenerBean {
             info();
         } else {
             novTrener = new Trener();
-            warn();
+            warnEmailUpo();
         }
     }
 
     public void urediTrenerja(int idTrener) {
+        Trener trener = ejbTrener.trenerById(idTrener);
 
+        if (!trener.getUporabniskoIme().equals(izbranTrener.getUporabniskoIme()) || !trener.getIme().equals(izbranTrener.getIme()) || !trener.getPriimek().equals(izbranTrener.getPriimek()) || !trener.getEmail().equals(izbranTrener.getEmail()) || !trener.getDatumRojstva().equals(izbranTrener.getDatumRojstva()) || trener.getSpol() != izbranTrener.getSpol() || !trener.getTelefon().equals(izbranTrener.getTelefon())) {
+            if (trener.getEmail().equals(izbranTrener.getEmail()) && trener.getUporabniskoIme().equals(izbranTrener.getUporabniskoIme())) {
+                ejbTrener.mergeTrener(izbranTrener);
+                infoUrejanje();
+            } else {
+                if (ejbTrener.validateEmailAndUsername(izbranTrener.getUporabniskoIme(), izbranTrener.getEmail())) {
+                    ejbTrener.mergeTrener(izbranTrener);
+                    infoUrejanje();
+                } else {
+                    izbranTrener = ejbTrener.trenerById(idTrener);
+                    warnEmailUpo();
+                }
+            }
+        } else {
+            warnPodatki();
+        }
     }
 
-    public void izbrisiTrener(int idTrener) {
-
+    public void izbrisiTrenerja(int idTrener) {
+        System.out.println("Ni se implementirano");
     }
 
-    private void warn() {
+    private void warnEmailUpo() {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!", "Uporabniško ime ali email sta že v uporabi!"));
+    }
+    private void warnPodatki() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!", "Niste spremenili nobenega podatka!"));
     }
 
     private void info() {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Trener je bil uspešno dodan v sistem."));
+    }
+
+    private void infoUrejanje() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Trener je bil uspešno spremenjen."));
     }
 
     private String getSaltString() {

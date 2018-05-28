@@ -1,8 +1,11 @@
 package si.um.feri.praktikum.ejb;
 
 import si.um.feri.praktikum.jsf.trener.CryptWithMD5;
+import si.um.feri.praktikum.vao.Oseba;
+import si.um.feri.praktikum.vao.Program;
 import si.um.feri.praktikum.vao.Trener;
 
+import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -13,6 +16,11 @@ import java.util.List;
 @LocalBean
 @Stateless
 public class EJBTrener {
+
+    @EJB
+    private EJBProgram ejbProgram;
+    @EJB
+    private EJBOseba ejbOseba;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -31,8 +39,6 @@ public class EJBTrener {
     }
 
     public Trener mergeTrener(Trener t) {
-        System.out.println("Merganje trenerja...");
-
         if (t.getIdTrener() > 0) {
             entityManager.merge(t);
             return entityManager.find(Trener.class, t.getIdTrener());
@@ -42,7 +48,7 @@ public class EJBTrener {
     }
 
     public void deleteTrener(int idTrener) {
-        System.out.println("Brisem trenerja...");
+        entityManager.createQuery("UPDATE Program p SET p.tkIdTrener = null WHERE p.tkIdTrener.idTrener = " + idTrener).executeUpdate();
         Trener trener = entityManager.find(Trener.class, idTrener);
         entityManager.remove(trener);
     }
