@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xml:lang="en" lang="en">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="../css/css-trener-receptor.css" />
+    <title>Fitness</title>
+</h:head>
+<h:body>
+    <ui:composition template="../WEB-INF/template/template-trener.xhtml">
+        <ui:define name="content">
+            <f:view>
+                <div align="center" class="ui-fluid" style="margin-top: 5%;">
+                    <p:panel header="Dodajanje nove postavke" style="width: fit-content;">
+                        <h:form>
+                            <h:panelGrid id="grid" columns="3" cellpadding="5">
+                                <p:outputLabel for="stPonovitev" value="Število ponovitev:" />
+                                <p:inputNumber id="stPonovitev" maxlength="255" value="#{postavkaBean.novaPostavka.steviloPonovitev}" required="true" requiredMessage="Vpišite število ponovitev!" validatorMessage="Vpišite ustrezeno število ponovitev!">
+                                    <f:validateRegex pattern="[0-9]+" />
+                                </p:inputNumber>
+                                <p:message for="stPonovitev" />
+
+                                <p:outputLabel for="stSerij" value="Število serij:" />
+                                <p:inputNumber id="stSerij" maxlength="255" value="#{postavkaBean.novaPostavka.steviloSerij}" required="true" requiredMessage="Vpišite število serij!" validatorMessage="Vpišite ustrezeno število serij!">
+                                    <f:validateRegex pattern="[0-9]+" />
+                                </p:inputNumber>
+                                <p:message for="stSerij" />
+
+                                <p:outputLabel for="teza" value="Teža:" />
+                                <p:inputNumber id="teza" maxlength="255" value="#{postavkaBean.novaPostavka.teza}" symbol=" kg" symbolPosition="s" required="true" requiredMessage="Vpišite težo!" validatorMessage="Vpišite ustrezeno težo!" minValue="1.00" maxValue="1000"/>
+                                <p:message for="teza" />
+
+                                <p:outputLabel for="tezavnost" value="tezavnost:" />
+                                <p:selectOneMenu id="tezavnost" value="#{postavkaBean.novaPostavka.tezavnost}">
+                                    <f:selectItem itemLabel="1" itemValue="1" />
+                                    <f:selectItem itemLabel="2" itemValue="2" />
+                                    <f:selectItem itemLabel="3" itemValue="3" />
+                                    <f:selectItem itemLabel="4" itemValue="4" />
+                                    <f:selectItem itemLabel="5" itemValue="5" />
+                                    <f:selectItem itemLabel="6" itemValue="6" />
+                                    <f:selectItem itemLabel="7" itemValue="7" />
+                                    <f:selectItem itemLabel="8" itemValue="8" />
+                                    <f:selectItem itemLabel="9" itemValue="9" />
+                                    <f:selectItem itemLabel="10" itemValue="10" />
+                                </p:selectOneMenu>
+                                <p:message for="tezavnost" />
+
+                                <p:outputLabel for="tipPostavke" value="Tip postavke:" />
+                                <p:selectOneButton id="tipPostavke" value="#{postavkaBean.novaPostavka.tipPostavke}" required="true" requiredMessage="Izberite tip postavke!">
+                                    <f:selectItem itemValue="0" itemLabel="Ogrevanje"/>
+                                    <f:selectItem itemValue="1" itemLabel="Glavna vadba"/>
+                                    <f:selectItem itemValue="2" itemLabel="Ohlajevanje"/>
+                                </p:selectOneButton>
+
+                                <p:outputLabel for="trajanje" value="Trajanje:" />
+                                <p:inputNumber id="trajanje" maxlength="255" value="#{postavkaBean.novaPostavka.trajanje}" symbol=" h" symbolPosition="s" required="true" requiredMessage="Vpišite trajanje!" validatorMessage="Vpišite ustrezeno trajanje!"/>
+                                <p:message for="trajanje" />
+
+                                <p:outputLabel for="zaporednoSt" value="Zaporedno stevilo:" />
+                                <p:inputNumber id="zaporednoSt" maxlength="255" value="#{postavkaBean.novaPostavka.zaporednaSt}" required="true" requiredMessage="Vpišite zaporedno stevilo!" validatorMessage="Vpišite ustrezeno zaporedno stevilo!"/>
+                                <p:message for="zaporednoSt" />
+                            </h:panelGrid>
+
+                            <p:commandButton id="submit" value="Dodaj" update="grid" actionListener="#{danBean.dodajDan}" action="index-trener.xhtml" />
+                        </h:form>
+                    </p:panel>
+                </div>
+            </f:view>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>
