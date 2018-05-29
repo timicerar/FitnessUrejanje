@@ -2,10 +2,14 @@ package si.um.feri.praktikum.jsf.programi;
 
 import lombok.Getter;
 import lombok.Setter;
+import si.um.feri.praktikum.ejb.EJBProgram;
 import si.um.feri.praktikum.vao.Program;
 
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean(name = "programBean")
 @SessionScoped
@@ -15,8 +19,24 @@ public class ProgramBean {
     @Setter
     private Program novProgram = new Program();
 
+    @EJB
+    private EJBProgram ejbProgram;
+
     public void novProgram() {
-        System.out.println("nov program...");
+        if (ejbProgram.validateNazivPrograma(novProgram.getNaziv())) {
+            info();
+        } else {
+            novProgram = new Program();
+            warnNaziv();
+        }
+    }
+
+    private void warnNaziv() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!", "Program s takšnim nazivom že obstaja!"));
+    }
+
+    private void info() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Program je bil uspešno dodan v sistem."));
     }
 
 }

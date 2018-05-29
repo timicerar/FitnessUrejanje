@@ -20,10 +20,6 @@ public class VrstaBean implements MessageListener {
             try {
                 if (mapMessage.getInt("kateraMetoda") == 1) {
                     ejbServiceActivator.posljiMailNovemuClanu(mapMessage.getString("ime"), mapMessage.getString("priimek"), mapMessage.getString("email"));
-                } else if (mapMessage.getInt("kateraMetoda") == 2) {
-                    ejbServiceActivator.posljiMailNovemuTrenerju(mapMessage.getString("ime"), mapMessage.getString("priimek"), mapMessage.getString("upoIme"), mapMessage.getString("geslo"), mapMessage.getString("email"));
-                } else if (mapMessage.getInt("kateraMetoda") == 3) {
-                    ejbServiceActivator.posljiSpremenjenoGeslo(mapMessage.getString("ime"), mapMessage.getString("priimek"), mapMessage.getString("upoIme"), mapMessage.getString("geslo"), mapMessage.getString("email"));
                 }
             } catch (JMSException e) {
                 e.printStackTrace();

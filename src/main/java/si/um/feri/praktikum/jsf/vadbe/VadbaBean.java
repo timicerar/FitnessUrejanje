@@ -20,6 +20,9 @@ public class VadbaBean {
     private Vadba novaVadba = new Vadba();
     @Getter
     @Setter
+    private String znacke;
+    @Getter
+    @Setter
     private UploadedFile file;
 
     public void dodajVadba() {
@@ -29,7 +32,7 @@ public class VadbaBean {
 
     public void handleFileUpload(FileUploadEvent event) {
         FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
-        System.out.println(event.getFile().getFileName() + " jebi si maater");
+        System.out.println(event.getFile().getFileName() + " asd");
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
 

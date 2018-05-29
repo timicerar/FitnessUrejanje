@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "Vadba")
 @Table(name = "Vadba")
@@ -33,16 +34,22 @@ public class Vadba {
     @Getter
     @Setter
     private String tipVadbe;
+    @ManyToMany(targetEntity = Program.class, fetch = FetchType.LAZY)
+    @Getter
+    @Setter
+    private List<Program> tkIdProgram;
 
     public Vadba() {
+
     }
 
-    public Vadba(int idVadba, String naziv, String opis, String video, String slika, String tipVadbe) {
+    public Vadba(int idVadba, String naziv, String opis, String video, String slika, String tipVadbe, List<Program> tkIdProgram) {
         this.idVadba = idVadba;
         this.naziv = naziv;
         this.opis = opis;
         this.video = video;
         this.slika = slika;
         this.tipVadbe = tipVadbe;
+        this.tkIdProgram = tkIdProgram;
     }
 }

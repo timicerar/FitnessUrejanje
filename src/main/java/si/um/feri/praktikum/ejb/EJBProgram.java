@@ -23,10 +23,6 @@ public class EJBProgram {
         return entityManager.find(Program.class, idProgram);
     }
 
-    public List<Program> programiByTkIdTrener(int tkIdTrener) {
-        return (entityManager.createQuery("SELECT p FROM Program p WHERE p.tkIdTrener = " + tkIdTrener).getResultList());
-    }
-
     public Program mergeProgram(Program p) {
         if(p.getIdProgram() > 0) {
             entityManager.merge(p);
@@ -34,5 +30,9 @@ public class EJBProgram {
         }
 
         return p;
+    }
+
+    public boolean validateNazivPrograma(String naziv) {
+        return entityManager.createQuery("SELECT p FROM Program p WHERE p.naziv = '" + naziv + "'").getResultList().size() == 0;
     }
 }

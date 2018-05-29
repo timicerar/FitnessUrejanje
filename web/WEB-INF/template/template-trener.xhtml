@@ -23,7 +23,7 @@
                         <p:menuitem value="&nbsp;Dodaj program" url="dodajProgram.xhtml" icon="fa fa-plus" />
                         <p:menuitem value="&nbsp;Dodaj vadbo" url="dodajVadbo.xhtml" icon="fa fa-plus" />
                         <f:facet name="options">
-                            <p:commandButton value="Odjava" icon="ui-icon-extlink" />
+                            <p:commandButton value="Odjava" actionListener="#{odjavaBean.odjava}" icon="ui-icon-extlink" />
                         </f:facet>
                     </p:menubar>
                 </h:form>

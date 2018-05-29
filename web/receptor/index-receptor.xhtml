@@ -37,26 +37,6 @@
                             </p:dataTable>
                         </h:form>
                     </p:panel>
-                    <p:panel header="Izpis vseh trenerjev Fitness-a" style="margin-bottom: 10px;">
-                        <h:form>
-                            <p:dataTable var="trener" value="#{vrniVseTrenerjeBean.vsiTrenerji}" reflow="true">
-                                <p:column headerText="Ime">
-                                    <h:outputText value="#{trener.ime}"/>
-                                </p:column>
-                                <p:column headerText="Priimek">
-                                    <h:outputText value="#{trener.priimek}"/>
-                                </p:column>
-                                <p:column headerText="Email">
-                                    <h:outputText value="#{trener.email}"/>
-                                </p:column>
-                                <p:column headerText="Podrobnosti" style="text-align: center;">
-                                    <p:button outcome="podrobnostiTrenerja" value="Podrobnosti" icon="fa fa-info">
-                                        <f:param name="idTrener" value="#{trener.idTrener}" />
-                                    </p:button>
-                                </p:column>
-                            </p:dataTable>
-                        </h:form>
-                    </p:panel>
                 </div>
             </f:view>
         </ui:define>

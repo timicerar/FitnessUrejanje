@@ -10,8 +10,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class SendEmail {
-    public static void posljiEmail(String prejemnik, String subjekt, String tekst){
+class SendEmail {
+    static void posljiEmail(String prejemnik, String subjekt, String tekst){
 
         final String username = "zivljenje.aktivno@gmail.com";
         final String password = "timicerar123";
@@ -38,9 +38,6 @@ public class SendEmail {
             message.setSubject(subjekt);
             message.setContent(tekst, "text/html; charset=UTF-8");
             Transport.send(message);
-
-            System.out.println("Email je bil uspešno poslan!");
-
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }

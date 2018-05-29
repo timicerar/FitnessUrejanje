@@ -28,10 +28,11 @@ public class EJBVadba {
             entityManager.merge(v);
             return entityManager.find(Vadba.class, v.getIdVadba());
         }
+
         return v;
     }
 
-    public void deleteVadba(int idVadba) {
-        entityManager.remove(entityManager.find(Vadba.class, idVadba));
+    public boolean validateNazivVadbe(String naziv) {
+        return entityManager.createQuery("SELECT v FROM Vadba v WHERE v.naziv = '" + naziv + "'").getResultList().size() == 0;
     }
 }
