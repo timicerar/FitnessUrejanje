@@ -13,7 +13,6 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.jms.JMSException;
 import javax.naming.NamingException;
-import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 @ManagedBean(name = "osebaBean")
@@ -36,7 +35,7 @@ public class OsebaBean {
     @EJB
     private EJBOseba ejbOseba;
 
-    public void dodajClana() throws JMSException, NamingException, UnsupportedEncodingException {
+    public void dodajClana() throws JMSException, NamingException {
         if (ejbOseba.validateEmail(novaOseba.getEmail())) {
             novaOseba.setDatumVpisa(new Date());
             ejbOseba.addOseba(novaOseba);

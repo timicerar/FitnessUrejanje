@@ -23,7 +23,7 @@
                     <f:event type="preRenderView" listener="#{grafBean.init}" />
                 </f:metadata>
 
-                <p:panel header="Pregled meritev člana #{osebaBean.izbranaOseba.ime} #{osebaBean.izbranaOseba.priimek}" style="margin-bottom: 10px;">
+                <p:panel header="Pregled meritev člana #{osebaBean.izbranaOseba.ime} #{osebaBean.izbranaOseba.priimek}" style="margin-bottom: 10px;" rendered="#{osebaBean.izbranaOseba != null}">
                     <h:form>
                         <p:dataTable var="meritev" value="#{vrniVseMeritveOsebe.meritveOsebe}" reflow="true" style="margin-bottom: 10px;">
                             <p:column headerText="Datum vpisa meritve">
@@ -56,6 +56,9 @@
                         <p:chart id="chart" type="line" model="#{grafBean.dateModel}" style="height:400px; width: 90%;" responsive="true" widgetVar="chart" />
                     </div>
                     <p:commandButton style="margin-top: 10px;" type="button" value="Ponastavi graf" icon="ui-icon-cancel" onclick="PF('chart').resetZoom()"/>
+                </p:panel>
+                <p:panel header="Oseba ne obstaja" style="margin-bottom: 10px;" rendered="#{osebaBean.izbranaOseba == null}">
+                    <h:outputText value="Član s takšnim ID-jem ne obstaja!"/>
                 </p:panel>
             </f:view>
         </ui:define>

@@ -21,7 +21,7 @@
                 </f:metadata>
 
                 <div align="center" class="ui-fluid">
-                    <p:panel header="Urejanje člana #{osebaBean.izbranaOseba.ime} #{osebaBean.izbranaOseba.priimek}" style="margin-bottom: 10px;">
+                    <p:panel header="Urejanje člana #{osebaBean.izbranaOseba.ime} #{osebaBean.izbranaOseba.priimek}" style="margin-bottom: 10px;" rendered="#{osebaBean.izbranaOseba != null}">
                         <h:form style="margin-bottom: 10px;">
                             <p:messages id="messages" showDetail="true" closable="true" />
                             <h:panelGrid id="grid" columns="2" cellpadding="5">
@@ -64,6 +64,9 @@
                         </p:button>
                     </p:panel>
                 </div>
+                <p:panel header="Oseba ne obstaja" style="margin-bottom: 10px;" rendered="#{osebaBean.izbranaOseba == null}">
+                    <h:outputText value="Član s takšnim ID-jem ne obstaja!"/>
+                </p:panel>
             </f:view>
         </ui:define>
     </ui:composition>

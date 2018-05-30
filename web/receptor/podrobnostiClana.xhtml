@@ -20,7 +20,7 @@
                     <f:viewParam name="idOseba" value="#{osebaBean.izbranIdOsebe}"/>
                 </f:metadata>
 
-                <p:panel header="Izbran član #{osebaBean.izbranaOseba.ime} #{osebaBean.izbranaOseba.priimek}" style="margin-bottom: 10px;">
+                <p:panel header="Izbran član #{osebaBean.izbranaOseba.ime} #{osebaBean.izbranaOseba.priimek}" style="margin-bottom: 10px;" rendered="#{osebaBean.izbranaOseba != null}">
                     <p:accordionPanel style="margin-top:10px; margin-bottom: 10px;">
                         <p:tab title="Podrobnosti">
                             <p:panelGrid columns="2" style="width: 50%;">
@@ -70,6 +70,9 @@
                         </p:tab>
                     </p:accordionPanel>
                     <p:button icon="fa fa-backward" outcome="index-receptor" value="Nazaj" />
+                </p:panel>
+                <p:panel header="Oseba ne obstaja" style="margin-bottom: 10px;" rendered="#{osebaBean.izbranaOseba == null}">
+                    <h:outputText value="Član s takšnim ID-jem ne obstaja!"/>
                 </p:panel>
             </f:view>
         </ui:define>
