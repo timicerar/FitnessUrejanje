@@ -1,10 +1,13 @@
 package si.um.feri.praktikum.jsf.vadbe;
 
 import lombok.Setter;
+import si.um.feri.praktikum.ejb.EJBVadba;
 import si.um.feri.praktikum.vao.Vadba;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import java.util.ArrayList;
 import java.util.List;
 
 @ManagedBean(name = "vrniVseVadbeBean")
@@ -13,7 +16,7 @@ public class VrniVseVadbeBean {
     @Setter
     private List<Vadba> vseVadbe = null;
 
-    /*@EJB
+    @EJB
     private EJBVadba ejbVadba;
 
     public List<Vadba> getVseVadbe() {
@@ -24,5 +27,5 @@ public class VrniVseVadbeBean {
         }
 
         return vseVadbe;
-    }*/
+    }
 }

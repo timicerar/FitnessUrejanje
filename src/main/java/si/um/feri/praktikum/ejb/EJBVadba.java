@@ -2,10 +2,14 @@ package si.um.feri.praktikum.ejb;
 
 import si.um.feri.praktikum.vao.Vadba;
 
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
+@LocalBean
+@Stateless
 public class EJBVadba {
 
     @PersistenceContext

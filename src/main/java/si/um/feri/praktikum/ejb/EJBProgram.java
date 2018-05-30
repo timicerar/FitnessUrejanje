@@ -23,6 +23,10 @@ public class EJBProgram {
         return entityManager.find(Program.class, idProgram);
     }
 
+    public void addProgram(Program p) {
+        entityManager.persist(p);
+    }
+
     public Program mergeProgram(Program p) {
         if(p.getIdProgram() > 0) {
             entityManager.merge(p);

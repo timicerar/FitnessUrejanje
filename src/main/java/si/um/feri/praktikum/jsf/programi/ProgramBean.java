@@ -18,12 +18,24 @@ public class ProgramBean {
     @Getter
     @Setter
     private Program novProgram = new Program();
+    @Getter
+    @Setter
+    private Program izbranProgram = new Program();
+    @Getter
+    private int idIzbranegaPrograma;
+
+    public void setIdIzbranegaPrograma(int idIzbranegaPrograma) {
+        this.idIzbranegaPrograma = idIzbranegaPrograma;
+        izbranProgram = ejbProgram.programById(idIzbranegaPrograma);
+    }
 
     @EJB
     private EJBProgram ejbProgram;
 
     public void novProgram() {
         if (ejbProgram.validateNazivPrograma(novProgram.getNaziv())) {
+            ejbProgram.addProgram(novProgram);
+            novProgram = new Program();
             info();
         } else {
             novProgram = new Program();
