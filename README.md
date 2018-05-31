@@ -9,11 +9,12 @@ Ekipo sestavljajo [Cerar Timotej](https://github.com/timicerar), [Ribič Jože](
 ## Vsebina
 
 * [Uporaba](#uporaba)
+* [ER-Diagram](#ER-Diagram)
 * [Avtorji](#avtorji)
 * [Licenca](#licenca)
 
 ## Uporaba
-Namen te aplikacije je komunikacija med trenrji, receptorji in uporabniki fitnes studia.
+Namen te aplikacije je komunikacija med trenerji, receptorji in uporabniki fitnes studia.
 Aplikacija omogoča:
 * Trenerjem, da kreirajo programe, ki jih lahko nato persionalizirajo. Omogočeno jim je dodajanje vaj in urejanje vseh podrobnosti v zvezi z njimi.
 * Receptorjem, da dodajajo, odstranjujejo in spremnijajo trenerje in člane fitnes studia (dostopajo do osnovnih CRUD metod).
@@ -22,7 +23,8 @@ Aplikacija omogoča:
 ## Podatkovna baza
 Program uporablja podatkovno bazo MySql 5.
 
-
+### ER-Diagram
+![er-diagram](https://user-images.githubusercontent.com/23579188/40772756-25bb6bc6-64c1-11e8-95f4-87c1d415194a.png)
 
 
 
