@@ -1,37 +1,37 @@
 # FitnessUrejanje
->still in development stage!
+>Še v fazi razvijanja!
 
-FitnessUrejanje is a fitness program for receptors and coaches. The program was created by a team of students from [University of Maribor](https://www.um.si/en/Pages/default.aspx), [Faculty of Electrical Engineering and Computer Science (UM FERI)](https://feri.um.si/en/).
-Team members are [Cerar Timotej](https://github.com/timicerar), [Ribič Jože](https://authenteq.com), [Škrinjar Gregor](https://github.com/gregaskrinjar) and [Vovk Timi](https://github.com/timiv1). 
->This program is connected with  [fitness program for users](https://github.com/timicerar/FitnessClani).
+FitnessUrejanje je fitnes program za receptorje in trenerje. Program je ustvarila ekipa študentov iz [Mariborske Univerze](https://www.um.si) iz [Fakultete za Elektrotehniko, Računalništvo in Informatiko](https://feri.um.si).
+Ekipo sestavljajo [Cerar Timotej](https://github.com/timicerar), [Ribič Jože](https://authenteq.com), [Škrinjar Gregor](https://github.com/gregaskrinjar) in [Vovk Timi](https://github.com/timiv1). 
 
+>Program je povezan s [fitnes programom za člane fitnes studia](https://github.com/timicerar/FitnessClani).
 
-## Contents
+## Vsebina
 
-* [Usage](#usage)
-* [Authors](#authors)
-* [License](#license)
+* [Uporaba](#uporaba)
+* [Avtorji](#avtorji)
+* [Licenca](#licenca)
 
-## Usage
+## Uporaba
+Namen te aplikacije je komunikacija med trenrji, receptorji in uporabniki fitnes studia.
+Aplikacija omogoča:
+* Trenerjem, da kreirajo programe, ki jih lahko nato persionalizirajo. Omogočeno jim je dodajanje vaj in urejanje vseh podrobnosti v zvezi z njimi.
+* Receptorjem, da dodajajo, odstranjujejo in spremnijajo trenerje in člane fitnes studia (dostopajo do osnovnih CRUD metod).
+* Članom fitnes studija dostop do programov in vaj, ki jih trenerji ustvarjajo ter njihove podrobnosti. 
 
-Purpose of this program is to enable communication between coaches, receptors and fitness users.
-Application enables:
-* Coaches to create plans, specify exercises and its details;
-* receptors to access CRUD methods;
-* fitness users to access workout plaaans that coaches created, see the exercise specifics and access the tutorials for all the workouts.
-
-## Database
-
-We are using MySql 5 databse.
+## Podatkovna baza
+Program uporablja podatkovno bazo MySql 5.
 
 
 
-## Authors
+
+
+## Avtorji
 
 - [Cerar Timotej](https://github.com/timicerar), 
 [Ribič Jože](https://authenteq.com), [Škrinjar Gregor](https://github.com/gregaskrinjar) and [Vovk Timi](https://github.com/timiv1).
 
-## License
+## Licenca
 ```
    This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as
