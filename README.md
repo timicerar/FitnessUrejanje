@@ -1,7 +1,10 @@
 # FitnessUrejanje
+>still in development stage!
+
 FitnessUrejanje is a fitness program for receptors and coaches. The program was created by a team of students from [University of Maribor](https://www.um.si/en/Pages/default.aspx), [Faculty of Electrical Engineering and Computer Science (UM FERI)](https://feri.um.si/en/).
 Team members are [Cerar Timotej](https://github.com/timicerar), [Ribič Jože](https://authenteq.com), [Škrinjar Gregor](https://github.com/gregaskrinjar) and [Vovk Timi](https://github.com/timiv1). 
 >This program is connected with  [fitness program for users](https://github.com/timicerar/FitnessClani).
+
 
 ## Contents
 
@@ -13,9 +16,14 @@ Team members are [Cerar Timotej](https://github.com/timicerar), [Ribič Jože](h
 
 Purpose of this program is to enable communication between coaches, receptors and fitness users.
 Application enables:
-* Coaches to create plans and specify exercises and its specifics;
+* Coaches to create plans, specify exercises and its details;
 * receptors to access CRUD methods;
 * fitness users to access workout plaaans that coaches created, see the exercise specifics and access the tutorials for all the workouts.
+
+## Database
+
+We are using MySql 5 databse.
+
 
 
 ## Authors
