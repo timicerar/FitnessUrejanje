@@ -38,20 +38,18 @@
                                 </p:selectOneButton>
 
                                 <p:outputLabel for="video" value="Video (URL):" />
-                                <p:inputText id="video" maxlength="255" value="#{vadbaBean.novaVadba.naziv}" required="true" requiredMessage="Vpišite URL videa!" validatorMessage="Vstavite URL">
-                                    <f:validateRegex pattern="[a-zA-Z žŽčČćĆšŠđĐ]+" />
-                                </p:inputText>
+                                <p:inputText id="video" maxlength="1000" value="#{vadbaBean.novaVadba.video}" required="true" requiredMessage="Vpišite URL videa!" placeholder="https://www.youtube.com/watch?v=qWy_aOlB45Y" />
 
                                 <p:outputLabel for="slika" value="Slika:" />
-                                <p:fileUpload id="slika" value="#{vadbaBean.file}" mode="simple" skinSimple="true" required="true" requiredMessage="Izberite sliko" style="width: 100%;"/>
+                                <p:fileUpload id="slika" value="#{vadbaBean.file}" mode="simple" skinSimple="true" required="true" style="width: 100%;"/>
 
                                 <p:outputLabel for="znacke:" value="Znacke:" />
-                                <p:inputText id="znacke" maxlength="1000" value="#{vadbaBean.znacke}" required="true" requiredMessage="Vpišite značke #tag" validatorMessage="Značke napišete tako: #tag_a #tag-b">
+                                <p:inputText id="znacke" maxlength="1000" value="#{vadbaBean.znacke}" placeholder="#tag #tag-a #tag_b" required="true" requiredMessage="Vpišite značke #tag" validatorMessage="Značke napišete tako: #tag_a #tag-b">
                                     <f:validateRegex pattern="[a-zA-Z]+" />
                                 </p:inputText>
                             </h:panelGrid>
 
-                            <p:commandButton id="submit" value="Dodaj" update="grid messages" actionListener="#{vadbaBean.dodajVadba}" action="dodajVadbo.xhtml" />
+                            <p:commandButton id="submit" value="Dodaj" update="grid messages" actionListener="#{vadbaBean.dodajVadbo}" ajax="false" action="dodajVadbo.xhtml" />
                         </h:form>
                     </p:panel>
                 </div>

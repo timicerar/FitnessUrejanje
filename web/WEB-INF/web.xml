@@ -111,7 +111,27 @@
         <location>/error/error404.xhtml</location>
     </error-page>
     <error-page>
+        <error-code>408</error-code>
+        <location>/error/error408.xhtml</location>
+    </error-page>
+    <error-page>
+        <error-code>410</error-code>
+        <location>/error/error410.xhtml</location>
+    </error-page>
+    <error-page>
         <error-code>500</error-code>
         <location>/error/error500.xhtml</location>
+    </error-page>
+    <error-page>
+        <error-code>502</error-code>
+        <location>/error/error502.xhtml</location>
+    </error-page>
+    <error-page>
+        <error-code>503</error-code>
+        <location>/error/error503.xhtml</location>
+    </error-page>
+    <error-page>
+        <error-code>504</error-code>
+        <location>/error/error504.xhtml</location>
     </error-page>
 </web-app>
