@@ -1,8 +1,10 @@
 package si.um.feri.praktikum.ejb;
 
+import si.um.feri.praktikum.vao.Postavka;
+import si.um.feri.praktikum.vao.Program;
 import si.um.feri.praktikum.vao.Vadba;
-import si.um.feri.praktikum.vao.Znacka;
 
+import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -15,6 +17,11 @@ public class EJBVadba {
 
     @PersistenceContext
     EntityManager entityManager;
+
+    @EJB
+    private EJBProgram ejbProgram;
+    @EJB
+    private EJBPostavka ejbPostavka;
 
     public List<Vadba> vrniVseVadbe() {
         return entityManager.createQuery("SELECT v FROM Vadba v").getResultList();
@@ -39,5 +46,36 @@ public class EJBVadba {
 
     public boolean validateNazivVadbe(String naziv) {
         return entityManager.createQuery("SELECT v FROM Vadba v WHERE v.naziv = '" + naziv + "'").getResultList().size() == 0;
+    }
+
+    public void deleteVadba(int idVadba) {
+        List<Program> listVsehProgramov = ejbProgram.vrniVsePrograme();
+        List<Postavka> listVsehPostavk = ejbPostavka.vrniVsePostavkeZaVadbo(idVadba);
+        Vadba vadba = vadbaById(idVadba);
+
+        vadba.setTkIdProgram(null);
+
+
+        for (Program trProgram : listVsehProgramov) {
+            for (int i = 0; i < trProgram.getTkIdVadba().size(); i++) {
+                if (trProgram.getTkIdVadba().get(i).getIdVadba() == vadba.getIdVadba()) {
+                    trProgram.getTkIdVadba().remove(i);
+                }
+            }
+        }
+
+        mergeVadba(vadba);
+
+        for (Program trProgram : listVsehProgramov) {
+            ejbProgram.mergeProgram(trProgram);
+        }
+
+        for (Postavka trPostavka : listVsehPostavk) {
+            ejbPostavka.removePostavka(trPostavka.getIdPostavka());
+        }
+
+        entityManager.createQuery("UPDATE Znacka z SET z.tkIdVadba = null WHERE z.tkIdVadba = " + vadba.getIdVadba()).executeUpdate();
+
+        entityManager.remove(vadba);
     }
 }

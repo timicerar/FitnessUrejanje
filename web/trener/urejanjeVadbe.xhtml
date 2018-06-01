@@ -51,7 +51,7 @@
                                 <p:inputText id="znacke" maxlength="1000" value="#{urediVadboBean.znacke}" placeholder="Vpišite značke brez šumnikov #tag1 #tag2" required="true" requiredMessage="Vpišite značke #tag" />
                             </h:panelGrid>
 
-                            <p:commandButton id="submit" value="Uredi vadbo" update="grid messages" actionListener="#{urediVadboBean.urediVadbo}" ajax="false" action="dodajVadbo.xhtml" style="margin-bottom: 10px;" />
+                            <p:commandButton id="submit" value="Spremeni vadbo" update="grid messages" actionListener="#{urediVadboBean.urediVadbo(urediVadboBean.idIzbraneVadbe)}" ajax="false" action="urejanjeVadbe.xhtml" style="margin-bottom: 10px;" />
                         </h:form>
 
                         <p:button icon="fa fa-backward" outcome="podrobnostiVadbe" value="Nazaj">

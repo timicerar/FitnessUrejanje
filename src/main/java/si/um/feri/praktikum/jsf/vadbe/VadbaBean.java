@@ -111,6 +111,10 @@ public class VadbaBean {
         }
     }
 
+    public void deleteVadba(int idVadba) {
+        ejbVadba.deleteVadba(idVadba);
+    }
+
     private void warn() {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!", "Program s takšnim nazivom že obstaja!"));
     }

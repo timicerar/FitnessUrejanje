@@ -35,12 +35,16 @@ public class EJBZnacka {
         entityManager.persist(v);
     }
 
-    public Znacka mergeVadba(Znacka z) {
+    public Znacka mergeZnacka(Znacka z) {
         if (z.getIdZnacka() > 0){
             entityManager.merge(z);
             return entityManager.find(Znacka.class, z.getIdZnacka());
         }
 
         return z;
+    }
+
+    public void removeZnacka(int idZnacka) {
+        entityManager.remove(entityManager.find(Znacka.class, idZnacka));
     }
 }

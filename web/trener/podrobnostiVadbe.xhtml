@@ -38,7 +38,7 @@
                                 <h:outputLink value="#{vadbaBean.izbranaVadba.video}" target="_blank">Video posentek</h:outputLink>
 
                                 <h:outputText value="Slika:"/>
-                                <p:graphicImage value="#{vadbaBean.slika}" />
+                                <p:graphicImage width="640" height="480" value="#{vadbaBean.slika}" />
 
                                 <h:outputText value="Znacke:"/>
                                 <ui:repeat var="znacka" value="#{vadbaBean.znackeIzbraneVadbe}">
@@ -51,7 +51,7 @@
                                 <p:button outcome="urejanjeVadbe" value="Urejanje vadbe" icon="fa fa-align-left">
                                     <f:param name="idVadba" value="#{vadbaBean.idIzbraneVadbe}" />
                                 </p:button>
-                                <p:commandButton value="Izbriši vadbo" icon="ui-icon-trash">
+                                <p:commandButton value="Izbriši vadbo" icon="ui-icon-trash" actionListener="#{vadbaBean.deleteVadba(vadbaBean.idIzbraneVadbe)}" action="index-trener.xhtml">
                                     <p:confirm header="Potrditev izbrisa" message="Ste prepričani, da želite izbrisati #{vadbaBean.izbranaVadba.naziv}?" icon="ui-icon-alert" />
                                 </p:commandButton>
                                 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
