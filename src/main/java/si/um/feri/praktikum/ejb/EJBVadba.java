@@ -1,6 +1,7 @@
 package si.um.feri.praktikum.ejb;
 
 import si.um.feri.praktikum.vao.Vadba;
+import si.um.feri.praktikum.vao.Znacka;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;

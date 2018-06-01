@@ -26,10 +26,11 @@ public class Vadba {
     @Getter
     @Setter
     private String video;
-    @Column(nullable = false, name = "Slika", length = 500)
+    @Lob
+    @Column(nullable = false, name = "Slika", length = 1000000)
     @Getter
     @Setter
-    private String slika;
+    private byte[] slika;
     @Column(nullable = false, name = "TipVadbe")
     @Getter
     @Setter
@@ -43,7 +44,7 @@ public class Vadba {
 
     }
 
-    public Vadba(int idVadba, String naziv, String opis, String video, String slika, String tipVadbe, List<Program> tkIdProgram) {
+    public Vadba(int idVadba, String naziv, String opis, String video, byte[] slika, String tipVadbe, List<Program> tkIdProgram) {
         this.idVadba = idVadba;
         this.naziv = naziv;
         this.opis = opis;

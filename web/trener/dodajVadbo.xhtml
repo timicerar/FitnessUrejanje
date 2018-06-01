@@ -28,7 +28,7 @@
 
                                 <p:outputLabel for="opis" value="Opis:" />
                                 <p:inputTextarea id="opis" rows="10" cols="50" queryDelay="750" minQueryLength="4" value="#{vadbaBean.novaVadba.opis}" required="true" requiredMessage="Vpišite opis vadbe!" validatorMessage="Vpišite ustrezen opis!">
-                                    <f:validateRegex pattern="[a-zA-Z žŽčČćĆšŠđĐ,.;-]+" />
+                                    <f:validateRegex pattern='[a-zA-Z0-9 žŽčČćĆšŠđĐ,.:;-_()\/!?+$€"]+' />
                                 </p:inputTextarea>
 
                                 <p:outputLabel for="tip" value="Tip vadbe:" />
@@ -43,13 +43,11 @@
                                 <p:outputLabel for="slika" value="Slika:" />
                                 <p:fileUpload id="slika" value="#{vadbaBean.file}" mode="simple" skinSimple="true" required="true" style="width: 100%;"/>
 
-                                <p:outputLabel for="znacke:" value="Znacke:" />
-                                <p:inputText id="znacke" maxlength="1000" value="#{vadbaBean.znacke}" placeholder="#tag #tag-a #tag_b" required="true" requiredMessage="Vpišite značke #tag" validatorMessage="Značke napišete tako: #tag_a #tag-b">
-                                    <f:validateRegex pattern="[a-zA-Z]+" />
-                                </p:inputText>
+                                <p:outputLabel for="znacke" value="Znacke:" />
+                                <p:inputText id="znacke" maxlength="1000" value="#{vadbaBean.znacke}" placeholder="Vpišite značke brez šumnikov #tag1 #tag2" required="true" requiredMessage="Vpišite značke #tag" />
                             </h:panelGrid>
 
-                            <p:commandButton id="submit" value="Dodaj" update="grid messages" actionListener="#{vadbaBean.dodajVadbo}" ajax="false" action="dodajVadbo.xhtml" />
+                            <p:commandButton id="submit" value="Dodaj vadbo" update="grid messages" actionListener="#{vadbaBean.dodajVadbo}" ajax="false" action="dodajVadbo.xhtml" />
                         </h:form>
                     </p:panel>
                 </div>

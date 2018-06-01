@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" xml:lang="en" lang="en">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="../css/css-trener-receptor.css"/>
+    <title>Fitness</title>
+</h:head>
+<h:body>
+    <ui:composition template="../WEB-INF/template/template-trener.xhtml">
+        <ui:define name="content">
+            <f:view>
+                <f:metadata>
+                    <f:viewParam name="idVadba" value="#{vadbaBean.idIzbraneVadbe}"/>
+                </f:metadata>
+
+                <p:panel header="Izbrana vadba #{vadbaBean.izbranaVadba.naziv}" style="margin-bottom: 10px;" rendered="#{vadbaBean.izbranaVadba != null}">
+                    <p:accordionPanel style="margin-top:10px; margin-bottom: 10px;">
+                        <p:tab title="Podrobnosti">
+                            <p:panelGrid columns="2" style="width: 50%;">
+                                <h:outputText value="Naziv:"/>
+                                <h:outputText value="#{vadbaBean.izbranaVadba.naziv}"/>
+
+                                <h:outputText value="Tip vadbe:"/>
+                                <h:outputText id="posamicna" value="Posamična" rendered="#{vadbaBean.izbranaVadba.tipVadbe == 0}"/>
+                                <h:outputText id="skupinska" value="Skupinska" rendered="#{vadbaBean.izbranaVadba.tipVadbe == 1}"/>
+
+                                <h:outputText value="Opis:"/>
+                                <h:outputText value="#{vadbaBean.izbranaVadba.opis}" />
+
+                                <h:outputText value="Video URL:"/>
+                                <h:outputLink value="#{vadbaBean.izbranaVadba.video}" target="_blank">Video posentek</h:outputLink>
+
+                                <h:outputText value="Slika:"/>
+                                <p:graphicImage value="#{vadbaBean.slika}" />
+
+                                <h:outputText value="Znacke:"/>
+                                <ui:repeat var="znacka" value="#{vadbaBean.znackeIzbraneVadbe}">
+                                    <h:outputText value="##{znacka.naziv} " />
+                                </ui:repeat>
+                            </p:panelGrid>
+                        </p:tab>
+                        <p:tab title="Urejanje">
+                            <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank">
+                                <p:button outcome="urejanjeVadbe" value="Urejanje vadbe" icon="fa fa-align-left">
+                                    <f:param name="idVadba" value="#{vadbaBean.idIzbraneVadbe}" />
+                                </p:button>
+                                <p:commandButton value="Izbriši vadbo" icon="ui-icon-trash">
+                                    <p:confirm header="Potrditev izbrisa" message="Ste prepričani, da želite izbrisati #{vadbaBean.izbranaVadba.naziv}?" icon="ui-icon-alert" />
+                                </p:commandButton>
+                                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                    <p:commandButton value="Da" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton value="Ne" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                </p:confirmDialog>
+                            </p:panelGrid>
+                        </p:tab>
+                    </p:accordionPanel>
+                    <p:button icon="fa fa-backward" outcome="index-trener" value="Nazaj" />
+                </p:panel>
+                <p:panel header="Vadba ne obstaja" style="margin-bottom: 10px;" rendered="#{vadbaBean.izbranaVadba == null}">
+                    <h:outputText value="Vadba s takšnim ID-jem ne obstaja!"/>
+                </p:panel>
+            </f:view>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

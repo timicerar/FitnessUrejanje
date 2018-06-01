@@ -28,11 +28,11 @@
 
                                 <p:outputLabel for="opis" value="Opis:" />
                                 <p:inputTextarea id="opis" rows="10" cols="50" queryDelay="750" minQueryLength="4" value="#{danBean.novDan.opis}" required="true" requiredMessage="Vpišite opis dneva!" validatorMessage="Vpišite ustrezen opis!">
-                                    <f:validateRegex pattern="[a-zA-Z žŽčČćĆšŠđĐ,.;-]+" />
+                                    <f:validateRegex pattern='[a-zA-Z0-9 žŽčČćĆšŠđĐ,.:;-_()\/!?+$€"]+' />
                                 </p:inputTextarea>
                             </h:panelGrid>
 
-                            <p:commandButton id="submit" value="Dodaj" update="grid" actionListener="#{danBean.dodajDan}" action="index-trener.xhtml" />
+                            <p:commandButton id="submit" value="Dodaj dan" update="grid" actionListener="#{danBean.dodajDan}" action="index-trener.xhtml" />
                         </h:form>
                     </p:panel>
                 </div>

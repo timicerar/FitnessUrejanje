@@ -25,7 +25,7 @@ public class Znacka {
     public Znacka() {
     }
 
-    public Znacka(int idZnacka, String naziv, Vadba tkIdVadba) {
+    public Znacka(String naziv, Vadba tkIdVadba) {
         this.naziv = naziv;
         this.tkIdVadba = tkIdVadba;
     }

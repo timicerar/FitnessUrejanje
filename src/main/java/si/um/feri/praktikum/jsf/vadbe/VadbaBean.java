@@ -2,19 +2,26 @@ package si.um.feri.praktikum.jsf.vadbe;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.commons.io.FilenameUtils;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
+import si.um.feri.praktikum.ejb.EJBVadba;
+import si.um.feri.praktikum.ejb.EJBZnacka;
 import si.um.feri.praktikum.vao.Vadba;
+import si.um.feri.praktikum.vao.Znacka;
 
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import java.io.IOException;
+import javax.faces.event.PhaseId;
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @ManagedBean(name = "vadbaBean")
 @SessionScoped
@@ -29,34 +36,78 @@ public class VadbaBean {
     @Getter
     @Setter
     private UploadedFile file;
+    @Setter
+    private StreamedContent slika;
+    @Getter
+    @Setter
+    private List<Znacka> znackeIzbraneVadbe = new ArrayList<>();
+    @Getter
+    @Setter
+    private Vadba izbranaVadba = new Vadba();
+    @Getter
+    private int idIzbraneVadbe;
 
-    public void dodajVadbo() throws IOException {
-        String regex = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+    public void setIdIzbraneVadbe(int idIzbraneVadbe) {
+        this.idIzbraneVadbe = idIzbraneVadbe;
+        izbranaVadba = ejbVadba.vadbaById(idIzbraneVadbe);
+        znackeIzbraneVadbe = ejbZnacka.znackeZaVadbo(idIzbraneVadbe);
+    }
 
-        if (novaVadba.getVideo().matches(regex)) {
-            if (file != null) {
-                if(file.getFileName().endsWith(".jpg") || file.getFileName().endsWith(".png")) {
-                    if (file.getSize() < 250000000) {
-                        /*InputStream input = file.getInputstream();
-                        Path folder = Paths.get("C:\\Users\\timic\\IdeaProjects\\FitnessUrejanje\\web\\slike");
-                        String filename = FilenameUtils.getBaseName(file.getFileName());
-                        String extension = FilenameUtils.getExtension(file.getFileName());
-                        Path file = Files.createTempFile(folder, filename, extension);*/
+    public StreamedContent getSlika() {
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
+            return new DefaultStreamedContent();
+        } else {
+            return new DefaultStreamedContent(new ByteArrayInputStream(izbranaVadba.getSlika()));
+        }
+    }
+
+    @EJB
+    private EJBVadba ejbVadba;
+    @EJB
+    private EJBZnacka ejbZnacka;
+
+    public void dodajVadbo() {
+        if (ejbVadba.validateNazivVadbe(novaVadba.getNaziv())) {
+            String regexURL = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+
+            if (novaVadba.getVideo().matches(regexURL)) {
+                if (file != null) {
+                    if (file.getFileName().endsWith(".jpg") || file.getFileName().endsWith(".png")) {
+                        if (file.getSize() < 250000000) {
+                            novaVadba.setSlika(file.getContents());
+                            ejbVadba.addVadba(novaVadba);
+
+                            Pattern patt = Pattern.compile("(#\\w+)\\b");
+                            Matcher match = patt.matcher(znacke);
+
+                            while (match.find()) {
+                                ejbZnacka.addZnacka(new Znacka(match.group(1).substring(1).toLowerCase(), novaVadba));
+                            }
+
+                            novaVadba = new Vadba();
+                            znacke = "";
+                            info();
+                        } else {
+                            errorSlikaVelikost();
+                        }
                     } else {
-                        errorSlikaVelikost();
+                        errorSlikaKoncnica();
                     }
                 } else {
-                    errorSlikaKoncnica();
+                    novaVadba = new Vadba();
+                    znacke = "";
+                    errorSlikaNull();
                 }
             } else {
                 novaVadba = new Vadba();
                 znacke = "";
-                errorSlikaNull();
+                errorVideo();
             }
         } else {
+            warn();
             novaVadba = new Vadba();
-            znacke = "";
-            errorVideo();
         }
     }
 
@@ -81,7 +132,7 @@ public class VadbaBean {
     }
 
     private void info() {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Program je bil uspešno dodan v sistem."));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Vadba je bila uspešno dodana v sistem."));
     }
 
 }
