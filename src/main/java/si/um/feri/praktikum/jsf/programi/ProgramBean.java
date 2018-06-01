@@ -43,8 +43,42 @@ public class ProgramBean {
         }
     }
 
+    public void urediProgram(int idProgram) {
+        Program program = ejbProgram.programById(idProgram);
+
+        if (!program.getNaziv().equals(izbranProgram.getNaziv()) || program.getIntenzivnost() != izbranProgram.getIntenzivnost() ||
+                !program.getOpis().equals(izbranProgram.getOpis())) {
+            if (program.getNaziv().equals(izbranProgram.getNaziv())) {
+                ejbProgram.mergeProgram(izbranProgram);
+                infoUrejanje();
+            } else {
+                if (ejbProgram.validateNazivPrograma(izbranProgram.getNaziv())) {
+                    ejbProgram.mergeProgram(izbranProgram);
+                    infoUrejanje();
+                } else {
+                    izbranProgram = ejbProgram.programById(idProgram);
+                    warnNaziv();
+                }
+            }
+        } else {
+            warnUrejanje();
+        }
+    }
+
+    public void deleteProgram(int idProgram) {
+        //not yet implemented
+    }
+
     private void warnNaziv() {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!", "Program s takšnim nazivom že obstaja!"));
+    }
+
+    private void warnUrejanje() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!", "Niste spremenili nobenega podatka!"));
+    }
+
+    private void infoUrejanje() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Program je bil uspešno spremenjen."));
     }
 
     private void info() {

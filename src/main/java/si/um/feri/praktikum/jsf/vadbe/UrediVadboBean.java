@@ -108,7 +108,7 @@ public class UrediVadboBean {
             if (file.getFileName().endsWith(".jpg") || file.getFileName().endsWith(".png")) {
                 if (file.getSize() < 250000000) {
                     izbranaVadba.setSlika(file.getContents());
-                    ejbVadba.mergeVadba(izbranaVadba);
+                    napaka = false;
                 } else {
                     izbranaVadba = ejbVadba.vadbaById(idIzbraneVadbe);
                     napaka = true;
@@ -128,7 +128,7 @@ public class UrediVadboBean {
             String regexURL = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
 
             if (izbranaVadba.getVideo().matches(regexURL)) {
-                ejbVadba.mergeVadba(izbranaVadba);
+                napaka = false;
             } else {
                 izbranaVadba = ejbVadba.vadbaById(idIzbraneVadbe);
                 napaka = true;
@@ -141,7 +141,7 @@ public class UrediVadboBean {
     private boolean preveriNaziv(Vadba v, boolean napaka) {
         if (!v.getNaziv().equals(izbranaVadba.getNaziv())) {
             if (ejbVadba.validateNazivVadbe(izbranaVadba.getNaziv())) {
-                ejbVadba.mergeVadba(izbranaVadba);
+                napaka = false;
             } else {
                 izbranaVadba = ejbVadba.vadbaById(idIzbraneVadbe);
                 napaka = true;

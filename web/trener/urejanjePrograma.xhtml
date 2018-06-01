@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" xml:lang="en" lang="en">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="../css/css-trener-receptor.css" />
+    <title>Fitness</title>
+</h:head>
+<h:body>
+    <ui:composition template="../WEB-INF/template/template-trener.xhtml">
+        <ui:define name="content">
+            <f:view>
+                <f:metadata>
+                    <f:viewParam name="idProgram" value="#{programBean.idIzbranegaPrograma}"/>
+                </f:metadata>
+
+                <div align="center" class="ui-fluid">
+                    <p:panel header="Urejanje programa" style="margin-bottom: 10px;" rendered="#{programBean.izbranProgram != null}">
+                        <h:form>
+                            <p:messages id="messages" showDetail="true" closable="true" />
+                            <h:panelGrid id="grid" columns="2" cellpadding="5">
+                                <p:outputLabel for="naziv" value="Naziv:" />
+                                <p:inputText id="naziv" maxlength="255" value="#{programBean.izbranProgram.naziv}" required="true" requiredMessage="Vpišite naziv!" validatorMessage="Vpišite ustrezen naziv!">
+                                    <f:validateRegex pattern="[a-zA-Z žŽčČćĆšŠđĐ]+" />
+                                </p:inputText>
+
+                                <p:outputLabel for="intenzivnost" value="Intenzivnost:" />
+                                <p:selectOneMenu id="intenzivnost" value="#{programBean.izbranProgram.intenzivnost}">
+                                    <f:selectItem itemLabel="1" itemValue="1" />
+                                    <f:selectItem itemLabel="2" itemValue="2" />
+                                    <f:selectItem itemLabel="3" itemValue="3" />
+                                    <f:selectItem itemLabel="4" itemValue="4" />
+                                    <f:selectItem itemLabel="5" itemValue="5" />
+                                    <f:selectItem itemLabel="6" itemValue="6" />
+                                    <f:selectItem itemLabel="7" itemValue="7" />
+                                    <f:selectItem itemLabel="8" itemValue="8" />
+                                    <f:selectItem itemLabel="9" itemValue="9" />
+                                    <f:selectItem itemLabel="10" itemValue="10" />
+                                </p:selectOneMenu>
+
+                                <p:outputLabel for="opis" value="Opis:" />
+                                <p:inputTextarea id="opis" maxlength="10000" rows="10" cols="50" value="#{programBean.izbranProgram.opis}" queryDelay="750" minQueryLength="4" required="true" requiredMessage="Napišite opis!" validatorMessage="Vpišite ustrezen opis!">
+                                    <f:validateRegex pattern='[a-zA-Z0-9 žŽčČćĆšŠđĐ,.:;-_()\/!?+$€"]+' />
+                                </p:inputTextarea>
+                            </h:panelGrid>
+
+                            <p:commandButton id="submit" value="Spremeni program" update="grid messages" actionListener="#{programBean.urediProgram(programBean.idIzbranegaPrograma)}" action="urejanjePrograma.xhtml" style="margin-bottom: 10px;" />
+                        </h:form>
+
+                        <p:button icon="fa fa-backward" outcome="podrobnostiPrograma" value="Nazaj">
+                            <f:param value="#{programBean.idIzbranegaPrograma}" name="idProgram" />
+                        </p:button>
+                    </p:panel>
+                </div>
+                <p:panel header="Program ne obstaja" style="margin-bottom: 10px;" rendered="#{programBean.izbranProgram == null}">
+                    <h:outputText value="Program s takšnim ID-jem ne obstaja!"/>
+                </p:panel>
+            </f:view>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>
