@@ -2,9 +2,9 @@
 >Še v fazi razvijanja!
 
 FitnessUrejanje je fitnes program za receptorje in trenerje. Program je ustvarila ekipa študentov iz [Mariborske Univerze](https://www.um.si) iz [Fakultete za Elektrotehniko, Računalništvo in Informatiko](https://feri.um.si).
-Ekipo sestavljajo [Cerar Timotej](https://github.com/timicerar), [Ribič Jože](https://authenteq.com), [Škrinjar Gregor](https://github.com/gregaskrinjar) in [Vovk Timi](https://github.com/timiv1). 
+Ekipo sestavljajo [Cerar Timotej](https://github.com/timicerar), [Ribič Jože](https://github.com/r1b1c), [Škrinjar Gregor](https://github.com/gregaskrinjar) in [Vovk Timi](https://github.com/timiv1). 
 
->Program je povezan s [fitnes programom za člane fitnes studia](https://github.com/timicerar/FitnessClani).
+>Program je povezan s [fitnes programom za člane fitnes studia](https://github.com/timicerar/FitnessClani). Programa uporabljata isto podatkovno bazo in sta namenjena, kot dopolnilo drug drugemu.
 
 ## Vsebina
 
