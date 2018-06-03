@@ -66,7 +66,7 @@ public class ProgramBean {
     }
 
     public void deleteProgram(int idProgram) {
-        //not yet implemented
+        ejbProgram.deleteProgram(idProgram);
     }
 
     private void warnNaziv() {

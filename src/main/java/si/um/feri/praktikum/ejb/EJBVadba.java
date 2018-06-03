@@ -49,26 +49,8 @@ public class EJBVadba {
     }
 
     public void deleteVadba(int idVadba) {
-        List<Program> listVsehProgramov = ejbProgram.vrniVsePrograme();
         List<Postavka> listVsehPostavk = ejbPostavka.vrniVsePostavkeZaVadbo(idVadba);
         Vadba vadba = vadbaById(idVadba);
-
-        vadba.setTkIdProgram(null);
-
-
-        for (Program trProgram : listVsehProgramov) {
-            for (int i = 0; i < trProgram.getTkIdVadba().size(); i++) {
-                if (trProgram.getTkIdVadba().get(i).getIdVadba() == vadba.getIdVadba()) {
-                    trProgram.getTkIdVadba().remove(i);
-                }
-            }
-        }
-
-        mergeVadba(vadba);
-
-        for (Program trProgram : listVsehProgramov) {
-            ejbProgram.mergeProgram(trProgram);
-        }
 
         for (Postavka trPostavka : listVsehPostavk) {
             ejbPostavka.removePostavka(trPostavka.getIdPostavka());

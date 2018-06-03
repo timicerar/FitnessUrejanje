@@ -18,6 +18,7 @@
             <f:view>
                 <f:metadata>
                     <f:viewParam name="idProgram" value="#{programBean.idIzbranegaPrograma}"/>
+                    <f:viewParam name="idProgram" value="#{vrniVseDneveProgama.idIzbranegaPrograma}"/>
                 </f:metadata>
 
                 <p:panel header="Izbran program #{programBean.izbranProgram.naziv}" style="margin-bottom: 10px;" rendered="#{programBean.izbranProgram != null}">
@@ -30,22 +31,36 @@
                                 <h:outputText value="Intenzivnost:"/>
                                 <p:progressBar value="#{programBean.izbranProgram.intenzivnost * 10}" labelTemplate="#{programBean.izbranProgram.intenzivnost}" displayOnly="true"/>
 
-
                                 <h:outputText value="Opis:"/>
                                 <h:outputText value="#{programBean.izbranProgram.opis}"/>
                             </p:panelGrid>
                         </p:tab>
-                        <p:tab title="Dodajanje dnevov, vadb in postavk progamu">
-                            <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank">
-                                <h:outputText value="Not yet implemented" />
-                            </p:panelGrid>
+                        <p:tab title="Dodajanje dnevov">
+                            <p:button outcome="dodajDan" value="Dodaj dan" icon="fa fa-plus">
+                                <f:param name="idProgram" value="#{programBean.idIzbranegaPrograma}" />
+                            </p:button>
+                        </p:tab>
+                        <p:tab title="Pregled dnevov">
+                            <p:dataTable var="dan" value="#{vrniVseDneveProgama.vsiDneviPrograma}" reflow="true">
+                                <p:column headerText="Naziv:">
+                                    <h:outputText value="#{dan.naziv}"/>
+                                </p:column>
+                                <p:column headerText="Opis:">
+                                    <h:outputText value="#{dan.opis}"/>
+                                </p:column>
+                                <p:column headerText="Podrobnosti" style="text-align: center;">
+                                    <p:button outcome="podrobnostiDneva" value="Podrobnosti" icon="fa fa-info">
+                                        <f:param name="idDan" value="#{dan.idDan}" />
+                                    </p:button>
+                                </p:column>
+                            </p:dataTable>
                         </p:tab>
                         <p:tab title="Urejanje">
                             <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank">
                                 <p:button outcome="urejanjePrograma" value="Urejanje programa" icon="fa fa-align-left">
                                     <f:param name="idProgram" value="#{programBean.idIzbranegaPrograma}" />
                                 </p:button>
-                                <p:commandButton value="Izbriši program" icon="ui-icon-trash">
+                                <p:commandButton value="Izbriši program" icon="ui-icon-trash" actionListener="#{programBean.deleteProgram(programBean.idIzbranegaPrograma)}" action="index-trener.xhtml">
                                     <p:confirm header="Potrditev izbrisa" message="Ste prepričani, da želite izbrisati #{programBean.izbranProgram.naziv}?" icon="ui-icon-alert" />
                                 </p:commandButton>
                                 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">

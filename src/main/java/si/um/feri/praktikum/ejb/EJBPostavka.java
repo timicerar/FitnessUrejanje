@@ -15,6 +15,10 @@ public class EJBPostavka {
     @PersistenceContext
     private EntityManager entityManager;
 
+    public void addPostavka(Postavka p) {
+        entityManager.persist(p);
+    }
+
     public List<Postavka> vrniVsePostavke() {
         return entityManager.createQuery("SELECT p FROM Postavka p").getResultList();
     }
@@ -33,6 +37,11 @@ public class EJBPostavka {
 
     public void removePostavka(int idPostavka) {
         entityManager.remove(entityManager.find(Postavka.class, idPostavka));
+    }
+
+    public void removePostavkaZaDanInVadbo(int idDan, int idVadba) {
+        Postavka p = (Postavka) entityManager.createQuery("SELECT p FROM Postavka p WHERE p.tkIdVadba.idVadba = " + idVadba + " AND p.tkIdDan.idDan = " + idDan).getSingleResult();
+        entityManager.remove(p);
     }
 
 }

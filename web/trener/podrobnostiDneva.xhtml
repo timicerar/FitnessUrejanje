@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" xml:lang="en" lang="en">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="../css/css-trener-receptor.css"/>
+    <title>Fitness</title>
+</h:head>
+<h:body>
+    <ui:composition template="../WEB-INF/template/template-trener.xhtml">
+        <ui:define name="content">
+            <f:view>
+                <f:metadata>
+                    <f:viewParam name="idDan" value="#{podrobnostiDnevaBean.idIzbranegaDneva}" />
+                </f:metadata>
+
+                <p:panel header="Izbran dan #{podrobnostiDnevaBean.izbranDan.naziv} v programu #{podrobnostiDnevaBean.izbranDan.tkIdProgram.naziv}" style="margin-bottom: 10px;" rendered="#{podrobnostiDnevaBean.izbranDan != null}">
+                    <p:accordionPanel style="margin-top:10px; margin-bottom: 10px;">
+                        <p:tab title="Podrobnosti">
+                            <p:panelGrid columns="2" style="width: 50%;">
+                                <h:outputText value="Naziv:"/>
+                                <h:outputText value="#{podrobnostiDnevaBean.izbranDan.naziv}"/>
+
+                                <h:outputText value="Opis:"/>
+                                <h:outputText value="#{podrobnostiDnevaBean.izbranDan.opis}"/>
+                            </p:panelGrid>
+                        </p:tab>
+                        <p:tab title="Urejanje">
+                            <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank">
+                                <p:button value="Urejanje dneva" icon="fa fa-align-left">
+                                    <f:param name="idDan" value="#{podrobnostiDnevaBean.idIzbranegaDneva}" />
+                                </p:button>
+                                <p:commandButton value="Izbriši dan" icon="ui-icon-trash" actionListener="#{podrobnostiDnevaBean.removeDan(podrobnostiDnevaBean.idIzbranegaDneva)}" action="podrobnostiPrograma.xhtml">
+                                    <f:param value="#{podrobnostiDnevaBean.izbranDan.tkIdProgram.idProgram}" name="idProgram" />
+                                    <p:confirm header="Potrditev izbrisa" message="Ste prepričani, da želite izbrisati #{podrobnostiDnevaBean.izbranDan.naziv}?" icon="ui-icon-alert" />
+                                </p:commandButton>
+                                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                    <p:commandButton value="Da" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton value="Ne" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                </p:confirmDialog>
+                            </p:panelGrid>
+                        </p:tab>
+                    </p:accordionPanel>
+                    <p:button icon="fa fa-backward" outcome="podrobnostiPrograma" value="Nazaj">
+                        <f:param value="#{podrobnostiDnevaBean.izbranDan.tkIdProgram.idProgram}" name="idProgram" />
+                    </p:button>
+                </p:panel>
+                <p:panel header="Vse vadbe" style="margin-bottom: 10px;" rendered="#{podrobnostiDnevaBean.izbranDan != null}">
+                    <p:dataTable var="vadba" id="table" value="#{vrniVseVadbeBean.vseVadbe}" reflow="true">
+                        <p:column headerText="Naziv:">
+                            <h:outputText value="#{vadba.naziv}"/>
+                        </p:column>
+                        <p:column headerText="Opis:">
+                            <h:outputText value="#{vadba.opis}"/>
+                        </p:column>
+                        <p:column headerText="Video:">
+                            <h:outputLink value="#{vadba.video}" target="_blank">Video posnetek</h:outputLink>
+                        </p:column>
+                        <p:column headerText="Tip vadbe:">
+                            <h:outputText id="posamicna" value="Posamična" rendered="#{vadba.tipVadbe == 0}"/>
+                            <h:outputText id="skupinska" value="Skupinska" rendered="#{vadba.tipVadbe == 1}"/>
+                        </p:column>
+                        <p:column headerText="Dodaj dnevu vadbo">
+                            <p:commandButton value="Dodaj vadbo dnevu" type="button" icon="ui-icon-plus" onclick="PF('dlg#{vadba.idVadba}').show();" rendered="#{!postavkaBean.preveri(podrobnostiDnevaBean.idIzbranegaDneva, vadba)}" />
+
+                            <p:commandButton value="Odstrani vadbo dnevu" update="table" icon="ui-icon-minus" actionListener="#{postavkaBean.odstraniPostavko(podrobnostiDnevaBean.idIzbranegaDneva, vadba.idVadba)}" rendered="#{postavkaBean.preveri(podrobnostiDnevaBean.idIzbranegaDneva, vadba)}">
+                                <p:confirm header="Potrdite odstranitev vadbe" message="Ste prepričani, da želite odstraniti to vadbo '#{vadba.naziv}' dnevu '#{podrobnostiDnevaBean.izbranDan.naziv}'?" icon="ui-icon-alert" />
+                            </p:commandButton>
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                <p:commandButton value="Da" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                <p:commandButton value="Ne" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                            </p:confirmDialog>
+                            <p:dialog header="Dodaj postavko vadbi '#{vadba.naziv}'" widgetVar="dlg#{vadba.idVadba}" resizable="false" modal="true" width="60%">
+                                <div align="center">
+                                    <h:form id="form#{vadba.idVadba}">
+                                        <p:messages id="messages" showDetail="true" closable="true" />
+                                        <p:panelGrid id="grid" columns="2" cellpadding="5" styleClass="ui-noborder" style="width: 50%;">
+                                            <p:outputLabel for="tipPostavke" value="Tip postavke:" />
+                                            <p:selectOneMenu id="tipPostavke" value="#{postavkaBean.novaPostavka.tipPostavke}">
+                                                <f:selectItem itemLabel="Ogrevanje" itemValue="0" />
+                                                <f:selectItem itemLabel="Glavna vadba" itemValue="1" />
+                                                <f:selectItem itemLabel="Ohlajevanje" itemValue="2" />
+                                            </p:selectOneMenu>
+
+                                            <p:outputLabel for="zaporednoSt" value="Zaporedno število:" />
+                                            <p:inputText id="zaporednoSt" maxlength="10" value="#{postavkaBean.zaporednoSt}" required="true" requiredMessage="Vpišite zaporedno številko vaje!" validatorMessage="Vpišite lahko samo števila od 1 naprej!">
+                                                <f:validateRegex pattern='[0-9]+' />
+                                            </p:inputText>
+
+                                            <p:outputLabel for="stSerij" value="Število serij:" />
+                                            <p:inputText id="stSerij" maxlength="10" value="#{postavkaBean.steviloSerij}" required="true" requiredMessage="Vpišite število serij!" validatorMessage="Vpišite lahko samo števila od 1 naprej!">
+                                                <f:validateRegex pattern='[0-9]+' />
+                                            </p:inputText>
+
+                                            <p:outputLabel for="stPonovitev" value="Število ponovitev na serijo:" />
+                                            <p:inputText id="stPonovitev" maxlength="10" value="#{postavkaBean.steviloPonovitev}" required="true" requiredMessage="Vpišite število ponovitev!" validatorMessage="Vpišite lahko samo števila od 1 naprej!">
+                                                <f:validateRegex pattern='[0-9]+' />
+                                            </p:inputText>
+
+                                            <p:outputLabel for="teza" value="Teža (kg):" />
+                                            <p:inputText id="teza" maxlength="10" value="#{postavkaBean.teza}" required="true" requiredMessage="Vpišite težo npr. 15" validatorMessage="Vpišite ustrezeno težo s številkami npr. 15.5!">
+                                                <f:validateRegex pattern='[0-9]+(\.[0-9][0-9]?)?' />
+                                            </p:inputText>
+
+                                            <p:outputLabel for="tezavnost" value="Težavnost:" />
+                                            <p:selectOneMenu id="tezavnost" value="#{postavkaBean.novaPostavka.tezavnost}">
+                                                <f:selectItem itemLabel="1" itemValue="1" />
+                                                <f:selectItem itemLabel="2" itemValue="2" />
+                                                <f:selectItem itemLabel="3" itemValue="3" />
+                                                <f:selectItem itemLabel="4" itemValue="4" />
+                                                <f:selectItem itemLabel="5" itemValue="5" />
+                                                <f:selectItem itemLabel="6" itemValue="6" />
+                                                <f:selectItem itemLabel="7" itemValue="7" />
+                                                <f:selectItem itemLabel="8" itemValue="8" />
+                                                <f:selectItem itemLabel="9" itemValue="9" />
+                                                <f:selectItem itemLabel="10" itemValue="10" />
+                                            </p:selectOneMenu>
+
+                                            <p:outputLabel for="trajanje" value="Trajanje:" />
+                                            <p:inputText id="trajanje" maxlength="75" value="#{postavkaBean.novaPostavka.trajanje}" required="true" requiredMessage="Vpišite trajanje (npr. 20 minut ali 1 ura...)" validatorMessage="Vpišite ustrezeno trajanje (npr. 20 minut ali 1 ura...)!">
+                                                <f:validateRegex pattern='[a-zA-Z0-9 žŽčČćĆšŠđĐ,.:;-_()]+' />
+                                            </p:inputText>
+                                        </p:panelGrid>
+
+                                        <p:commandButton id="submit" value="Dodaj postavko" update="grid messages" actionListener="#{postavkaBean.dodajPostavko(vadba.idVadba, podrobnostiDnevaBean.idIzbranegaDneva)}" oncomplete="if (args &amp;&amp; !args.validationFailed) { PF('dlg#{vadba.idVadba}').hide(); location.reload(); }" />
+                                    </h:form>
+                                </div>
+                            </p:dialog>
+                        </p:column>
+                    </p:dataTable>
+                </p:panel>
+                <p:panel header="Dan ne obstaja" style="margin-bottom: 10px;" rendered="#{podrobnostiDnevaBean.izbranDan == null || podrobnostiDnevaBean.izbranDan.tkIdProgram == null}">
+                    <h:outputText value="Dan s takšnim ID-jem ne obstaja." />
+                </p:panel>
+            </f:view>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

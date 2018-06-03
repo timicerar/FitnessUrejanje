@@ -35,22 +35,17 @@ public class Vadba {
     @Getter
     @Setter
     private int tipVadbe;
-    @ManyToMany(targetEntity = Program.class, fetch = FetchType.LAZY)
-    @Getter
-    @Setter
-    private List<Program> tkIdProgram;
 
     public Vadba() {
 
     }
 
-    public Vadba(int idVadba, String naziv, String opis, String video, byte[] slika, int tipVadbe, List<Program> tkIdProgram) {
+    public Vadba(int idVadba, String naziv, String opis, String video, byte[] slika, int tipVadbe) {
         this.idVadba = idVadba;
         this.naziv = naziv;
         this.opis = opis;
         this.video = video;
         this.slika = slika;
         this.tipVadbe = tipVadbe;
-        this.tkIdProgram = tkIdProgram;
     }
 }

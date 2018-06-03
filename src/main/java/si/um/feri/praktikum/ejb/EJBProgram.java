@@ -1,7 +1,10 @@
 package si.um.feri.praktikum.ejb;
 
+import si.um.feri.praktikum.vao.Oseba;
 import si.um.feri.praktikum.vao.Program;
+import si.um.feri.praktikum.vao.Vadba;
 
+import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -27,8 +30,43 @@ public class EJBProgram {
         entityManager.persist(p);
     }
 
+    @EJB
+    private EJBOseba ejbOseba;
+    @EJB
+    private EJBVadba ejbVadba;
+
+    public void deleteProgram(int idProgram) {
+        List<Oseba> listVsehOseb = ejbOseba.vrniVseOsebe();
+        List<Vadba> listVsehVadb = ejbVadba.vrniVseVadbe();
+
+        Program program = programById(idProgram);
+        program.setTkIdOseba(null);
+
+        for (Oseba trOseba : listVsehOseb) {
+            for (int i = 0; i < trOseba.getTkIdProgram().size(); i++) {
+                if (trOseba.getTkIdProgram().get(i).getIdProgram() == program.getIdProgram()) {
+                    trOseba.getTkIdProgram().remove(i);
+                }
+            }
+        }
+
+        for (Oseba trOseba : listVsehOseb) {
+            ejbOseba.mergeOseba(trOseba);
+        }
+
+        for (Vadba trVadba : listVsehVadb) {
+            ejbVadba.mergeVadba(trVadba);
+        }
+
+        mergeProgram(program);
+
+        entityManager.createQuery("UPDATE Dan d SET d.tkIdProgram.idProgram = null WHERE d.tkIdProgram.idProgram = " + idProgram).executeUpdate();
+
+        entityManager.remove(program);
+    }
+
     public Program mergeProgram(Program p) {
-        if(p.getIdProgram() > 0) {
+        if (p.getIdProgram() > 0) {
             entityManager.merge(p);
             return entityManager.find(Program.class, p.getIdProgram());
         }

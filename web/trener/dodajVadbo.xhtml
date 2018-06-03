@@ -28,7 +28,7 @@
 
                                 <p:outputLabel for="opis" value="Opis:" />
                                 <p:inputTextarea id="opis" rows="10" cols="50" queryDelay="750" minQueryLength="4" value="#{vadbaBean.novaVadba.opis}" required="true" requiredMessage="Vpišite opis vadbe!" validatorMessage="Vpišite ustrezen opis!">
-                                    <f:validateRegex pattern='[a-zA-Z0-9 žŽčČćĆšŠđĐ,.:;-_()\/!?+$€"]+' />
+                                    <f:validateRegex pattern='[a-zA-Z0-9 žŽčČćĆšŠđĐ,.:;-_()\/!?+$€"\r\n]+' />
                                 </p:inputTextarea>
 
                                 <p:outputLabel for="tip" value="Tip vadbe:" />

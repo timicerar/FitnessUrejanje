@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core" xml:lang="en" lang="en">
+      xmlns:f="http://java.sun.com/jsf/core" xml:lang="en" lang="en">
 <h:head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <link rel="stylesheet" type="text/css" href="../css/css-trener-receptor.css" />
@@ -16,24 +16,35 @@
     <ui:composition template="../WEB-INF/template/template-trener.xhtml">
         <ui:define name="content">
             <f:view>
+                <f:metadata>
+                    <f:viewParam name="idProgram" value="#{danBean.idProgram}" />
+                </f:metadata>
+
                 <div align="center" class="ui-fluid">
-                    <p:panel header="Dodajanje novega dneva">
+                    <p:panel header="Dodajanje novega dneva programu #{danBean.izbranProgram.naziv}" rendered="#{danBean.izbranProgram != null}">
                         <h:form>
                             <p:messages id="messages" showDetail="true" closable="true" />
                             <h:panelGrid id="grid" columns="2" cellpadding="5">
                                 <p:outputLabel for="naziv" value="Naziv:" />
                                 <p:inputText id="naziv" maxlength="255" value="#{danBean.novDan.naziv}" required="true" requiredMessage="Vpišite naziv dneva!" validatorMessage="Vpišite ustrezen naziv!">
-                                    <f:validateRegex pattern="[a-zA-Z žŽčČćĆšŠđĐ]+" />
+                                    <f:validateRegex pattern='[a-zA-Z0-9 žŽčČćĆšŠđĐ,.:;-_()\/!?+"]+' />
                                 </p:inputText>
 
                                 <p:outputLabel for="opis" value="Opis:" />
                                 <p:inputTextarea id="opis" rows="10" cols="50" queryDelay="750" minQueryLength="4" value="#{danBean.novDan.opis}" required="true" requiredMessage="Vpišite opis dneva!" validatorMessage="Vpišite ustrezen opis!">
-                                    <f:validateRegex pattern='[a-zA-Z0-9 žŽčČćĆšŠđĐ,.:;-_()\/!?+$€"]+' />
+                                    <f:validateRegex pattern='[a-zA-Z0-9 žŽčČćĆšŠđĐ,.:;-_()\/!?+$€"\r\n]+' />
                                 </p:inputTextarea>
                             </h:panelGrid>
 
-                            <p:commandButton id="submit" value="Dodaj dan" update="grid" actionListener="#{danBean.dodajDan}" action="index-trener.xhtml" />
+                            <p:commandButton id="submit" value="Dodaj dan" update="grid messages" actionListener="#{danBean.dodajDan}" action="dodajDan.xhtml" style="margin-bottom: 10px;" />
                         </h:form>
+
+                        <p:button icon="fa fa-backward" outcome="podrobnostiPrograma" value="Nazaj na program">
+                            <f:param value="#{danBean.idProgram}" name="idProgram" />
+                        </p:button>
+                    </p:panel>
+                    <p:panel header="Programu ne morate dodati dneva" rendered="#{danBean.izbranProgram == null}">
+                        <h:outputText value="Program s takšnim ID-jem ne obstaja!" />
                     </p:panel>
                 </div>
             </f:view>
