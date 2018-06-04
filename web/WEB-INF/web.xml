@@ -86,6 +86,12 @@
             <url-pattern>/faces/trener/dodajProgram.xhtml</url-pattern>
             <url-pattern>/faces/trener/dodajVadbo.xhtml</url-pattern>
             <url-pattern>/faces/trener/index-trener.xhtml</url-pattern>
+            <url-pattern>/faces/trener/podrobnostiDneva.xhtml</url-pattern>
+            <url-pattern>/faces/trener/podrobnostiPrograma.xhtml</url-pattern>
+            <url-pattern>/faces/trener/podrobnostiVadbe.xhtml</url-pattern>
+            <url-pattern>/faces/trener/urejanjeDneva.xhtml</url-pattern>
+            <url-pattern>/faces/trener/urejanjePrograma.xhtml</url-pattern>
+            <url-pattern>/faces/trener/urejanjeVadbe.xhtml</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>trener</role-name>

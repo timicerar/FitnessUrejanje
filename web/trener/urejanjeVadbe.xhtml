@@ -49,6 +49,16 @@
 
                                 <p:outputLabel for="znacke" value="Znacke:" />
                                 <p:inputText id="znacke" maxlength="1000" value="#{urediVadboBean.znacke}" placeholder="Vpišite značke brez šumnikov #tag1 #tag2" required="true" requiredMessage="Vpišite značke #tag" />
+
+                                <p:outputLabel for="obvZnacke" value="Obvezne znacke:" />
+                                <p:column id="obvZnacke">
+                                    <p:commandButton style="margin: 3px; width: fit-content;" value="#roke" onclick="document.getElementById('j_idt16:znacke').value += '#roke ';" />
+                                    <p:commandButton style="margin: 3px; width: fit-content;" value="#noge" onclick="document.getElementById('j_idt16:znacke').value += '#noge ';" />
+                                    <p:commandButton style="margin: 3px; width: fit-content;" value="#prsa" onclick="document.getElementById('j_idt16:znacke').value += '#prsa ';" />
+                                    <p:commandButton style="margin: 3px; width: fit-content;" value="#trebusne" onclick="document.getElementById('j_idt16:znacke').value += '#trebusne ';" />
+                                    <p:commandButton style="margin: 3px; width: fit-content;" value="#hrbet" onclick="document.getElementById('j_idt16:znacke').value += '#hrbet ';" />
+                                    <p:commandButton style="margin: 3px; width: fit-content;" value="#rit" onclick="document.getElementById('j_idt16:znacke').value += '#rit ';" />
+                                </p:column>
                             </h:panelGrid>
 
                             <p:commandButton id="submit" value="Spremeni vadbo" update="grid messages" actionListener="#{urediVadboBean.urediVadbo(urediVadboBean.idIzbraneVadbe)}" ajax="false" action="urejanjeVadbe.xhtml" style="margin-bottom: 10px;" />
@@ -65,5 +75,15 @@
             </f:view>
         </ui:define>
     </ui:composition>
+
+    <script type="text/javascript">
+        function dodajZnacko(value) {
+            if(document.getElementById('j_idt16:znacke').value !== '') {
+                document.getElementById('j_idt15:znacke').value += value;
+            } else {
+                document.getElementById('j_idt15:znacke').value += value;
+            }
+        }
+    </script>
 </h:body>
 </html>

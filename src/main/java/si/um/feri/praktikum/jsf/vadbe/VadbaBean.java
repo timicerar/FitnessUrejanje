@@ -32,12 +32,10 @@ public class VadbaBean {
     private Vadba novaVadba = new Vadba();
     @Getter
     @Setter
-    private String znacke;
+    private String znacke = "";
     @Getter
     @Setter
     private UploadedFile file;
-    @Setter
-    private StreamedContent slika;
     @Getter
     @Setter
     private List<Znacka> znackeIzbraneVadbe = new ArrayList<>();
@@ -77,22 +75,48 @@ public class VadbaBean {
                     if (file.getFileName().endsWith(".jpg") || file.getFileName().endsWith(".png")) {
                         if (file.getSize() < 250000000) {
                             novaVadba.setSlika(file.getContents());
-                            ejbVadba.addVadba(novaVadba);
 
                             Pattern patt = Pattern.compile("(#\\w+)\\b");
                             Matcher match = patt.matcher(znacke);
+                            List<String> listZnack = new ArrayList<>();
 
                             while (match.find()) {
-                                ejbZnacka.addZnacka(new Znacka(match.group(1).substring(1).toLowerCase(), novaVadba));
+                                listZnack.add(match.group(1).substring(1).toLowerCase().trim());
                             }
 
+                            if (listZnack.contains("roke") || listZnack.contains("noge") || listZnack.contains("trebusne") ||
+                                    listZnack.contains("prsa") || listZnack.contains("rit") || listZnack.contains("hrbet")) {
+                                String pattern = "(?<=watch\\?v=|/videos/|embed\\/)[^#\\&\\?]*";
+
+                                Pattern compiledPattern = Pattern.compile(pattern);
+                                Matcher matcher = compiledPattern.matcher(novaVadba.getVideo());
+
+                                if (matcher.find()) {
+                                    novaVadba.setVideo(matcher.group());
+                                }
+
+                                ejbVadba.addVadba(novaVadba);
+
+                                for (String trZnacka : listZnack){
+                                    ejbZnacka.addZnacka(new Znacka(trZnacka, novaVadba));
+                                }
+
+                                novaVadba = new Vadba();
+                                znacke = "";
+                                info();
+                            } else {
+                                novaVadba = new Vadba();
+                                znacke = "";
+                                warnZnacke();
+                            }
+                        } else {
                             novaVadba = new Vadba();
                             znacke = "";
-                            info();
-                        } else {
                             errorSlikaVelikost();
                         }
                     } else {
+                        novaVadba = new Vadba();
+                        znacke = "";
                         errorSlikaKoncnica();
                     }
                 } else {
@@ -117,6 +141,10 @@ public class VadbaBean {
 
     private void warn() {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!", "Program s takšnim nazivom že obstaja!"));
+    }
+
+    private void warnZnacke() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!", "Vadba mora imeti vsaj eno obvezno znacko!"));
     }
 
     private void errorSlikaNull() {

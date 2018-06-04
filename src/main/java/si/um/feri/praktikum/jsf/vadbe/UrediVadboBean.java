@@ -64,23 +64,23 @@ public class UrediVadboBean {
         Matcher match = patt.matcher(znacke);
 
         while (match.find()) {
-            tempListZnack.add(match.group(1).substring(1).toLowerCase());
+            tempListZnack.add(match.group(1).substring(1).toLowerCase().trim());
         }
 
         List<String> originalneZnacke = new ArrayList<>();
 
         for (Znacka trenutnaZnacka : listZnack) {
-            originalneZnacke.add(trenutnaZnacka.getNaziv());
+            originalneZnacke.add(trenutnaZnacka.getNaziv().trim());
         }
 
         if (!v.getNaziv().equals(izbranaVadba.getNaziv()) || !v.getOpis().equals(izbranaVadba.getOpis()) ||
                 !v.getVideo().equals(izbranaVadba.getVideo()) || v.getTipVadbe() != izbranaVadba.getTipVadbe() ||
-                file.getSize() > 0 || !tempListZnack.containsAll(originalneZnacke)) {
+                file.getSize() > 0 || !originalneZnacke.containsAll(tempListZnack)) {
 
             napaka = preveriNaziv(v, napaka);
             napaka = preveriVideo(v, napaka);
             napaka = preveriSliko(napaka);
-            preveriZnacke(tempListZnack, originalneZnacke);
+            napaka = preveriZnacke(tempListZnack, originalneZnacke, napaka);
 
             if (!napaka) {
                 ejbVadba.mergeVadba(izbranaVadba);
@@ -91,16 +91,38 @@ public class UrediVadboBean {
         }
     }
 
-    private void preveriZnacke(List<String> tempListZnack, List<String> originalneZnacke) {
-        if (!tempListZnack.containsAll(originalneZnacke)) {
-            for (Znacka trZnacka : listZnack) {
-                ejbZnacka.removeZnacka(trZnacka.getIdZnacka());
-            }
+    private boolean preveriZnacke(List<String> tempListZnack, List<String> originalneZnacke, boolean napaka) {
+        if (!originalneZnacke.containsAll(tempListZnack)) {
+            if (tempListZnack.contains("roke") || tempListZnack.contains("noge") || tempListZnack.contains("trebusne") ||
+                    tempListZnack.contains("prsa") || tempListZnack.contains("rit") || tempListZnack.contains("hrbet")) {
+                for (Znacka trZnacka : listZnack) {
+                    ejbZnacka.removeZnacka(trZnacka.getIdZnacka());
+                }
 
-            for (String trZnacka : tempListZnack) {
-                ejbZnacka.addZnacka(new Znacka(trZnacka, izbranaVadba));
+                for (String trZnacka : tempListZnack) {
+                    ejbZnacka.addZnacka(new Znacka(trZnacka, izbranaVadba));
+                }
+
+                napaka = false;
+            } else {
+                izbranaVadba = ejbVadba.vadbaById(idIzbraneVadbe);
+                znacke = "";
+
+                for (int i = 0; i < listZnack.size(); i++) {
+                    if (i == 0)
+                        znacke = "#" + listZnack.get(i).getNaziv() + " ";
+                    else
+                        znacke = znacke + "#" + listZnack.get(i).getNaziv() + " ";
+                }
+
+                warnZnacke();
+                napaka = true;
             }
+        } else {
+            napaka = false;
         }
+
+        return napaka;
     }
 
     private boolean preveriSliko(boolean napaka) {
@@ -128,6 +150,15 @@ public class UrediVadboBean {
             String regexURL = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
 
             if (izbranaVadba.getVideo().matches(regexURL)) {
+                String pattern = "(?<=watch\\?v=|/videos/|embed\\/)[^#\\&\\?]*";
+
+                Pattern compiledPattern = Pattern.compile(pattern);
+                Matcher matcher = compiledPattern.matcher(izbranaVadba.getVideo());
+
+                if (matcher.find()) {
+                    izbranaVadba.setVideo(matcher.group());
+                }
+
                 napaka = false;
             } else {
                 izbranaVadba = ejbVadba.vadbaById(idIzbraneVadbe);
@@ -158,6 +189,10 @@ public class UrediVadboBean {
 
     private void warnNaziv() {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!", "Vadba s takšnim nazivom že obstaja!"));
+    }
+
+    private void warnZnacke() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!", "Vadba mora vsebovati vsaj eno obvezno znacko!"));
     }
 
     private void warnVideo() {

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" xml:lang="en" lang="en">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="../css/css-trener-receptor.css" />
+    <title>Fitness</title>
+</h:head>
+<h:body>
+    <ui:composition template="../WEB-INF/template/template-trener.xhtml">
+        <ui:define name="content">
+            <f:view>
+                <f:metadata>
+                    <f:viewParam name="idDan" value="#{podrobnostiDnevaBean.idIzbranegaDneva}"/>
+                </f:metadata>
+
+                <div align="center" class="ui-fluid">
+                    <p:panel header="Urejanje dneva" style="margin-bottom: 10px;" rendered="#{podrobnostiDnevaBean.izbranDan != null}">
+                        <h:form>
+                            <p:messages id="messages" showDetail="true" closable="true" />
+                            <h:panelGrid id="grid" columns="2" cellpadding="5">
+                                <p:outputLabel for="naziv" value="Naziv:" />
+                                <p:inputText id="naziv" maxlength="255" value="#{podrobnostiDnevaBean.izbranDan.naziv}" required="true" requiredMessage="Vpišite naziv dneva!" validatorMessage="Vpišite ustrezen naziv!">
+                                    <f:validateRegex pattern='[a-zA-Z0-9 žŽčČćĆšŠđĐ,.:;-_()\/!?+"]+' />
+                                </p:inputText>
+
+                                <p:outputLabel for="opis" value="Opis:" />
+                                <p:inputTextarea id="opis" rows="10" cols="50" queryDelay="750" minQueryLength="4" value="#{podrobnostiDnevaBean.izbranDan.opis}" required="true" requiredMessage="Vpišite opis dneva!" validatorMessage="Vpišite ustrezen opis!">
+                                    <f:validateRegex pattern='[a-zA-Z0-9 žŽčČćĆšŠđĐ,.:;-_()\/!?+$€"\r\n]+' />
+                                </p:inputTextarea>
+                            </h:panelGrid>
+
+                            <p:commandButton id="submit" value="Spremeni dan" update="grid messages" actionListener="#{podrobnostiDnevaBean.urediDan(podrobnostiDnevaBean.idIzbranegaDneva)}" action="urejanjeDneva.xhtml" style="margin-bottom: 10px;" />
+                        </h:form>
+
+                        <p:button icon="fa fa-backward" outcome="podrobnostiDneva" value="Nazaj">
+                            <f:viewParam name="idDan" value="#{podrobnostiDnevaBean.idIzbranegaDneva}"/>
+                        </p:button>
+                    </p:panel>
+                </div>
+                <p:panel header="Dan ne obstaja" style="margin-bottom: 10px;" rendered="#{podrobnostiDnevaBean.izbranDan == null}">
+                    <h:outputText value="Dan s takšnim ID-jem ne obstaja!"/>
+                </p:panel>
+            </f:view>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>
