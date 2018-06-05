@@ -19,7 +19,7 @@
                 <div class="ui-fluid">
                     <p:panel header="Izpis vseh programov Fitness-a" style="margin-bottom: 10px;">
                         <h:form>
-                            <p:dataTable var="program" value="#{vrniVseProgrameBean.vsiProgrami}" reflow="true">
+                            <p:dataTable id="programiTabela" var="program" value="#{vrniVseProgrameBean.vsiProgrami}" reflow="true">
                                 <p:column headerText="Naziv:">
                                     <h:outputText value="#{program.naziv}"/>
                                 </p:column>
@@ -30,6 +30,15 @@
                                     <p:button outcome="podrobnostiPrograma" value="Podrobnosti" icon="fa fa-info">
                                         <f:param name="idProgram" value="#{program.idProgram}" />
                                     </p:button>
+                                </p:column>
+                                <p:column headerText="Kopiraj program" style="text-align: center;">
+                                    <p:commandButton value="Kopiraj program" icon="ui-icon-copy" update="programiTabela" actionListener="#{programBean.kopirajProgram(program.idProgram)}" action="index-trener.xhtml">
+                                        <p:confirm header="Kopiranje programa #{program.naziv}" message="Ste prepričani, da želite kopirato #{program.naziv}?" icon="ui-icon-copy" />
+                                    </p:commandButton>
+                                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                        <p:commandButton value="Da" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                        <p:commandButton value="Ne" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                    </p:confirmDialog>
                                 </p:column>
                             </p:dataTable>
                         </h:form>

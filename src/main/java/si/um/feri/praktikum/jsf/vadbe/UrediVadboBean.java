@@ -35,9 +35,6 @@ public class UrediVadboBean {
     private UploadedFile file;
     @Getter
     @Setter
-    private List<Znacka> listZnack = new ArrayList<>();
-    @Getter
-    @Setter
     private Vadba izbranaVadba = new Vadba();
     @Getter
     private int idIzbraneVadbe;
@@ -45,7 +42,7 @@ public class UrediVadboBean {
     public void setIdIzbraneVadbe(int idIzbraneVadbe) {
         this.idIzbraneVadbe = idIzbraneVadbe;
         izbranaVadba = ejbVadba.vadbaById(idIzbraneVadbe);
-        listZnack = ejbZnacka.znackeZaVadbo(idIzbraneVadbe);
+        List<Znacka> listZnack = ejbZnacka.znackeZaVadbo(idIzbraneVadbe);
 
         for (int i = 0; i < listZnack.size(); i++) {
             if (i == 0)
@@ -58,6 +55,7 @@ public class UrediVadboBean {
     public void urediVadbo(int idVadba) {
         Vadba v = ejbVadba.vadbaById(idVadba);
         boolean napaka = false;
+        List<Znacka> listZnack = ejbZnacka.znackeZaVadbo(idIzbraneVadbe);
         List<String> tempListZnack = new ArrayList<>();
 
         Pattern patt = Pattern.compile("(#\\w+)\\b");
@@ -75,12 +73,12 @@ public class UrediVadboBean {
 
         if (!v.getNaziv().equals(izbranaVadba.getNaziv()) || !v.getOpis().equals(izbranaVadba.getOpis()) ||
                 !v.getVideo().equals(izbranaVadba.getVideo()) || v.getTipVadbe() != izbranaVadba.getTipVadbe() ||
-                file.getSize() > 0 || !originalneZnacke.containsAll(tempListZnack)) {
+                file.getSize() > 0 || !originalneZnacke.containsAll(tempListZnack) || tempListZnack.size() < originalneZnacke.size()) {
 
             napaka = preveriNaziv(v, napaka);
             napaka = preveriVideo(v, napaka);
             napaka = preveriSliko(napaka);
-            napaka = preveriZnacke(tempListZnack, originalneZnacke, napaka);
+            napaka = preveriZnacke(listZnack, tempListZnack, originalneZnacke, napaka);
 
             if (!napaka) {
                 ejbVadba.mergeVadba(izbranaVadba);
@@ -91,8 +89,8 @@ public class UrediVadboBean {
         }
     }
 
-    private boolean preveriZnacke(List<String> tempListZnack, List<String> originalneZnacke, boolean napaka) {
-        if (!originalneZnacke.containsAll(tempListZnack)) {
+    private boolean preveriZnacke(List<Znacka> listZnack, List<String> tempListZnack, List<String> originalneZnacke, boolean napaka) {
+        if (!originalneZnacke.containsAll(tempListZnack) || tempListZnack.size() < originalneZnacke.size()) {
             if (tempListZnack.contains("roke") || tempListZnack.contains("noge") || tempListZnack.contains("trebusne") ||
                     tempListZnack.contains("prsa") || tempListZnack.contains("rit") || tempListZnack.contains("hrbet")) {
                 for (Znacka trZnacka : listZnack) {

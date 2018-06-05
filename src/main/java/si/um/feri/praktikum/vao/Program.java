@@ -2,13 +2,16 @@ package si.um.feri.praktikum.vao;
 
 import lombok.Getter;
 import lombok.Setter;
+import si.um.feri.praktikum.ejb.EJBProgram;
+import si.um.feri.praktikum.jsf.programi.KopiranjePrograma;
 
+import javax.ejb.EJB;
 import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "Program")
 @Table(name = "Program")
-public class Program {
+public class Program implements KopiranjePrograma {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
@@ -35,11 +38,16 @@ public class Program {
 
     }
 
-    public Program(int idProgram, String naziv, String opis, int intenzivnost, List<Oseba> tkIdOseba) {
-        this.idProgram = idProgram;
+    public Program(String naziv, String opis, int intenzivnost, List<Oseba> tkIdOseba) {
         this.naziv = naziv;
         this.opis = opis;
         this.intenzivnost = intenzivnost;
         this.tkIdOseba = tkIdOseba;
+    }
+
+    @Override
+    public Program cloneProgram() {
+        Program kopiranProgram = new Program(naziv + " (copy)", opis, intenzivnost, null);
+        return kopiranProgram;
     }
 }

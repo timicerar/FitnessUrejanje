@@ -2,7 +2,9 @@ package si.um.feri.praktikum.jsf.programi;
 
 import lombok.Getter;
 import lombok.Setter;
+import si.um.feri.praktikum.ejb.EJBDan;
 import si.um.feri.praktikum.ejb.EJBProgram;
+import si.um.feri.praktikum.vao.Dan;
 import si.um.feri.praktikum.vao.Program;
 
 import javax.ejb.EJB;
@@ -10,6 +12,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import java.util.List;
 
 @ManagedBean(name = "programBean")
 @SessionScoped
@@ -22,6 +25,10 @@ public class ProgramBean {
     @Setter
     private Program izbranProgram = new Program();
     @Getter
+    @Setter
+    private String nazivKopiranegaPrograma;
+
+    @Getter
     private int idIzbranegaPrograma;
 
     public void setIdIzbranegaPrograma(int idIzbranegaPrograma) {
@@ -31,6 +38,8 @@ public class ProgramBean {
 
     @EJB
     private EJBProgram ejbProgram;
+    @EJB
+    private EJBDan ejbDan;
 
     public void novProgram() {
         if (ejbProgram.validateNazivPrograma(novProgram.getNaziv())) {
@@ -67,6 +76,19 @@ public class ProgramBean {
 
     public void deleteProgram(int idProgram) {
         ejbProgram.deleteProgram(idProgram);
+    }
+
+    public void kopirajProgram(int idProgram) {
+        List<Dan> listDnevovPrograma = ejbDan.vrniVseDnevePrograma(idProgram);
+
+        Program program = ejbProgram.programById(idProgram).cloneProgram();
+        ejbProgram.addProgram(program);
+
+        for (Dan trDan : listDnevovPrograma) {
+            Dan dan = trDan.clone();
+            dan.setTkIdProgram(program);
+            ejbDan.addDan(dan);
+        }
     }
 
     private void warnNaziv() {

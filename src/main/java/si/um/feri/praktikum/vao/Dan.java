@@ -2,12 +2,13 @@ package si.um.feri.praktikum.vao;
 
 import lombok.Getter;
 import lombok.Setter;
+import si.um.feri.praktikum.jsf.dnevi.KopiranjeDneva;
 
 import javax.persistence.*;
 
 @Entity(name = "Dan")
 @Table(name = "Dan")
-public class Dan {
+public class Dan implements KopiranjeDneva {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
@@ -30,10 +31,16 @@ public class Dan {
 
     }
 
-    public Dan(int idDan, String naziv, String opis, Program tkIdProgram) {
+    public Dan(String naziv, String opis, Program tkIdProgram) {
         this.idDan = idDan;
         this.naziv = naziv;
         this.opis = opis;
         this.tkIdProgram = tkIdProgram;
+    }
+
+    @Override
+    public Dan clone() {
+        Dan kopiranDan = new Dan(naziv, opis, null);
+        return kopiranDan;
     }
 }
