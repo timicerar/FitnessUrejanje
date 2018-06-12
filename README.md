@@ -4,6 +4,14 @@ FitnessUrejanje je fitnes aplikacija za receptorje in trenerje. Program je ustva
 
 >Program je povezan s [fitnes programom za člane fitnes studia](https://github.com/timicerar/FitnessClani). Programa uporabljata isto podatkovno bazo in sta namenjena, kot dopolnilo drug drugemu.
 
+## Pogled receptorja
+![35089262_1679846418777848_637202168373313536_n 1](https://user-images.githubusercontent.com/23579188/41303610-059a0418-6e6e-11e8-8527-d1d0d642c99b.png)
+
+
+## Pogled trenerja
+![35089262_1679846418777848_637202168373313536_n](https://user-images.githubusercontent.com/23579188/41303617-071c6b32-6e6e-11e8-9e2c-0f7fd75e08a8.png)
+
+
 ## Vsebina
 * [Uporaba](#uporaba)
 * [Funkcionalnosti](#funkcionalnosti)
@@ -40,7 +48,7 @@ Za vpostavitev aplikacije si je potrebno namestiti:
     * Administrativnega uporabnika (user)
     * Aplikacijska uporabnika (trener in receptor)
   * JMS modul (ActiveMQ)
-    * Potrebno je dodati sporočilo vrsto (jms/queue/test) in temo (jms/topic/test)
+    * Potrebno je dodati sporočilno vrsto (jms/queue/test) in temo (jms/topic/test)
 
 #### Postopek kako klonirati projetk iz GitHuba v Intellij IDEA
 1. Kliknite na "Check out from version control" in izberite "Git"
