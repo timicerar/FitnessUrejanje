@@ -1,5 +1,4 @@
 # FitnessUrejanje
->Še v fazi razvijanja!
 
 FitnessUrejanje je fitnes program za receptorje in trenerje. Program je ustvarila ekipa študentov iz [Mariborske Univerze](https://www.um.si) iz [Fakultete za Elektrotehniko, Računalništvo in Informatiko](https://feri.um.si).
 Ekipo sestavljajo [Cerar Timotej](https://github.com/timicerar), [Ribič Jože](https://github.com/r1b1c), [Škrinjar Gregor](https://github.com/gregaskrinjar) in [Vovk Timi](https://github.com/timiv1). 
@@ -10,6 +9,7 @@ Ekipo sestavljajo [Cerar Timotej](https://github.com/timicerar), [Ribič Jože](
 
 * [Uporaba](#uporaba)
 * [ER-Diagram](#ER-Diagram)
+* [Vzpostavitev](#Vzpostavitev)
 * [Avtorji](#avtorji)
 * [Licenca](#licenca)
 
@@ -17,8 +17,8 @@ Ekipo sestavljajo [Cerar Timotej](https://github.com/timicerar), [Ribič Jože](
 Namen te aplikacije je komunikacija med trenerji, receptorji in uporabniki fitnes studia.
 Aplikacija omogoča:
 * Trenerjem, da kreirajo programe, ki jih lahko nato persionalizirajo. Omogočeno jim je dodajanje vaj in urejanje vseh podrobnosti v zvezi z njimi.
-* Receptorjem, da dodajajo, odstranjujejo in spremnijajo trenerje in člane fitnes studia (dostopajo do osnovnih CRUD metod).
-* Članom fitnes studija dostop do programov in vaj, ki jih trenerji ustvarjajo ter njihove podrobnosti. 
+* Receptorjem, da dodajajo, odstranjujejo in spremnijajo člane fitnes studia (dostopajo do osnovnih CRUD metod).
+* Članom fitnes studija dostop do programov (prijava na programe) in vaj, ki jih trenerji ustvarjajo ter njihove podrobnosti. 
 
 ## Podatkovna baza
 Program uporablja podatkovno bazo MySql 5.
@@ -26,7 +26,11 @@ Program uporablja podatkovno bazo MySql 5.
 ### ER-Diagram
 ![er-diagram](https://user-images.githubusercontent.com/23579188/40772756-25bb6bc6-64c1-11e8-95f4-87c1d415194a.png)
 
-
+##Vzpostavitev
+Za vpostavitev aplikacije si je potrebno namestiti:
+* Intellij IDEA 2018.1.1. (ta verzija je bila uporabljena v času razvoja)
+* Ustvariti je potrebno Maven projekt pri kloniranju tega projekta
+* Potrebujete strežnik WildFly 12.0.0. Final
 
 ## Avtorji
 
