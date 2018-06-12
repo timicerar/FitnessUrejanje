@@ -1,4 +1,4 @@
-qq# FitnessUrejanje
+# FitnessUrejanje
 
 FitnessUrejanje je fitnes aplikacija za receptorje in trenerje. Program je ustvarila ekipa študentov iz [Mariborske Univerze](https://www.um.si) iz [Fakultete za Elektrotehniko, Računalništvo in Informatiko](https://feri.um.si). Ekipo sestavljajo [Cerar Timotej](https://github.com/timicerar), [Ribič Jože](https://github.com/r1b1c), [Škrinjar Gregor](https://github.com/gregaskrinjar) in [Vovk Timi](https://github.com/timiv1). 
 
