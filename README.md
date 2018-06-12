@@ -6,9 +6,9 @@ FitnessUrejanje je fitnes aplikacija za receptorje in trenerje. Program je ustva
 
 ## Vsebina
 * [Uporaba](#uporaba)
-* [Funkcionalnosti](#Funkcionalnosti)
-* [Vzpostavitev](#Vzpostavitev)
-* [ER-Diagram](#ER-Diagram)
+* [Funkcionalnosti](#funkcionalnosti)
+* [Vzpostavitev](#vzpostavitev)
+* [ER-Diagram](#er-diagram)
 * [Avtorji](#avtorji)
 * [Licenca](#licenca)
 
@@ -44,18 +44,23 @@ Za vpostavitev aplikacije si je potrebno namestiti:
 
 #### Postopek kako klonirati projetk iz GitHuba v Intellij IDEA
 1. Kliknite na "Check out from version control" in izberite "Git"
+![](https://cdn.discordapp.com/attachments/357945007988015104/456118129240702997/unknown.png)
 
 2. Nato se prijavite s svojim github računom in vpišite URL
+![](https://cdn.discordapp.com/attachments/357945007988015104/456118773968011276/unknown.png)
 
 3. Nato izberite Maven projekt in klikajte naprej (potrdite vsa pozivna okna) tako dolgo dokler se ne bo odprl Intellij.
+![](https://cdn.discordapp.com/attachments/357945007988015104/456118234135920651/unknown.png)
 
 4. Ko se projekt klonira je potrebno omogočiti Maven projekt (pri tem vam pomaga Intellij, v desnem kotu spodaj) 
 
 #### Postopek kako dodati vtičnik za Lombok Plugin
 1. Po uspešnem kloniranju projekta kliknite CTRL + ALT + S kateri vam bo odprl nastavitve. Nato pojdite pod "Plugins" in namestite Lombok Plugin (Intellij boste morali ponovno zagnati).
+![](https://cdn.discordapp.com/attachments/357945007988015104/456118986145398785/unknown.png)
+
 
 ## ER-Diagram
-![er-diagram](https://user-images.githubusercontent.com/23579188/40772756-25bb6bc6-64c1-11e8-95f4-87c1d415194a.png)
+![35098065_1679825912113232_7251615957863366656_n](https://user-images.githubusercontent.com/23579188/41302266-550436da-6e6a-11e8-9641-4a3df249f0e1.png)
 
 ## Avtorji
 - [Cerar Timotej](https://github.com/timicerar), [Ribič Jože](https://authenteq.com), [Škrinjar Gregor](https://github.com/gregaskrinjar) and [Vovk Timi](https://github.com/timiv1).
@@ -75,3 +80,4 @@ Za vpostavitev aplikacije si je potrebno namestiti:
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
     ```
+qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
