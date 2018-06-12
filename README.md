@@ -21,7 +21,12 @@ Aplikacija omogoča:
 * Članom fitnes studija dostop do programov (prijava na programe) in vaj, ki jih trenerji ustvarjajo ter njihove podrobnosti. Člani lahko tudi dodajajo meritve (teža, višina in obseg pasu), ki se prikažejo na grafu.
 
 ## Funkcionalnosti
-
+* Dodajanje/urejanje/brisanje članov
+* Dodajanje/urejanje/brisanje vadb katerim lahko dodaš postavke (čas trajanja treninga, težo itd.) ko jih dodaš dnevu v programu.
+* Dodajanje/urejanje/brisanje programov in dnevov programa
+* Dodajanje meritev
+* Prijava na program, zaključevanje dnevov v programu, program lahko zaključiš kadar končaš vse dneve programa
+* Pregled vseh vadb / programov / članov
 
 ## Vzpostavitev
 Za vpostavitev aplikacije si je potrebno namestiti:
@@ -38,10 +43,16 @@ Za vpostavitev aplikacije si je potrebno namestiti:
     * Potrebno je dodati sporočilo vrsto (jms/queue/test) in temo (jms/topic/test)
 
 #### Postopek kako klonirati projetk iz GitHuba v Intellij IDEA
+1. Kliknite na "Check out from version control" in izberite "Git"
 
+2. Nato se prijavite s svojim github računom in vpišite URL
+
+3. Nato izberite Maven projekt in klikajte naprej (potrdite vsa pozivna okna) tako dolgo dokler se ne bo odprl Intellij.
+
+4. Ko se projekt klonira je potrebno omogočiti Maven projekt (pri tem vam pomaga Intellij, v desnem kotu spodaj) 
 
 #### Postopek kako dodati vtičnik za Lombok Plugin
-
+1. Po uspešnem kloniranju projekta kliknite CTRL + ALT + S kateri vam bo odprl nastavitve. Nato pojdite pod "Plugins" in namestite Lombok Plugin (Intellij boste morali ponovno zagnati).
 
 ## ER-Diagram
 ![er-diagram](https://user-images.githubusercontent.com/23579188/40772756-25bb6bc6-64c1-11e8-95f4-87c1d415194a.png)
