@@ -31,6 +31,29 @@
                                 <h:outputText value="#{podrobnostiDnevaBean.izbranDan.opis}"/>
                             </p:panelGrid>
                         </p:tab>
+                        <p:tab title="Povratne informacije (počutje uporabnikov po končanju treninga)">
+                            <p:panelGrid columns="3" style="width: fit-content; text-align: center;">
+                                <h:outputText value="Zelo slabo"/>
+                                <p:graphicImage value="../images/pocutje/zelo-slabo.png" />
+                                <h:outputText value="#{izvedbaBean.vrniStIzvedbZaZeloSlabo(podrobnostiDnevaBean.idIzbranegaDneva)}"/>
+
+                                <h:outputText value="Slabo"/>
+                                <p:graphicImage value="../images/pocutje/slabo.png" />
+                                <h:outputText value="#{izvedbaBean.vrniStIzvedbZaSlabo(podrobnostiDnevaBean.idIzbranegaDneva)}"/>
+
+                                <h:outputText value="Povprečno"/>
+                                <p:graphicImage value="../images/pocutje/povprecno.png" />
+                                <h:outputText value="#{izvedbaBean.vrniStIzvedbZaPovprecno(podrobnostiDnevaBean.idIzbranegaDneva)}"/>
+
+                                <h:outputText value="Dobro"/>
+                                <p:graphicImage value="../images/pocutje/dobro.png" />
+                                <h:outputText value="#{izvedbaBean.vrniStIzvedbZaDobro(podrobnostiDnevaBean.idIzbranegaDneva)}"/>
+
+                                <h:outputText value="Zelo dobro"/>
+                                <p:graphicImage value="../images/pocutje/odlicno.png" />
+                                <h:outputText value="#{izvedbaBean.vrniStIzvedbZaZeloDobro(podrobnostiDnevaBean.idIzbranegaDneva)}"/>
+                            </p:panelGrid>
+                        </p:tab>
                         <p:tab title="Urejanje">
                             <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank">
                                 <p:button outcome="urejanjeDneva" value="Urejanje dneva" icon="fa fa-align-left">
