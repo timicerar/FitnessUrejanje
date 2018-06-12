@@ -46,7 +46,7 @@ Za vpostavitev aplikacije si je potrebno namestiti:
 1. Kliknite na "Check out from version control" in izberite "Git"
 ![](https://cdn.discordapp.com/attachments/357945007988015104/456118129240702997/unknown.png)
 
-2. Nato se prijavite s svojim github računom in vpišite URL 
+2. Nato se prijavite s svojim github računom in vpišite URL                                                                           
 ![](https://cdn.discordapp.com/attachments/357945007988015104/456118773968011276/unknown.png)
 
 3. Nato izberite Maven projekt in klikajte naprej (potrdite vsa pozivna okna) tako dolgo dokler se ne bo odprl Intellij.
