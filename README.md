@@ -26,11 +26,17 @@ Program uporablja podatkovno bazo MySql 5.
 ### ER-Diagram
 ![er-diagram](https://user-images.githubusercontent.com/23579188/40772756-25bb6bc6-64c1-11e8-95f4-87c1d415194a.png)
 
-##Vzpostavitev
+## Vzpostavitev
 Za vpostavitev aplikacije si je potrebno namestiti:
 * Intellij IDEA 2018.1.1. (ta verzija je bila uporabljena v času razvoja)
 * Ustvariti je potrebno Maven projekt pri kloniranju tega projekta
 * Potrebujete strežnik WildFly 12.0.0. Final
+** V server je potrebno dodati JDBC modul za MySQL
+** Uporabniki, ki jih je potrebno dodati:
+*** Administrativnega uporabnika (user ali admin)
+*** Aplikacijska uporabnika (trener in receptor)
+** Aktivirati je potrebno JMS modul (ActiveMQ)
+*** Potrebno je dodati sporočilo vrsto (jms/queue/test) in temo (jms/topic/test)
 
 ## Avtorji
 
