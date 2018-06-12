@@ -4,11 +4,12 @@ FitnessUrejanje je fitnes aplikacija za receptorje in trenerje. Program je ustva
 
 >Program je povezan s [fitnes programom za člane fitnes studia](https://github.com/timicerar/FitnessClani). Programa uporabljata isto podatkovno bazo in sta namenjena, kot dopolnilo drug drugemu.
 
-## Pogled receptorja
+## Pogled trenerja
 ![35089262_1679846418777848_637202168373313536_n 1](https://user-images.githubusercontent.com/23579188/41303610-059a0418-6e6e-11e8-8527-d1d0d642c99b.png)
 
 
-## Pogled trenerja
+
+## Pogled receptorja
 ![35082926_1679846912111132_7655971409201463296_n](https://user-images.githubusercontent.com/23579188/41304301-0d88cb80-6e70-11e8-8cfd-5e57f9113e3a.png)
 
 ## Vsebina
