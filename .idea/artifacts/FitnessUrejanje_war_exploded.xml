@@ -18,7 +18,7 @@
           <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
         </element>
       </element>
-      <element id="javaee-facet-resources" facet="FitnessUrejanje/web/Web2" />
+      <element id="javaee-facet-resources" facet="FitnessUrejanje/web/Web" />
       <element id="javaee-facet-resources" facet="FitnessUrejanje/ejb/EJB" />
     </root>
   </artifact>
